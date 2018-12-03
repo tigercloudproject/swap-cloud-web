@@ -1,0 +1,77 @@
+.flex-direction(@direction) when(@direction = row) {
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -ms-box-orient: horizontal;
+}
+.flex-direction(@direction) when(@direction = column) {
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -ms-box-orient: vertical;
+}
+.flex-direction(@direction) {
+  -webkit-flex-direction: @direction;
+  -ms-flex-direction: @direction;
+  flex-direction: @direction;
+}
+
+.flex-justify(@justify) when(@justify = flex-start) {
+  -webkit-box-pack: start;
+  -moz-box-pack: start;
+  -ms-box-pack: start;
+}
+.flex-justify(@justify) when(@justify = flex-end) {
+  -webkit-box-pack: end;
+  -moz-box-pack: end;
+  -ms-box-pack: end;
+}.flex-justify(@justify) when(@justify = center) {
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-box-pack: center;
+}
+.flex-justify(@justify) when(@justify = space-between) {
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  -ms-box-pack: justify;
+}
+.flex-justify(@justify) {
+  -webkit-justify-content: @justify;
+  justify-content: @justify;
+}
+
+.align-items(@alignItem) when(@alignItem = flex-start) {
+  -webkit-box-align: start;
+}
+.align-items(@alignItem) when(@alignItem = flex-end) {
+  -webkit-box-align: end;
+}
+.align-items(@alignItem) when(@alignItem = center) {
+  -webkit-box-align: center;
+}
+.align-items(@alignItem) when(@alignItem = baseline) {
+  -webkit-box-align: baseline;
+}
+.align-items(@alignItem) when(@alignItem = stretch) {
+  -webkit-box-align: stretch;
+}
+.align-items(@alignItem) {
+  -webkit-align-items: @alignItem;
+  -moz-align-items: @alignItem;
+  align-items: @alignItem;
+}
+
+
+.flex-wrap(@wrap) when(@wrap = nowrap) {
+  -moz-box-lines: single; /*Firefox*/
+  -webkit-box-lines: single; /*Safari,Opera,Chrome*/
+  box-lines: single;
+}
+.flex-wrap(@wrap) when(@wrap = wrap) {
+  -moz-box-lines: multiple; /*Firefox*/
+  -webkit-box-lines: multiple; /*Safari,Opera,Chrome*/
+  box-lines: multiple;
+}
+.flex-wrap(@wrap) {
+  -webkit-flex-wrap: @wrap;
+  flex-wrap: @wrap;
+}
+

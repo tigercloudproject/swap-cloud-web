@@ -1,0 +1,44 @@
+{
+  "name": "yes",
+  "version": "1.1.0",
+  "description": "yes",
+  "author": "zsnpromise",
+  "private": true,
+  "scripts": {
+    "dev": "backpack dev",
+    "build": "nuxt build && backpack build",
+    "start": "cross-env NODE_ENV=production node build/main.js",
+    "precommit": "npm run lint",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "clipboard": "^2.0.1",
+    "cross-env": "^5.0.1",
+    "crypto-js": "^3.1.9-1",
+    "css-loader": "^0.28.11",
+    "koa": "^2.4.1",
+    "less-loader": "^4.1.0",
+    "nuxt": "^1.4.2",
+    "source-map-support": "^0.4.15",
+    "vue-i18n": "^7.4.0",
+    "vue-style-loader": "^4.1.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/axios": "^5.3.1",
+    "@nuxtjs/proxy": "^1.2.4",
+    "babel-eslint": "^7.1.1",
+    "backpack-core": "^0.3.0",
+    "eslint": "^3.13.1",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-html": "^2.0.3",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "less": "^3.0.4",
+    "nodemon": "^1.11.0",
+    "scmp": "^2.0.0"
+  }
+}

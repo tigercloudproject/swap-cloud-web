@@ -1,0 +1,212 @@
+.first-grid {
+  padding: 10px;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns:280px 256px repeat(9, 1fr) 256px;     
+  grid-template-areas:
+  "s d k k k k k k k k k news-deal"
+  "n p p p p p p p p p  m m";
+  display: -ms-grid;
+  -ms-grid-gap: 10px;
+  -ms-grid-columns :280px 10px 256px 10px 8fr 10px 1fr 10px 256px;
+  -ms-grid-rows: 480px 10px 346px;
+  /* -ms-grid-rows: (auto 10px); */
+}
+.first-grid.isPlan {
+  -ms-grid-rows: 562px 10px 346px;
+}
+.first-grid .auto {
+  margin: 0 auto;
+}
+.submit {
+  grid-area: s;
+  -ms-grid-column:1;
+  -ms-grid-row:1;
+}
+.entrust {
+  grid-area: d;
+  -ms-grid-row:1;
+  -ms-grid-column:3;
+}
+.k-line {
+  grid-area: k;
+  -ms-grid-row:1;
+  -ms-grid-column-span:3;
+  /* -ms-grid-row-span: 9; */
+  -ms-grid-column:5;
+}
+.news-deal {
+  grid-area: news-deal;
+  -ms-grid-row:1;
+  -ms-grid-column:9;
+}
+.news-risk {
+  height: 346px;
+  grid-area: n;
+  -ms-grid-row:3;
+  -ms-grid-column:1;
+}
+.record-list {
+  grid-area: p;
+  -ms-grid-row:3;
+  -ms-grid-column:3;
+  -ms-grid-column-span:3;
+}
+.map {
+  grid-area: m;
+  -ms-grid-row:3;
+  -ms-grid-column:7;
+  -ms-grid-column-span:3;
+}
+
+@media screen and (min-width:1500px) {
+  .first-grid.isPlan .record-list, .first-grid.isPlan .map{
+     top: -80px;
+  }
+  .first-grid .record-list, .first-grid .map {
+    position: relative;
+    top: 0px;
+    transition: top .5s;
+  }
+}
+@media screen and (min-width:750px) and (max-width:1500px) {
+  .first-grid.isPlan .record-list{
+    height: 426px;
+    margin-bottom: -200px;
+    top: -80px;
+ }
+ .first-grid .record-list{
+   position: relative;
+   top: 0px;
+   transition: top .5s;
+ }
+  .first-grid {
+    grid-template-areas:
+    "s d k k k k k k k k k k"
+    "n p p p p p p p p p p p"
+    "m m  m m m m m m m m m news-deal";
+    -ms-grid-rows: 480px 10px 346px 10px 480px;
+  }
+  .first-grid.isPlan {
+    -ms-grid-rows: 562px 10px 346px 10px 480px;
+  }
+  .news-deal {
+    -ms-grid-row:5;
+    -ms-grid-column:9;
+  }
+  .map.depth {
+    -ms-grid-row:5;
+    -ms-grid-column:1;
+    -ms-grid-column-span:7;
+    height: 480px;
+  }
+  .k-line {
+  -ms-grid-column-span:5;
+  }
+  .record-list {
+  -ms-grid-column-span:7;
+ }
+}
+@media screen and (max-width:750px) and  (min-width:560px){
+  .first-grid.isPlan .entrust {
+    height: 560px;
+  }
+  .first-grid {
+    grid-template-columns: repeat(2, 1fr);     
+    grid-template-areas:
+    "s d"
+    "k k"
+    "p p"
+    "m m"
+    "n news-deal";
+    -ms-grid-columns: 1fr 10px 1fr;
+    -ms-grid-rows: 480px 10px 480px 10px 346px 10px 346px 10px 480px;
+  }
+  .first-grid.isPlan {
+    -ms-grid-rows: 562px 10px 480px 10px 346px 10px 346px 10px 480px;
+  }
+  .entrust {
+    -ms-grid-row:1;
+    -ms-grid-column:3;
+  }
+  .k-line {
+    -ms-grid-row:3;
+    -ms-grid-column-span:3;
+    -ms-grid-column:1;
+  }
+  .news-risk {
+    -ms-grid-row: 9;
+    -ms-grid-column:1;
+  }
+  .record-list {
+    -ms-grid-row:5;
+    -ms-grid-column:1;
+    -ms-grid-column-span:3;
+  }
+  .map {
+    -ms-grid-row:7;
+    -ms-grid-column:1;
+    -ms-grid-column-span:3;
+    height: 480px;
+  }
+  .news-deal {
+    -ms-grid-row:9;
+    -ms-grid-column:3;
+  }
+  .first-grid>div {
+    width: 100%;
+  }
+  .first-grid .news-risk>div {
+    width: 100%;
+  }
+}
+@media screen and (max-width:560px) {
+  .first-grid {
+    grid-template-columns: 1fr;     
+    grid-template-areas:
+    "s"
+    "d"
+    "p"
+    "k"
+    "n"
+    "m"
+    "news-deal";
+    -ms-grid-columns: 1fr;
+    -ms-grid-rows: 480px 10px 480px 10px 480px 10px 346px 10px 346px 10px 480px 10px 480px;
+  }
+  .entrust {
+    -ms-grid-row:3;
+    -ms-grid-column:1;
+  }
+  .record-list {
+    -ms-grid-row:5;
+    -ms-grid-column:1;
+    -ms-grid-column-span:1;
+  }
+  .k-line {
+    -ms-grid-row:7;
+    -ms-grid-column-span:1;
+    -ms-grid-column:1;
+  }
+  .news-risk {
+    -ms-grid-row: 9;
+    -ms-grid-column:1;
+  }
+  
+  .map {
+    -ms-grid-row:11;
+    -ms-grid-column:1;
+    -ms-grid-column-span:1;
+    height: 480px;
+  }
+  .news-deal {
+    -ms-grid-row:13;
+    -ms-grid-column:1;
+  }
+  .first-grid>div {
+    width: 100%;
+  }
+  .first-grid .news-risk>div {
+    width: 100%;
+  }
+}

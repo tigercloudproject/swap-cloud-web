@@ -1,0 +1,79 @@
+@import "../../../assets/css/base";
+.record-list-data {
+    table {
+      width: 100%;
+    }
+    padding-right: 6px;
+    width: calc(100% - 40px);
+    margin: 8px 20px 28px;
+    height: 266px;
+    overflow: auto;
+    .red {
+        color: @bbxRed;
+    }
+    .green {
+        color: @bbxGreen;
+    }
+    tr {
+        border-bottom: 1px solid @bbxLineColor;
+        th {
+            height: 48px;
+            line-height: 48px;
+            color: @bbxBlue1;
+            font-size: 12px;
+            font-weight: 300;
+            text-align: left;
+            &:last-child {
+                text-align: center;
+            }
+        }
+    }
+    tbody {
+        tr {
+            td {
+                color: @bbxGray;
+                font-size: 12px;
+                i.red, i.green {
+                    width: 4px;
+                    height: 12px;
+                    background-color: @bbxRed;
+                    margin-right: 4px;
+                    &.green {
+                      background-color:@bbxGreen;
+                    }
+                }
+            }
+        }
+    }
+  }
+  .hint-father {
+      &>p {
+          &:hover span {
+              color: #A0B8DD;
+              background: rgba(160,184,221, .2);
+          }
+      }
+  }
+  .no-data {
+      margin-top: 30px;
+      img {
+          width: 130px;
+      }
+      p {
+        color: rgba(144,168,205, 0.7);
+        font-size: 12px;
+      }
+  }
+  @media screen and (max-width:750px) {
+    .record-list-data .current-entrust tr .options a.width-750{
+        display: none;
+      }
+    .width-750 {
+      display: none;
+    }
+  }
+  @media screen and (max-width:560px) {
+    .width-560 {
+      display: none;
+    }
+  }

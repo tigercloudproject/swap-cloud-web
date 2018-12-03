@@ -1,0 +1,70 @@
+//主要定义页面中的颜色和固定高度
+
+@bbxNavBackground: #1f2636;
+@bbxBackground1: #1F2636;
+@bbFooterBackground: #1f2636;
+@bbxGray: #cdd5df;
+@bbxWhite: #ffffff;
+@bbxFooterColor: #8090aa;
+@bbxGreen: #37C669;
+@bbxRed: #DF4747;
+@bbxOrange: #D9A959;
+@bbxBorderHeighLight: #5F8ED4;
+@bodyBack: #171A25;
+@bbxBlue1: rgba(151,176,214, 0.7);
+@bbxBlue2: #5F8ED4;
+@bbxBlue3: #5F8ED4;
+@bbxLineColor: #313A56;
+@acountSelectTextColor: #5F8ED4;
+@acountTextColor1: #ffffff;
+@acountTextColor2: #CDD5DF;
+@bbxClick: #1D72C6;
+@windowButton: #2B93F6;
+@windowButtonHover: #3C9DF9;
+
+@h5NavColor: #eef4ff;
+// .center-container {
+//     width: 1200px;
+//     margin: 0 auto;
+// }
+.hint {
+    position: absolute;
+    display: none;
+    padding: 4px;
+    top: calc(100% + 16px);
+    // left: 50%;
+    background: #3f5a85;
+    border: 1px solid #5f8ed4;
+    z-index: 10;
+    .triangle {
+        position: absolute;
+        top: -6px;
+        left: 50%;
+        margin-left: -5px;
+        width: 10px;
+        height: 10px;
+        background-color: #3f5a85;
+        border-left: 1px solid #5f8ed4;
+        border-top: 1px solid #5f8ed4;
+        transform: rotate(45deg)
+    }
+    p {
+        height: 20px !important;
+        line-height: 20px !important;
+        color: #fff !important;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+}
+.hover {
+  cursor: pointer;
+}
+.hint-father {
+    position: relative;
+    cursor: pointer;
+    &:hover {
+      .hint {
+        display: block;
+      }
+    }
+  }

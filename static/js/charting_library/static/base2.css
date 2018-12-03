@@ -1,0 +1,177 @@
+.header-chart-panel {
+  height: 40px !important;
+  background: #eff3f9;
+}
+.header-chart-panel .header-chart-panel-content {
+  height: 40px;
+  padding: 0 10px 0 16px;
+}
+.chart-container {
+  border-color: #f7f9fc !important;
+}
+#loading-indicator {background: #fff !important;}
+.header-chart-panel .button {
+  cursor: pointer;
+}
+
+.chart-page .chart-container {
+  background: none;
+}
+body.chart-page,
+#loading-indicator {
+  background: #fff !important;
+  /*141626*/
+}
+
+.header-group-properties {
+  display: inline-block !important;
+}
+
+.header-chart-panel .group {
+  float: left;
+  height: auto !important;
+  margin-top: 9px;
+}
+.header-chart-panel .button {
+  width: auto !important;
+  height: auto !important;
+  background: rgba(20,22,38,0) !important;
+}
+.header-chart-panel .button.selected {
+  background: #313151 !important;
+}
+.feature-no-touch .header-chart-panel .button:active {
+  background: none !important;
+}
+.feature-no-touch .header-chart-panel .button:hover a {
+  color: #c7cce6;
+}
+.header-chart-panel .button.selected .time-interval {
+  color: #ffffff;
+  background-color: #5F8ED4;
+}
+.time-interval {
+  display: block;
+  padding: 0 5px;
+  line-height: 22px;
+  color: #5d6686;
+  font-weight: 300;
+}
+
+/* setting Button */
+.header-group-properties {
+  float: none !important;
+  margin-top: 11px !important;
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+}
+.button.iconed, .header-chart-panel .button.iconed {
+  padding: 0;
+}
+
+/* time Button */
+.header-group-intervals {
+  margin-top: 10px !important;
+  margin-right: 10px !important;
+  padding: 0 !important;
+}
+.favored-list-container span.submenu {
+  display: none;
+}
+.favored-list-container span {
+  height: 18px;
+  padding: 0 4px;
+  background: none;
+  border-color: #6c85ae;
+  line-height: 18px;
+  font-size: 12px;
+  color: #6c85ae;
+  text-align: center;
+  cursor: pointer;
+}
+.feature-no-touch .favored-list-container span:hover {
+  background: none;
+  border-color: #c7cce6;
+  color: #c7cce6;
+}
+
+/* indicator Button */
+.header-group-indicators {
+  float: none !important;
+  margin-top: 11px !important;
+  height: 18px !important;
+  padding-right: 0 !important;
+}
+.toggle-caption indicators {
+
+}
+.header-chart-panel .button {
+  padding: 0;
+  width: 18px;
+  height: 18px;
+  border: none;
+  background: #0f254c;
+}
+
+
+/* fullScreen Button */
+.header-group-fullscreen {
+  float: right !important;
+  margin-top: 11px !important;
+  height: 18px !important;
+  padding-right: 0 !important;
+}
+.header-chart-panel .button.fullscreen {
+  padding: 0 !important;
+  width: 18px;
+  height: 18px;
+  border: none;
+  background: #0f254c;
+}
+.chart-page .header-chart-panel .group .button svg,
+.chart-page .button svg {
+  fill: #6c85ae;
+}
+
+.feature-no-touch .header-chart-panel .button:hover,
+.feature-no-touch .symbol-edit-widget .button:hover {
+  background: none;
+}
+
+.feature-no-touch ._tv-dialog .button:not(.disabled):not(.selected):hover:before,
+.feature-no-touch ._tv-dialog .custom-select .switcher:not(.disabled):not(.selected):hover:before,
+.feature-no-touch ._tv-dialog .favored-list-container span:not(.disabled):not(.selected):hover:before,
+.feature-no-touch ._tv-dialog .submenu:not(.disabled):not(.selected):hover:before,
+.feature-no-touch .bottom-widgetbar-content.backtesting .button:not(.disabled):not(.selected):hover:before,
+.feature-no-touch .bottom-widgetbar-content.backtesting .custom-select .switcher:not(.disabled):not(.selected):hover:before,
+.feature-no-touch .bottom-widgetbar-content.backtesting .favored-list-container span:not(.disabled):not(.selected):hover:before,
+.feature-no-touch .bottom-widgetbar-content.backtesting .submenu:not(.disabled):not(.selected):hover:before,
+.feature-no-touch .header-chart-panel .button:not(.disabled):not(.selected):hover:before,
+.feature-no-touch .header-chart-panel .custom-select .switcher:not(.disabled):not(.selected):hover:before,
+.feature-no-touch .header-chart-panel .favored-list-container span:not(.disabled):not(.selected):hover:before,
+.feature-no-touch .header-chart-panel .submenu:not(.disabled):not(.selected):hover:before,
+.feature-no-touch .properties-toolbar .button:not(.disabled):not(.selected):hover:before,
+.feature-no-touch .properties-toolbar .custom-select .switcher:not(.disabled):not(.selected):hover:before,
+.feature-no-touch .properties-toolbar .favored-list-container span:not(.disabled):not(.selected):hover:before,
+.feature-no-touch .properties-toolbar .submenu:not(.disabled):not(.selected):hover:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: none;
+  z-index: 1;
+}
+
+.chart-page .tv-side-toolbar .group .button:hover svg,
+.chart-page .tv-side-toolbar .group .button.selected svg,
+.chart-page .header-chart-panel .group .button:hover svg,
+.chart-page .header-chart-panel .group .button.selected svg {
+  fill: #c7cce6;
+}
+._tv-dialog-content .alert-dialog-content,._tv-dialog-content .main-properties {
+  max-height: 260px;
+}

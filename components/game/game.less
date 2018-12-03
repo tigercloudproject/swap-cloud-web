@@ -1,0 +1,26 @@
+@game_color: #8ba6d3;
+
+.font_color_gradient () {
+  font-weight: 700;
+  background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#fff), to(@game_color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.team-title (){
+  margin: 30px 0;
+  text-align: center;
+  color: #fff;
+  font-size: 30px;
+  font-weight: 700;
+  h4 {
+    padding: 0 30px;
+  }
+  p {
+    width: 250px;
+    height: 18px;
+    background-image: url("../../assets/img/game/ZS-1.png");
+    &:last-child {
+      transform: rotate(180deg)
+    }
+  }
+}

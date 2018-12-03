@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  .main-nav {
+    height: 78px;
+    background-color: red;
+  }
+  .submit {
+    width: 280px;
+    height: 480px;
+    background-color: teal;
+  }
+  .deep {
+    width: 256px;
+    height: 480px;
+    background-color: blue;
+  }
+  .k-line {
+    flex: 3;
+    height: 480px;
+    background-color: yellow;
+  }
+  .risk {
+    width: 280px;
+    height: 72px;
+    background-color: green;
+  }
+  .position {
+    flex: 3;
+    height: 346px;
+    background-color: blueviolet;
+  }
+  .news  {
+    width: 280px;
+    /* height: 260px; */
+    background-color: aqua;
+  }
+  .map {
+    flex: 1 1 auto;
+    background-color: chartreuse;
+  }
+  .deal {
+    height: 480px;
+    width: 256px;
+    background-color:cornflowerblue;
+  }
+  .flex {
+    display: flex;
+  }
+  .news {
+    flex: 1
+  }
+  .all_width {
+    width: 100%
+  }
+  </style>
+</head>
+<body>
+  <div class="main-nav">头部导航</div>
+  <div class="submit">提交问题</div>
+  <div class="deep">委托列表</div>
+  <div class="k-line">k线</div>
+  <div class="risk">风险限额</div>
+  <div class="position">仓位</div>
+  <div class="news">市场信息</div>
+  <div class="map">深度</div>
+  <div class="deal">最新成交</div>
+</body>
+</html>
+<script>
+  let doE = document.documentElement
+  let doB = document.body
+  let main_nav = document.querySelector('.main-nav')
+  let submit = document.querySelector('.submit')
+  let deep = document.querySelector('.deep')
+  let k_line = document.querySelector('.k-line')
+  let risk = document.querySelector('.risk')
+  let position = document.querySelector('.position')
+  let news = document.querySelector('.news')
+  let map = document.querySelector('.map')
+  let deal = document.querySelector('.deal')
+  function eidt() {
+    document.body.innerHTML = ''
+    let seeWidth = doE.clientWidth || doB.clientWidth
+    if (seeWidth > 1490) {
+      let div_flex = document.createElement('div')
+      div_flex.className = 'flex'
+      let div_flex_two = div_flex.cloneNode()
+      let div_flex_fore = div_flex.cloneNode()
+      div_flex_fore.style = "flex-direction: column"
+      div_flex.appendChild(submit)
+      div_flex.appendChild(deep)
+      div_flex.appendChild(k_line)
+      div_flex.appendChild(deal)
+      div_flex_fore.appendChild(risk)
+      div_flex_fore.appendChild(news)
+      div_flex_two.appendChild(div_flex_fore)
+      div_flex_two.appendChild(position)
+      div_flex_two.appendChild(map)
+      document.body.appendChild(div_flex)
+      document.body.appendChild(div_flex_two)
+    } else if (seeWidth > 980) {
+      let div_flex = document.createElement('div')
+      let div_two = div_flex.cloneNode()
+      div_two.style="flex: 1"
+      div_flex.className = 'flex'
+      let div_flex_two = div_flex.cloneNode()
+      let div_flex_Three = div_flex.cloneNode()
+      let div_flex_fore = div_flex.cloneNode()
+      div_flex_fore.style = "flex-direction: column"
+      div_flex.appendChild(submit)
+      div_flex.appendChild(deep)
+      div_flex.appendChild(k_line)
+      div_flex_fore.appendChild(risk)
+      div_flex_fore.appendChild(news)
+      div_flex_two.appendChild(div_flex_fore)
+      div_flex_Three.appendChild(deal)
+      div_flex_Three.appendChild(map)
+      div_two.appendChild(position)
+      div_two.appendChild(div_flex_Three)
+      div_flex_two.appendChild(div_two)
+      document.body.appendChild(div_flex)
+      document.body.appendChild(div_flex_two)
+    } else {
+      let div_flex = document.createElement('div')
+      div_flex.className = 'flex'
+      div_flex.style = "flex-direction: column"
+      div_flex.appendChild(submit)
+      submit.className = "all_width"
+      div_flex.appendChild(deep)
+      div_flex.appendChild(position)
+      div_flex.appendChild(k_line)
+      div_flex.appendChild(deal)
+      document.body.appendChild(div_flex)
+    }
+  }
+  eidt()
+  window.onresize = () => { eidt() }
+</script>

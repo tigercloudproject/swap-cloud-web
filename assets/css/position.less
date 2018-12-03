@@ -1,0 +1,203 @@
+.first-position {
+  position: relative;
+  height: 856px;
+  .submit {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+  }
+  .entrust {
+    position: absolute;
+    left: 300px;
+    top: 10px;
+  }
+  .k-line {
+    position: absolute;
+    left: 566px;
+    top: 10px;
+    width:calc(100% - 842px)
+  }
+  .news-deal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  .news-risk {
+    position: absolute;
+    top: 500px;
+    left: 10px;
+  }
+  .record-list {
+    position: absolute;
+    top: 500px;
+    left: 300px;
+    width:calc(80% - 320px)
+  }
+  .map {
+    position: absolute;
+    top: 500px;
+    right: 10px;
+    width:20%;
+  }
+  .submit,.entrust,.k-line,.news-deal,.news-risk,.record-list,.map {
+    transition: all .5s;
+  }
+  &.isPlan {
+    height: 936px;
+    .news-risk {
+      top: 580px;
+    }
+  }
+}
+@media screen and (min-width:750px) and (max-width:1500px) {
+  .first-position {
+    height: 1348px;
+    .map {
+      top: 856px;
+      left: 10px;
+      width:calc(100% - 286px)
+    }
+    .k-line {
+      width:calc(100% - 576px)
+    }
+    .record-list {
+      width:calc(100% - 310px)
+    }
+    .news-deal {
+      top: 856px;
+      right: 10px;
+    }
+    &.isPlan {
+      height: 1428px;
+      .map {
+        top: 936px;
+      }
+      .news-deal {
+        top: 936px;
+      }
+      .record-list {
+        height: 424px;
+      }
+    }
+  }
+}
+@media screen and (max-width:750px)  and  (min-width:560px){
+  .first-position {
+    height: 2196px;
+    .submit {
+      width:calc(50% - 10px)
+    }
+    .entrust {
+      top: 10px;
+      left: calc(50% + 10px);
+      width:calc(50% - 20px)
+    }
+    .k-line {
+      top: 500px;
+      left: 10px;
+      width:calc(100% - 20px)
+    }
+    .record-list {
+      top: 990px;
+      left: 10px;
+      width:calc(100% - 20px)
+    }
+    .map {
+      top: 1346px;
+      left: 10px;
+      width:calc(100% - 20px)
+    }
+    .news-deal {
+      top: 1704px;
+      width:calc(100% - 310px)
+    }
+    .news-risk {
+      top: 1704px;
+      // width:calc(50% - 20px)
+      // position: static;
+      // width: 100%;
+      // top: 0px;
+      // left: 0px;
+    }
+    &.isPlan {
+      height: 2276px;
+      .entrust {
+        height: 560px;
+      }
+      .k-line {
+        top: 580px;
+      }
+      .record-list {
+        top: 1070px;
+      }
+      .map {
+        top: 1426px;
+      }
+      .news-deal,.news-risk {
+        top: 1784px;
+      }
+    }
+  }
+  
+}
+@media screen and (max-width:560px) {
+  .first-position {
+    height: 3040px;
+    .submit {
+       width: calc(100% - 20px);
+    }
+    .entrust {
+      top: 500px;
+      left: 10px;
+      width: calc(100% - 20px);
+    }
+    .record-list {
+      top: 990px;
+      left: 10px;
+      width: calc(100% - 20px);
+    }
+    .k-line {
+      top: 1346px;
+      left: 10px;
+      width: calc(100% - 20px);
+    }
+ 
+    .map {
+      top: 1836px;
+      left: 10px;
+      width: calc(100% - 20px);
+    }
+    .news-deal {
+      top: 2194px;
+      width: calc(100% - 20px);
+    }
+    .news-risk {
+      top: 2684px;
+      width: calc(100% - 20px);
+      .information {
+        width: 100%;
+      }
+    }
+    &.isPlan {
+      height: 3120px;
+      .entrust {
+        top: 580px;
+      }
+      .record-list {
+        top: 1070px;
+      }
+      .k-line {
+        top: 1426px;
+      }
+      .map {
+        top: 1916px;
+      }
+      .news-deal {
+        top: 2274px;
+      }
+      .news-risk {
+        top: 2764px;
+      }
+    }
+  }
+}

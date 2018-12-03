@@ -1,0 +1,97 @@
+.hint {
+  position: absolute;
+  display: none;
+  padding: 4px;
+  top: calc(116%);
+  background: #3f5a85;
+  border: 1px solid #5f8ed4;
+  z-index: 10;
+}
+.hint .triangle {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  margin-left: -5px;
+  width: 10px;
+  height: 10px;
+  background-color: #3f5a85;
+  border-left: 1px solid #5f8ed4;
+  border-top: 1px solid #5f8ed4;
+  transform: rotate(45deg);
+}
+.hint p {
+  height: 20px !important;
+  line-height: 20px !important;
+  color: #fff !important;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.hover {
+  cursor: pointer;
+}
+.hint-father {
+  position: relative;
+  cursor: pointer;
+}
+.hint-father:hover .hint {
+  display: block;
+}
+.record-list-data {
+  padding-right: 6px;
+  width: calc(60%);
+  margin: 8px 20px 28px;
+  height: 266px;
+  overflow: auto;
+}
+.record-list-data table {
+  width: 100%;
+}
+.record-list-data .red {
+  color: #b83a3a;
+}
+.record-list-data .green {
+  color: #319e5c;
+}
+.record-list-data tr {
+  border-bottom: 1px solid #313A56;
+}
+.record-list-data tr th {
+  height: 48px;
+  line-height: 48px;
+  color: rgba(151, 176, 214, 0.7);
+  font-size: 12px;
+  font-weight: 300;
+  text-align: left;
+}
+.record-list-data tr th:last-child {
+  text-align: center;
+}
+.record-list-data tbody tr td {
+  color: #cdd5df;
+  font-size: 12px;
+}
+.record-list-data tbody tr td i.red,
+.record-list-data tbody tr td i.green {
+  width: 4px;
+  height: 12px;
+  background-color: #b83a3a;
+  margin-right: 4px;
+}
+.record-list-data tbody tr td i.red.green,
+.record-list-data tbody tr td i.green.green {
+  background-color: #319e5c;
+}
+.hint-father > p:hover span {
+  color: #A0B8DD;
+  background: rgba(160, 184, 221, 0.2);
+}
+.no-data {
+  margin-top: 30px;
+}
+.no-data img {
+  width: 130px;
+}
+.no-data p {
+  color: rgba(144, 168, 205, 0.7);
+  font-size: 12px;
+}
