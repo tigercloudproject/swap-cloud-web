@@ -42,12 +42,27 @@ cookie.setCookie('access_key', 'ebb1b16a-3556-45b3-ad00-13d3120ba834', '', '/', 
 
 1. 上线需把**api.config.master.js** 的内容覆盖**api.config.js**
 2. `isYun` 字段设为`true`  
-![]("/static/readme/usage-2.png")
-![]("https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/usage-2.png")
+![]("/static/readme/usage-2.png")  
 3. 需要接入当前平台的用户资产和用户信息，为转账到期货和头部显示做准备  
+![]("https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/usage-3.png")  
 
 ## Components Intro
 1. 用户转账组件  
-components\index\submit-entrust-cp\transfer-window.vue
+[transfer-window.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/index/submit-entrust-cp/confirm-plan-window.vue)
 2. 用户信息组件  
-components\template\user-info.vue
+[user-info.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/template/user-info.vue)  
+3. 头部合约列表组件  
+[main-nav-new.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/index/main-nav-new.vue)  
+4. 委托表单组件  
+[submit-entrust.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/index/submit-entrust.vue)    
+5. 委托列表组件  
+[entrust-list.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/index/entrust-list.vue)  
+6. 操作记录组件  
+[record-list.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/index/record-list.vue)  
+7. 最新成交价组件  
+[news-deal.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/index/news-deal.vue)  
+8. 合约计算器组件  
+[calculator-window.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/index/type-title-cp/calculator-window.vue)  
+
+## Deploy  
+pm2
