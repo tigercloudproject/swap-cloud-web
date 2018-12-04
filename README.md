@@ -40,11 +40,11 @@ cookie.setCookie('expired_ts', '1544165433', '', '/', 'test.com')
 cookie.setCookie('access_key', 'ebb1b16a-3556-45b3-ad00-13d3120ba834', '', '/', 'test.com')
 ```  
 
-1. 上线需把**api.config.master.js** 的内容覆盖**api.config.js**
+1. 上线需把**api.config.master.js** 的内容覆盖**api.config.js**  
 2. `isYun` 字段设为`true`  
-![]("/static/readme/usage-2.png")  
+<img src="https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/usage-2.png?raw=true" width="500" hegiht="auto" />  
 3. 需要接入当前平台的用户资产和用户信息，为转账到期货和头部显示做准备  
-![]("https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/usage-3.png")  
+<img src="https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/usage-3.png?raw=true" width="500" hegiht="auto" align=center />    
 
 ## Components Intro
 1. 用户转账组件  
