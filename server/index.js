@@ -21,7 +21,7 @@ async function start () {
   }
   app.use(async (ctx, next) => {
     // VueX.Store.commit('auth/SET_TOKEN', {
-    //   token: ctx.cookies.get('tocken')
+    //   token: ctx.cookies.get('token')
     // })
     // VueX.Store.commit('auth/SET_UID', {
     //   uid: ctx.cookies.get('uid'),
@@ -32,7 +32,7 @@ async function start () {
     // })
      ctx.req.contract_id = ctx.query.id
      ctx.req.news = ctx.query.news
-     ctx.req.token = ctx.cookies.get('tocken')
+     ctx.req.token = ctx.cookies.get('token')
     //  ctx.req.ssid = ctx.cookies.get('ssid')
     //  ctx.req.uid = ctx.cookies.get('uid')
      ctx.req.locale = ctx.cookies.get('lang')

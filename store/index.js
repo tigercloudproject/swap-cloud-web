@@ -255,11 +255,11 @@ export const actions = {
         commit('auth/SET_TOKEN', {
           token: null
         })
-        Cookie.clearCookie('tocken', ApiConfig.domain)
+        Cookie.clearCookie('token', ApiConfig.domain)
         Cookie.clearCookie('uid', ApiConfig.domain)
         window.location.href = `${ApiConfig.mainDomain}/login?path=${escape(window.location.href)}&lang=${state.auth.locale}`
       } else if (e.errno === 'BAD_REQUEST') {
-        Cookie.clearCookie('tocken', ApiConfig.domain)
+        Cookie.clearCookie('token', ApiConfig.domain)
         Cookie.clearCookie('uid', ApiConfig.domain)
         window.location.reload()
       } else {
@@ -343,13 +343,13 @@ export const actions = {
     let timestamp = new Date().valueOf()
     let nonce = timestamp + '000'
     if (ApiConfig.isYun) {
-      let tocken = (new Md5(Cookie.getCookie('tocken') + nonce)).hash()
+      let token = (new Md5(Cookie.getCookie('token') + nonce)).hash()
       let expired_ts = Cookie.getCookie('expired_ts') // expired_ts 超时时间
       let access_key = Cookie.getCookie('access_key')
-      window.webSocket_base.webSocketSend(`{"action":"access","args":["${access_key}","web","1.0","${tocken}","${nonce}", "${expired_ts}"]}`)
+      window.webSocket_base.webSocketSend(`{"action":"access","args":["${access_key}","web","1.0","${token}","${nonce}", "${expired_ts}"]}`)
     } else {
-      let tocken = aesEncrypy(Cookie.getCookie('tocken'), nonce)
-      window.webSocket_base.webSocketSend(`{"action":"authenticate","args":["${Cookie.getCookie('uid')}","web","1.0","${tocken}","${nonce}"]}`)
+      let token = aesEncrypy(Cookie.getCookie('token'), nonce)
+      window.webSocket_base.webSocketSend(`{"action":"authenticate","args":["${Cookie.getCookie('uid')}","web","1.0","${token}","${nonce}"]}`)
     }
     window.webSocket_base.successFn[ApiConfig.isYun ? 'access' : 'authenticate'] = (res) => {
       window.webSocket_base.webSocketSend(`{"action":"subscribe","args":["unicast"]}`)

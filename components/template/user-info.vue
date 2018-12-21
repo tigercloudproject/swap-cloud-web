@@ -46,7 +46,7 @@
     methods: {
       logout() {
         this.swapsApi.userLogout().then(res => {
-          Cookie.clearCookie('tocken', this.apiConfig.domain)
+          Cookie.clearCookie('token', this.apiConfig.domain)
           Cookie.clearCookie('uid', this.apiConfig.domain)
           window.location.reload()
         })

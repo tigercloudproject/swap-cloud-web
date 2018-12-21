@@ -34,11 +34,11 @@ class AxiosClass {
       config.headers.common['Content-Type'] = 'application/json'
       // config.headers.common['Access-Control-Max-Age'] = '60'
       try {
-        cookie.setCookie('tocken', '461581496df9211abeaddf3cb108129a', '', '/', 'test.com')
+        cookie.setCookie('token', '461581496df9211abeaddf3cb108129a', '', '/', 'test.com')
         cookie.setCookie('expired_ts', '1544165433', '', '/', 'test.com')
         cookie.setCookie('access_key', 'ebb1b16a-3556-45b3-ad00-13d3120ba834', '', '/', 'test.com')
         // let ssid = cookie.getCookie('ssid')  cookie.getCookie('token') ||
-        let token = cookie.getCookie('tocken') // secret
+        let token = cookie.getCookie('token') // secret
         // let locale = cookie.getCookie('lang')
         let expired_ts = cookie.getCookie('expired_ts') // expired_ts 超时时间
         let access_key = cookie.getCookie('access_key')// api_key
@@ -83,7 +83,7 @@ class AxiosClass {
       // let token = res.headers['bbx-token']
       // let uid = res.headers['bbx-uid']
       // if (token) {
-      //   cookie.setCookie('tocken', token, 1, '/', config.domain)
+      //   cookie.setCookie('token', token, 1, '/', config.domain)
       // }
       // if (uid) {
       //   cookie.setCookie('uid', uid, 1, '/', config.domain)

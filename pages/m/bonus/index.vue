@@ -257,7 +257,7 @@ export default {
       let lang = this.$route.query.lang
       cookie.setCookie('uid', this.$route.query.uid, 1, '/', this.apiConfig.domain)
       cookie.setCookie('lang', lang, 1, '/', this.apiConfig.domain)
-      cookie.setCookie('tocken', this.$route.query.token, 1, '/', this.apiConfig.domain)
+      cookie.setCookie('token', this.$route.query.token, 1, '/', this.apiConfig.domain)
       cookie.setCookie('version', this.$route.query.version, 1, '/', this.apiConfig.domain)
       cookie.setCookie('options', this.$route.query.options, 1, '/', this.apiConfig.domain)
       this.$store.commit('auth/SET_LOCALE', {

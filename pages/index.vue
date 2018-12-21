@@ -169,7 +169,7 @@ export default {
   mounted() {
     // this.scrollShow = document.documentElement.scrollWidth > 1490
     // if (!this.token) {
-    //   let token = cookie.getCookie('tocken')
+    //   let token = cookie.getCookie('token')
     //   if (token) {
     //     this.$store.commit('auth/SET_TOKEN', {
     //       token: token

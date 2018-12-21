@@ -33,7 +33,7 @@ class AxiosClass {
         let ssid = cookie.getCookie('ssid')
         let uid = cookie.getCookie('uid')
         let locale = cookie.getCookie('lang')
-        let token = cookie.getCookie('tocken')
+        let token = cookie.getCookie('token')
         let version = cookie.getCookie('version')
         let options = cookie.getCookie('options')
         if (version && options) {
@@ -73,7 +73,7 @@ class AxiosClass {
       let ssid = res.headers['bbx-ssid']
       let uid = res.headers['bbx-uid']
       if (token) {
-        cookie.setCookie('tocken', token, 1, '/', config.domain)
+        cookie.setCookie('token', token, 1, '/', config.domain)
       }
       if (ssid) {
         cookie.setCookie('ssid', ssid, 1, '/', config.domain)

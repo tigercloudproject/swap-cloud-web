@@ -28,14 +28,14 @@ using a prerelease version of Node (i.e. v7.6.0-rc.1) you will need to either:
 基本配置  
 1. 服务器应提供一个获取`api_key` 和 `api_secret`的接口,前端拿到`api_key` 和 `api_secret`后即可调用合约交易.  
     ```javascript
-    cookie.getCookie('tocken');     // 加密后的api_secret
+    cookie.getCookie('token');     // 加密后的api_secret
     cookie.getCookie('expired_ts'); // 超时时间
     cookie.getCookie('access_key'); // api_key
     ```
-    >注意: 站点重度依赖tocken字段为用户登录态判断依据，所以项目方在登录后，要把`tocken`、`expired_ts`,`access_key`储存到cookie中。eg:    
+    >注意: 站点重度依赖token字段为用户登录态判断依据，所以项目方在登录后，要把`token`、`expired_ts`,`access_key`储存到cookie中。eg:    
 
     ```javascript
-    cookie.setCookie('tocken', '461581496df9211abeaddf3cb108129a', '', '/', 'test.com')
+    cookie.setCookie('token', '461581496df9211abeaddf3cb108129a', '', '/', 'test.com')
     cookie.setCookie('expired_ts', '1542971159000000', '', '/', 'test.com')
     cookie.setCookie('access_key', 'ebb1b16a-3556-45b3-ad00-13d3120ba834', '', '/', 'test.com')
     ```  
