@@ -26,7 +26,8 @@
                     <td>{{ item.done_avg_price|retainDecimals({decimal: com.priceUnit}) }}</td>
                     <td class="width-750">{{ getPositionsValue(item.vol, item.price)|retainDecimals({decimal: com.valueUnit}) }}</td>
                     <td class="width-750">{{ $t(`common.priceType_${item.category}`) }}</td>
-                    <td class="width-750">{{ $t(`common.table.${~item.origin.indexOf('PLAN') ? 'PLAN' : item.origin}`) }}</td>
+                    <td class="width-750" v-if="item.origin">{{ $t(`common.table.${~item.origin.indexOf('PLAN') ? 'PLAN' : item.origin}`) }}</td>
+                    <td class="width-750" v-if="!item.origin"></td>
                     <td class="width-750">
                       {{item.created_at|timeFormat}}
                     </td>

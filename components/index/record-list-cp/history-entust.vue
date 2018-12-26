@@ -40,7 +40,8 @@
                     </div>
                     </st-row>
                     </td>
-                    <td class="width-750">{{ $t(`common.table.${~item.origin.indexOf('PLAN') ? 'PLAN' : item.origin}`) }} </td>
+                    <td class="width-750" v-if="item.origin">{{ $t(`common.table.${~item.origin.indexOf('PLAN') ? 'PLAN' : item.origin}`) }} </td>
+                    <td class="width-750" v-if="!item.origin"></td>
                     <td class="width-750">
                         {{ item.created_at|timeFormat }}
                         <!-- <p>2018/03/08</p>
