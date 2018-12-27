@@ -286,7 +286,7 @@
         this.info.nonce = parseInt(Date.now() / 1000) // new Date().valueOf() + '000'
         this.swapsApi.submitOrder(this.info).then(res => {
           if (res.errno === 'OK') {
-            this.$store.dispatch('getUserDate', this.info.contract_id)
+            // this.$store.dispatch('getUserDate', this.info.contract_id)
             this.$alert('s', this.$t('submitEntrust.message.a7'))
           }
         })
