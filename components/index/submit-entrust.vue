@@ -418,8 +418,8 @@
         obj.leverage = Number(this.leverageInfo.value)
         obj.price_type = this.planInfo.priceTypeValue
         // 价格方向,1:看涨,2:看跌
-        obj.price_way = this.price_way < this.price ? 2 : 1
-        obj.open_type = this.openType()
+        obj.price_way = this.price_way < this.triggerPrice ? 1 : 2
+
         if (this.planInfo.strategyValue === 1) {
           obj.executive_price = this.price
         }
@@ -428,9 +428,11 @@
         obj.life_cycle = this.planInfo.timeListValue
         if (this.way) {
           obj.way = this.options ? 1 : 4
+          obj.open_type = this.openType()
         } else {
           obj.way = this.options ? 3 : 2
         }
+
         this.swapsApi.submitPlanOrder(obj).then(res => {
           if (res.errno === 'OK') {
             this.changeInit()

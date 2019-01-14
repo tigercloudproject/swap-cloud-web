@@ -1,8 +1,8 @@
 
 <template>
   <div class="errno-window">
-     <h6 v-if="!info.errno" v-html="$t('record.errno.success', {time: `<span>${Util.timeFormat(info.finished_at)}</span>`, contract: productInfo.contract[locale === 'zh-cn' ? 'display_name' : 'display_name_en'], priceType: $t('submitEntrust.priceType_' + info.price_type), downOrUp: price_way === 1 ? $t('record.cp.on') : $t('record.cp.down'), price: `<span>${info.price}</span>`})"></h6>
-     <h6 v-else v-html="$t('record.errno.failure', {time: `<span>${Util.timeFormat(info.finished_at)}</span>`, contract: productInfo.contract[locale === 'zh-cn' ? 'display_name' : 'display_name_en'], priceType: $t('submitEntrust.priceType_' + info.price_type), downOrUp: price_way === 1 ? $t('record.cp.on') : $t('record.cp.down'), errno: $t('record.errno.plan_' + info.errno), price: `<span>${info.price}</span>`})"></h6>
+     <h6 v-if="!info.errno" v-html="$t('record.errno.success', {time: `<span>${Util.timeFormat(info.finished_at)}</span>`, contract: productInfo.contract[locale === 'zh-cn' ? 'display_name' : 'display_name_en'], priceType: $t('submitEntrust.priceType_' + info.price_type), downOrUp: Number(info.price_way) === 1 ? $t('record.cp.on') : $t('record.cp.down'), price: `<span>${info.price}</span>`})"></h6>
+     <h6 v-else v-html="$t('record.errno.failure', {time: `<span>${Util.timeFormat(info.finished_at)}</span>`, contract: productInfo.contract[locale === 'zh-cn' ? 'display_name' : 'display_name_en'], priceType: $t('submitEntrust.priceType_' + info.price_type), downOrUp: Number(info.price_way) === 1 ? $t('record.cp.on') : $t('record.cp.down'), errno: $t('record.errno.plan_' + info.errno), price: `<span>${info.price}</span>`})"></h6>
      <st-row justify="center">
        <a @click="close">{{ $t('record.cp.confirm') }}</a>
      </st-row>
