@@ -418,7 +418,8 @@
         obj.leverage = Number(this.leverageInfo.value)
         obj.price_type = this.planInfo.priceTypeValue
         // 价格方向,1:看涨,2:看跌
-        obj.price_way = this.price_way < this.triggerPrice ? 1 : 2
+        obj.price_way = Number(this.price_way) < Number(this.triggerPrice) ? 1 : 2
+
 
         if (this.planInfo.strategyValue === 1) {
           obj.executive_price = this.price
