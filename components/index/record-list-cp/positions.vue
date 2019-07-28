@@ -485,10 +485,10 @@
                       line-height: 20px;
                       &.red {
                         border: 1px solid #F6412B;
-                        color: ：#F6412B;
+                        color:#F6412B;
                         &:hover {
                             border: 1px solid #F85644;
-                            color: ：#F85644;
+                            color: #F85644;
                         }
                       }
                       &.green {
@@ -499,11 +499,11 @@
                           color:  #3C9FFB;
                        }
                       }
-                      
+
                   }
               }
            }
       }
-   } 
+   }
 }
 </style>
