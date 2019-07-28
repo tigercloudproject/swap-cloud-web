@@ -153,7 +153,7 @@ export default {
       let data = {
         orders: [
           {
-            contract_id: this.id,
+            contract_id: this.productInfo.contract.contract_id,
             orders: orderList
           }
         ],
