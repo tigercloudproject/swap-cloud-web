@@ -342,6 +342,8 @@
         "noData": "暂无数据",
         "plan": "计划委托",
         "planHistory": "计划历史",
+        "closeAll": "一键撤销",
+        "closeAllContent": "确定要撤销全部委托吗?",
         "cp": {
             "interestsUser": "账户权益",
             "balanceUser": "保证金余额",
@@ -396,7 +398,15 @@
             "more": "多头",
             "empty": "空头",
             "on": "上涨",
-            "down": "下跌"
+            "down": "下跌",
+            "createTime": "时间",
+            "charges": "资金费用",
+            "positionQsuantity": "仓位数量(张)",
+            "canPrice": "合理价格",
+            "rateHover1": "<span>当前未实现盈亏是以<span style='color: #D9A959'>合理价格平仓</span>时的预估盈亏额，最终盈亏以实际为准，若查看按照最新价平仓的未实现盈亏额，请在【设置】中进行价格设定。</span>",
+            "rateHover2": "<span>当前未实现盈亏是以<span style='color: #D9A959'>最新价格平仓</span>时的预估盈亏额，最终盈亏以实际为准，若查看按照合理价平仓的未实现盈亏额，请在【设置】中进行价格设定。</span>",
+            "detailsOfFundingFees": "资金费用明细",
+            "detailsOfFundingFeesCare": "注：资金费用是为了锚定现货价格，通过多空之间的互换补偿进行调节。资金费用在持有仓位的用户之间进行互换，平台不收取任何费用。资金费用都会计入仓位已实现盈亏。"
         },
         "message": {
             "a1": "请输入保证金！",

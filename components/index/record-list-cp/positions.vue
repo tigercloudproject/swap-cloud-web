@@ -35,7 +35,8 @@
                <th class="hint-father hover">
                  <p><span>{{ $t('common.table.rate') }}</span></p>
                  <div class="hint">
-                   <p>{{ $t('submitEntrust.message.b1') }}</p>
+                   <p v-if="pnlPriceUnit" v-html="$t('record.cp.rateHover1')"></p>
+                   <p v-if="!pnlPriceUnit" v-html="$t('record.cp.rateHover2')"></p>
                  </div>
                </th>
                <th class="width-750">
@@ -69,7 +70,8 @@
                       </template>
                     </td>
                     <td :class="item.money < 0 ? 'red' : 'green'">{{ LongOrSort(item.money, item.im) }}</td>
-                    <td class="width-750" :class="item.realised_profit < 0 ? 'red' : 'green'">{{ item.realised_profit|retainDecimals({decimal: com.valueUnit}) }}</td>
+                    <!-- <td class="width-750" :class="item.realised_profit < 0 ? 'red' : 'green'">{{ item.realised_profit|retainDecimals({decimal: com.valueUnit}) }}</td> -->
+                    <td class="width-750" :class="item.realised_profit < 0 ? 'on-money red' : 'on-money green'"><span>{{ item.realised_profit|retainDecimals({decimal: com.valueUnit}) }}</span> <i class='fee-q' @click="positionFeeShow(item)"></i></td>
                     <td class="positions-unwind width-560">
                         <div class="positions-unwind-one">
                             <st-row class="positions-unwind-two" justify="between" align="center">
@@ -103,6 +105,10 @@
         <popup :title="$t('record.cp.eidtMargin')"   width="600" :callback="editMarginColse" v-if="showEditMargn">
             <edit-margin-window @getLiquidate="getLiquidate" :info="marginInfo" :close="editMarginColse"></edit-margin-window>
        </popup>
+        <popup :title="$t('record.cp.detailsOfFundingFees')" width="600" v-if="showPositionFee" :callback="positionFeeColse">
+            <position-fee-window :close="positionFeeColse" :contractId="contractId"
+                :positionId="positionId" :positionCoin="positionCoin" ></position-fee-window>
+       </popup>
       </div>
 </template>
 <script>
@@ -112,22 +118,28 @@
   import Utils from '../../../assets/js/util.js'
   import Formula from '../../../assets/js/formula/index.js'
   import EditMarginWindow from './edit-margin-window'
+  import positionFeeWindow from './position-fee-window'
   export default {
     name: 'deal-record',
     components: {
       Popup,
       UnwindWindow,
-      EditMarginWindow
+      EditMarginWindow,
+      positionFeeWindow
     },
     data() {
       return {
         showUnwind: false,
         showEditMargn: false,
+        showPositionFee: false,
         offset: 0,
         info: {},
         isAll: false,
         marginInfo: {},
-        list: []
+        list: [],
+        contractId: 0,
+        positionId: 0,
+        positionCoin: '' // 保证金币
       }
     },
     computed: {
@@ -190,6 +202,18 @@
       }
     },
     methods: {
+      // 打开资金费用明细窗口
+      positionFeeShow(item) {
+        this.contractId = item.contract_id
+        this.positionId = item.position_id
+        this.showPositionFee = true
+        let positionCoin = this.getPositionUnit()
+        this.positionCoin = positionCoin
+      },
+      // 关闭资金费用明细窗口
+      positionFeeColse() {
+        this.showPositionFee = false
+      },
       // 复制id
       IdCopy(id) {
         this.copy = new ClipboardJS('.btn', {
@@ -425,6 +449,15 @@
 </script>
 <style lang="less" scoped>
 @import "./list";
+.hint {
+  max-width: 400px;
+  p {
+    width: 300px;
+    word-break: break-all;
+    white-space: normal;
+    height: auto!important;
+  }
+}
 .record-list-data .positions {
    .margin {
      a {
@@ -504,6 +537,25 @@
               }
            }
       }
-   }
+      .on-money {
+      *{
+        vertical-align: middle;
+      }
+      i {
+        display: inline-block;
+        vertical-align: sub;
+        width: 12px;
+        height: 12px;
+        background: url('../../../assets/img/icon-Q_nor.png') no-repeat;
+        background-size: 100% 100%;
+        margin-left: 2px;
+        cursor: pointer;
+        &:hover {
+          background: url('../../../assets/img/icon-Q_sel.png') no-repeat;
+          background-size: 100% 100%;
+        }
+      }
+    }
+  }
 }
 </style>

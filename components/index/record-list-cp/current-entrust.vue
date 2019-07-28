@@ -12,8 +12,10 @@
                <th class="width-750">{{ $t('common.table.entrustedValue', {name: com.marginUnit}) }}</th>
                <th class="width-750">{{ $t('common.table.type') }}</th>
                <th class="width-750">{{ $t('common.table.source') }}</th>
-               <th class="width-750" style="width: 150px;">{{ $t('common.table.time') }}</th>
-               <th>{{ $t('common.table.options') }}</th>
+               <!-- <th class="width-750" style="width: 150px;">{{ $t('common.table.time') }}</th>
+               <th>{{ $t('common.table.options') }}</th> -->
+               <th class="width-750" style="width: 80px;">{{ $t('common.table.time') }}</th>
+               <th class="options"><a @click="openSecondsWindow()">{{$t('record.closeAll')}}</a></th>
               </tr>
             </thead>
             <tbody class="current-entrust">
@@ -58,16 +60,26 @@
           <st-row direction="column" v-if="!curryEntrustList || !curryEntrustList.length" align="center" class="no-data">
             <img src="../../../assets/img/no-data.png" alt="">
             <p>{{ $t('record.noData') }}</p>
-       </st-row>
+          </st-row>
+          <popup :title="$t('record.closeAll')"  width="440" :callback="closeSecondsWindow" v-if="secondsWindowShow">
+              <SecondaryConfirmation :content="$t('record.closeAllContent')" @submitOrder="cancelAll" :close="closeSecondsWindow"></SecondaryConfirmation>
+          </popup>
       </div>
 </template>
 <script>
 import ClipboardJS from 'clipboard'
 import Formula from '../../../assets/js/formula/index.js'
+import Popup from '../../bx-ui/popup'
+import SecondaryConfirmation from '../secondary-confirmation'
 export default {
+  components: {
+    Popup,
+    SecondaryConfirmation
+  },
   data() {
     return {
-      offset: 0
+      offset: 0,
+      secondsWindowShow: false
     }
   },
   computed: {
@@ -79,9 +91,18 @@ export default {
     },
     curryEntrustList() {
       return this.$store.state.market.curryEntrustList
+    },
+    id() {
+      return Number(this.$route.query.id)
     }
   },
   methods: {
+    closeSecondsWindow() {
+      this.secondsWindowShow = false
+    },
+    openSecondsWindow() {
+      this.secondsWindowShow = true
+    },
     // 复制id
     IdCopy(id) {
       this.copy = new ClipboardJS('.btn', {
@@ -108,6 +129,41 @@ export default {
           this.$alert('s', this.$t('common.cancelSuccess'))
         }
       })
+    },
+    getOrderIdList() {
+      let result = []
+      this.curryEntrustList.forEach((item) => {
+        result.push(item.order_id)
+      })
+      return result
+    },
+    cancelAll() {
+      // let nonce = parseInt(Date.now() / 1000)
+      // this.swapsApi.cancelOrders({orders: [{contract_id: this.productInfo.contract.contract_id, orders: order_id}], nonce})
+      // .then(res => {
+      //   if (res.errno === 'OK') {
+      //     this.$alert('s', this.$t('common.cancelSuccess'))
+      //   }
+      // })
+      if (this.curryEntrustList.length < 1) return
+      console.log('cancel all')
+      console.log('curryEntrustList###', this.curryEntrustList)
+      let nonce = parseInt(Date.now() / 1000)
+      let orderList = this.getOrderIdList()
+      let data = {
+        orders: [
+          {
+            contract_id: this.id,
+            orders: orderList
+          }
+        ],
+        nonce: nonce
+      }
+      this.swapsApi.cancelOrders(data).then(res => {
+        if (res.errno === 'OK') {
+          this.$alert('s', this.$t('common.cancelSuccess'))
+        }
+      })
     }
   }
   // created() {
@@ -118,10 +174,18 @@ export default {
 
 <style lang="less" scoped>
 @import "./list";
-.record-list-data .current-entrust {
+.record-list-data {
    tr {
        height: 50px;
+       th {
+         .time {
+           width: 60px;
+         }
+       }
        td {
+          .time {
+            width: 60px;
+          }
            p {
                text-align: center;
            }
@@ -142,7 +206,7 @@ export default {
                color:  #3C9FFB;
             }
           }
-      } 
+      }
    }
 }
 </style>

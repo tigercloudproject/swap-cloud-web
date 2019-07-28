@@ -342,6 +342,8 @@
         "noData": "No data temporarily",
         "plan": "Current Plan",
         "planHistory": "History Plan",
+        "closeAll": "close all",
+        "closeAllContent": "Confirm to cancel all  orders?",
         "cp": {
             "interestsUser": "Account Asset",
             "balanceUser": "Margin Balance",
@@ -396,7 +398,15 @@
             "more": "long",
             "empty": "short",
             "on": "rise",
-            "down": "down"
+            "down": "down",
+            "createTime": "time",
+            "charges": "Funds Cost",
+            "positionQsuantity": "Position Qty(conrt)",
+            "canPrice": "Fair Price",
+            "rateHover1": "<span>The current unrealized profit and loss is the estimated profit and loss at a reasonable price, and the final profit and loss is subject to the actual price.</span>",
+            "rateHover2": "<span>The current unrealized profit and loss is the estimated profit and loss when the latest price is liquidated, and the final profit and loss is subject to the actual price. </span>",
+            "detailsOfFundingFees": "Details of Funding Fees",
+            "detailsOfFundingFeesCare": "The funding adjustment between longs and shorts is to tether to spot price. BBX does not charge any fees on funding; it is exchanged directly peer-to-peer. Funding Fees  will be included in the position has realized profit and loss."
         },
         "message": {
             "a1": "Please enter margin!",
@@ -528,7 +538,7 @@
         "smTitle": "Scan to take bonus!",
         "smMessage": "",
         "end": "Finished",
-        "validation": { 
+        "validation": {
         "kycTitle": "KYC Authentication",
         "kycMessge": "You did not do KYC authentication, do it now or not?",
         "kycGo": "Go to do KYC authentication",
