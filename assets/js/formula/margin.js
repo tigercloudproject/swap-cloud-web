@@ -6,7 +6,7 @@
     }
     let stepValue = value - riskLimit.BaseLimit
     let stepsCount = Math.ceil(stepValue / riskLimit.Step)
-    let MMR = riskLimit.MaintenanceMargin / (stepsCount + 1)
+    let MMR = riskLimit.MaintenanceMargin * (stepsCount + 1)
     // 大于0.5
     if (MMR > 0.5) {
       return 0.5
