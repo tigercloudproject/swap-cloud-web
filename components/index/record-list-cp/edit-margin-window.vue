@@ -14,10 +14,10 @@
         <td>{{ $t('record.cp.curryPositionsMargin') }}</td>
         <td>{{ info.im|retainDecimals({decimal: com.valueUnit}) }} {{com.marginUnit}}</td>
       </tr>
-      <tr>
+      <!-- <tr>
         <td>{{ $t('record.cp.onMargin') }}</td>
         <td>{{ com.haveAssert|retainDecimals({decimal: com.valueUnit}) }} {{com.marginUnit}}</td>
-      </tr>
+      </tr> -->
       <tr>
         <td>{{ $t('record.cp.curryPirce') }}</td>
         <td>{{ info.liquidatePrice|retainDecimals({decimal: com.priceUnit}) }} {{productInfo.contract.quote_coin}}</td>
@@ -31,11 +31,18 @@
             <div class="ipt-ipt"><input v-model="value" @input="priceChange" maxlength="16" type="text"><span>{{com.marginUnit}}</span></div>
           </div>
         </st-row>
-        <st-row class="ipt-message" justify="end">
-              <p>{{ $t('record.cp.editMarginPrice') }}</p>
-              <p v-if="liquidatePrice !== -1">{{ liquidatePrice|retainDecimals({decimal: com.priceUnit - 1}) }}({{ ((liquidatePrice - info.liquidatePrice) > 0 ? '+' : '') }}{{liquidatePrice - info.liquidatePrice|retainDecimals({decimal: com.priceUnit - 1})}}) {{productInfo.contract.quote_coin}}</p>
-              <p v-else>-- {{productInfo.contract.quote_coin}}</p>
+        <st-row class="maximum" justify="end">
+          <p>
+            <a v-if="addOrReduce" @click="maximumClick(1)">{{$t('record.cp.maximum1')}}: {{com.haveAssert|retainDecimals({decimal: com.valueUnit})}}</a>
+            <a v-else @click="maximumClick(2)">{{$t('record.cp.maximum2')}}: {{this.maximum|retainDecimals({decimal: com.valueUnit})}}</a>
+          </p>
         </st-row>
+        <st-row class="ipt-message" justify="end">
+            <p>{{ $t('record.cp.editMarginPrice') }}</p>
+            <p v-if="liquidatePrice !== -1">{{ liquidatePrice|retainDecimals({decimal: com.priceUnit - 1}) }}({{ ((liquidatePrice - info.liquidatePrice) > 0 ? '+' : '') }}{{liquidatePrice - info.liquidatePrice|retainDecimals({decimal: com.priceUnit - 1})}}) {{productInfo.contract.quote_coin}}</p>
+            <p v-else>-- {{productInfo.contract.quote_coin}}</p>
+        </st-row>
+
       </div>
     <div>
        <st-row justify="between" class="unwind-window-btn">
@@ -48,6 +55,8 @@
 
 <script>
   import Util from '../../../assets/js/util.js'
+  // import Formula from '../../../assets/js/formula/index.js'
+  // import SwapsApi from '../../../assets/js/api/swapsApi'
   export default {
     name: 'edit-margin-window',
     props: ['close', 'info'],
@@ -55,10 +64,12 @@
       return {
         addOrReduce: true,
         value: '',
-        liquidatePrice: 0
+        liquidatePrice: 0,
+        maximum: 0
       }
     },
-    mounted() {
+    async mounted() {
+      this.maximum = Number(this.info.im) - Number(this.info.positionValue) * Number(this.info.inital)
     },
     computed: {
       com() {
@@ -66,6 +77,9 @@
       },
       productInfo() {
         return this.$store.state.market.productInfo
+      },
+      id() {
+        return Number(this.$route.query.id)
       }
     },
     methods: {
@@ -110,6 +124,13 @@
             this.close()
           }
         })
+      },
+      maximumClick(type) {
+        if (type === 1) {
+          this.value = Util.retainDecimals(this.com.haveAssert, {decimal: this.com.valueUnit})
+        } else {
+          this.value = Util.retainDecimals(this.maximum, {decimal: this.com.valueUnit})
+        }
       }
     },
     created() {
@@ -136,7 +157,7 @@
            border-top: 2px solid  @windowButton;
          }
          &.nosel {
-           border: 1px solid rgba(151,176,214, 0.2); 
+           border: 1px solid rgba(151,176,214, 0.2);
            background-color: #dbe5f0;
          }
       }
@@ -165,13 +186,24 @@
           font-size: 16px;
           color: #000;
         }
+        .maximum {
+          // color: @windowButton;
+          // &:hover {
+          //   color: @windowButtonHover;
+          // }
+          p {
+            padding-top: 10px;
+            // color: #4D5D8E;
+          }
+        }
         .ipt-message {
           p:first-child {
             margin-right: 10px;
           }
-            p {
-            height: 46px;
-            line-height: 46px;
+          p {
+            // height: 40px;
+            // line-height: 40px;
+            padding-top: 5px;
             color: #4D5D8E;
           }
         }

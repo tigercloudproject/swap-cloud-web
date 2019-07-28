@@ -64,10 +64,11 @@
                     <td class="width-750">{{ item.hold_avg_price|retainDecimals({decimal:com.priceUnit}) }}</td>
                     <td >{{ item.liquidatePrice|addCommom(com.priceUnit) }}</td>
                     <td class="margin">
-                      <a v-if="item.open_type === 1" @click="showEditMargin(item)"><i></i> {{ item.im|retainDecimals({decimal: com.valueUnit})}}({{ getLeverage(item) }})</a>
+                      <!-- <a v-if="item.open_type === 1" @click="showEditMargin(item)"><i></i> {{ item.im|retainDecimals({decimal: com.valueUnit})}}({{ getLeverage(item) }})</a>
                       <template v-else>
                         {{ item.im|retainDecimals({decimal: com.valueUnit})}}({{ getLeverage(item) }})
-                      </template>
+                      </template> -->
+                      <a @click="showEditMargin(item)"><i></i> {{ item.im|retainDecimals({decimal: com.valueUnit})}}({{ getLeverage(item) }})</a>
                     </td>
                     <td :class="item.money < 0 ? 'red' : 'green'">{{ LongOrSort(item.money, item.im) }}</td>
                     <!-- <td class="width-750" :class="item.realised_profit < 0 ? 'red' : 'green'">{{ item.realised_profit|retainDecimals({decimal: com.valueUnit}) }}</td> -->
