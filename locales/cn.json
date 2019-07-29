@@ -144,7 +144,8 @@
         "Beshare": "币事",
         "Bpop": "币泡泡",
         "DappX": "DappX",
-        "Bishijie": "币世界"
+        "Bishijie": "币世界",
+        "cloud": "老虎合约云"
     },
     "header": {
         "first": "首页",
@@ -342,7 +343,7 @@
         "noData": "暂无数据",
         "plan": "计划委托",
         "planHistory": "计划历史",
-        "closeAll": "一键撤销",
+        "closeAll": "批量撤销",
         "closeAllContent": "确定要撤销全部委托吗?",
         "cp": {
             "interestsUser": "账户权益",

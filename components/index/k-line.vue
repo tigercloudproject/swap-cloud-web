@@ -1,6 +1,6 @@
 <template>
     <div class='k-line'>
-      <a target="_blank" class="aicoin" :href="`https://www.aicoin.net.cn/chart/bbx-${aicoinUrl()}`">{{ $t('typeTitle.aicoin') }}</a>
+      <a target="_blank" class="tiger" :href="`https://tiger.cloud/`">{{ $t('footer.cloud') }}</a>
       <!-- <a target="_blank" class="lxcj" :href="`https://k.chainfor.com/?k=249-${productInfo.contract.name}`">{{ $t('typeTitle.lxcj') }}</a> -->
        <div id="tv_chart_container"></div>
     </div>
@@ -396,19 +396,19 @@
     #tv_chart_container {
       height: 100%;
     }
-    .lxcj, .aicoin{
+    .lxcj, .tiger{
       position: absolute;
       right: 40px;
       top: 10px;
-      color: @bbxBlue1;
+      color: #2B93F6;
       font-size: 12px;
-      border-bottom: 1px dotted @bbxBlue1;
+      border-bottom: 1px dotted #2B93F6;
     }
-    .aicoin {
+    .tiger {
       right: 50px;
     }
     @media screen and (max-width:750px) {
-      .lxcj, .aicoin{
+      .lxcj, .tiger{
         display: none;
       }
     }
