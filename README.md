@@ -2,7 +2,7 @@
 
 > 老虎合约云前端demo
 
-## Build Setup
+##
 
 ``` bash
 # install dependencies
@@ -25,7 +25,7 @@ using a prerelease version of Node (i.e. v7.6.0-rc.1) you will need to either:
 
 ## Usage  
 
-基本配置  
+### 基本配置
 1. 服务器应提供一个获取`api_key` 和 `api_secret`的接口,前端拿到`api_key` 和 `api_secret`后即可调用合约交易.  
     ```javascript
     cookie.getCookie('token');     // 加密后的api_secret
@@ -49,7 +49,79 @@ using a prerelease version of Node (i.e. v7.6.0-rc.1) you will need to either:
   <img src="https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/usage-3.png?raw=true" width="800" hegiht="auto" align="center" />    
 5. 项目方需自己实现登录注册功能,demo 本身只提供合约交易功能  
 
-## Components Intro  
+## Mode
+
+### 本地开发模式
+
+对应默认的`./config/api.config.js`配置项，`./config/api.config.local.bk.js`为其备份。
+
+#### 步骤
+
+1. 配置`api.config.js`内的`domain`、`swapsDomain`为自己所需的域名（修改后需修改后续步骤中的domain）
+2. 本地host配置相关domain
+> 0.0.0.0 swap.test.com
+3. 运行`nuxt`
+```bash
+npm run dev
+```
+4. 等待显示出`0.0.0.0:3008`
+5. 使用`swapsDomain`的域名+端口进行访问
+> http://swap.test.com:3008
+
+### 测试模式
+
+对应`./config/api.config.dev.js`配置项。
+
+1. 配置`api.config.dev.js`内的`domain`、`swapsDomain`为自己所需的域名（修改后需修改后续步骤中的domain）
+2. 本地host配置相关domain
+> 0.0.0.0 devswap.bbx.com
+3. 把`api.config.dev.js`的内容复制替换到`api.config.js`内
+```bash
+cp -f ./config/api.config.dev.js ./config/api.config.js
+```
+4. build
+```bash
+npm run build
+```
+5. 完毕后，直接开启nuxt或使用pm2
+```bash
+npm start
+```
+等待显示出`0.0.0.0:3008`  
+or  
+```bash
+# pm2
+pm2 startOrRestart pm2.json
+```
+6. 使用`swapsDomain`的域名进行访问（如配置反向代理等可不加端口）
+> https://devswap.bbx.com:3008
+
+### 生产模式
+
+对应`./config/api.config.master.js`配置项。
+
+1. 配置`api.config.master.js`内的`domain`、`swapsDomain`为自己所需的域名
+2. 本地host配置相关domain
+> 0.0.0.0 swap.bbx.com
+3. 把`api.config.master.js`的内容复制替换到`api.config.js`内
+```bash
+cp -f ./config/api.config.master.js ./config/api.config.js
+```
+4. build
+```bash
+npm run build
+```
+5. 完毕后，pm2
+```bash
+# pm2
+pm2 startOrRestart pm2.json
+```
+6. 将运行web服`0.0.0.0:3008`，需配置反向代理
+7. 使用`swapsDomain`的域名进行访问
+> https://swap.bbx.com
+
+## Components Intro
+
 |组件|文件名|路径|
 |---|---|---|
 |用户转账|[transfer-window.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/index/submit-entrust-cp/confirm-plan-window.vue)|/components/index/submit-entrust-cp/confirm-plan-window.vue|
@@ -61,69 +133,6 @@ using a prerelease version of Node (i.e. v7.6.0-rc.1) you will need to either:
 |最新成交价|[news-deal.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/index/news-deal.vue)|/components/index/news-deal.vue|
 |合约计算器|[calculator-window.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/index/type-title-cp/calculator-window.vue)|/components/index/type-title-cp/calculator-window.vue)|
 
-## Deploy  
+## Deploy
+
 pm2
-
-
-
-
-
-
-
-## 模式
-
-### 本地开发模式
-
-对应默认的`./config/api.config.js`配置项，`./config/api.config.local.bk.js`为其备份。
-
-#### 步骤
-
-1. 配置`api.config.js`内的`domain`、`swapsDomain`为自己所需的域名
-2. 运行`nuxt`
-```bash
-npm run dev
-```
-3. 本地将运行web服`0.0.0.0:3008`，需在本地host配置`api.config.js`中`swapsDomain`对应的域名
-4. 使用`swapsDomain`的域名+端口进行访问
-
-### 测试模式
-
-对应`./config/api.config.dev.js`配置项。
-
-1. 配置`api.config.dev.js`内的`domain`、`swapsDomain`为自己所需的域名
-2. 把`api.config.dev.js`的内容复制替换到`api.config.js`内
-```bash
-cp -f ./config/api.config.dev.js ./config/api.config.js
-```
-3. build
-```bash
-npm run build
-```
-4. 完毕后，开启nuxt
-```bash
-npm start
-```
-5. 将运行web服`0.0.0.0:3008`，并在所部署的服务器内配置反向代理进行关联；或使用PM2管理Node，代码如下：
-`pm2 startOrRestart pm2.json`
-6. 使用`swapsDomain`的域名进行访问
-
-### 生产模式
-
-对应`./config/api.config.master.js`配置项。
-
-1. 配置`api.config.master.js`内的`domain`、`swapsDomain`为自己所需的域名
-2. 把`api.config.master.js`的内容复制替换到`api.config.js`内
-```bash
-cp -f ./config/api.config.master.js ./config/api.config.js
-```
-3. build
-```bash
-npm run build
-```
-4. 完毕后，开启nuxt
-```bash
-npm start
-```
-5. 将运行web服`0.0.0.0:3008`，并在所部署的服务器内配置反向代理进行关联；或使用PM2管理Node，代码如下：
-`pm2 startOrRestart pm2.json`
-6. 使用`swapsDomain`的域名进行访问

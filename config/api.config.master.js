@@ -9,5 +9,4 @@ export default {
   webSocketUrl: 'wss://api.bbxapp.vip/v1/ifcontract/realTime',
   // 如果是云合约值为true
   isYun: true
-  // swapsUrl: 'http://192.168.3.216:9095/'
 }
