@@ -5,8 +5,8 @@ export default {
   swapsDomain: 'https://devswap.bbx.com/',
   // api URL,change this to get Data
   baseUrl: '',
-  swapsUrl: 'https://api.bbxapp.vip/v1/',
-  webSocketUrl: 'wss://api.bbxapp.vip/v1/ifcontract/realTime',
+  swapsUrl: 'https://devapi.bbx.com/v1/',
+  webSocketUrl: 'wss://devapi.bbx.com/v1/ifcontract/realTime',
   // 如果是云合约值为true
   isYun: true
   // swapsUrl: 'http://192.168.3.216:9095/'
