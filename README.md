@@ -41,11 +41,9 @@ $ npm install webpack -g
 
 2. 只有在 `./config/` 内对应的模式 `.js` 文件中，`isYun` 字段设为 `true`，才会调用上面的配置。  
 目前本地开发模式配置中 `isYun: false`。
-
     <img src="https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/usage-2.png?raw=true" width="800" hegiht="auto"/>
 
 3. 需要接入当前平台的用户资产和用户信息，为转账到期货和头部显示做准备。
-
     <img src="https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/usage-3.png?raw=true" width="800" hegiht="auto" align="center" />
 
 #### 5. 运行模式
@@ -63,14 +61,14 @@ $ npm install webpack -g
 
 1. 配置`api.config.js`内的`domain`、`swapsDomain`为自己所需的域名（修改后需修改后续步骤中的domain）
 2. 本地host配置相关domain
-> 0.0.0.0 swap.test.com
+    > 0.0.0.0 swap.test.com
 3. 运行`nuxt`
-```bash
-npm run dev
-```
+    ```bash
+    $ npm run dev
+    ```
 4. 等待显示出`0.0.0.0:3008`
 5. 使用`swapsDomain`的域名+端口进行访问
-> http://swap.test.com:3008
+    > http://swap.test.com:3008
 
 ### 测试模式（测试服模式）
 
@@ -78,27 +76,27 @@ npm run dev
 
 1. 配置`api.config.dev.js`内的`domain`、`swapsDomain`为自己所需的域名（修改后需修改后续步骤中的domain）
 2. 本地host配置相关domain
-> 0.0.0.0 devswap.bbx.com
+    > 0.0.0.0 devswap.bbx.com
 3. 把`api.config.dev.js`的内容复制替换到`api.config.js`内
-```bash
-cp -f ./config/api.config.dev.js ./config/api.config.js
-```
+    ```bash
+    $ cp -f ./config/api.config.dev.js ./config/api.config.js
+    ```
 4. build
-```bash
-npm run build
-```
+    ```bash
+    $ npm run build
+    ```
 5. 完毕后，直接开启nuxt或使用pm2
-```bash
-npm start
-```
-等待显示出`0.0.0.0:3008`  
-or  
-```bash
-# pm2
-pm2 startOrRestart pm2.json
-```
+    ```bash
+    $ npm start
+    ```
+    等待显示出`0.0.0.0:3008`  
+    or  
+    ```bash
+    # pm2
+    $ pm2 startOrRestart pm2.json
+    ```
 6. 使用`swapsDomain`的域名进行访问（如配置反向代理等可不加端口）
-> https://devswap.bbx.com:3008
+    > https://devswap.bbx.com:3008
 
 ### 生产模式（线上模式）
 
@@ -106,23 +104,23 @@ pm2 startOrRestart pm2.json
 
 1. 配置`api.config.master.js`内的`domain`、`swapsDomain`为自己所需的域名
 2. 本地host配置相关domain
-> 0.0.0.0 swap.bbx.com
+    > 0.0.0.0 swap.bbx.com
 3. 把`api.config.master.js`的内容复制替换到`api.config.js`内
-```bash
-cp -f ./config/api.config.master.js ./config/api.config.js
-```
+    ```bash
+    $ cp -f ./config/api.config.master.js ./config/api.config.js
+    ```
 4. build
-```bash
-npm run build
-```
+    ```bash
+    $ npm run build
+    ```
 5. 完毕后，pm2
-```bash
-# pm2
-pm2 startOrRestart pm2.json
-```
+    ```bash
+    # pm2
+    $ pm2 startOrRestart pm2.json
+    ```
 6. 将运行web服`0.0.0.0:3008`，需配置反向代理
 7. 使用`swapsDomain`的域名进行访问
-> https://swap.bbx.com
+    > https://swap.bbx.com
 
 ## Components Intro
 
@@ -136,7 +134,3 @@ pm2 startOrRestart pm2.json
 |操作记录|[record-list.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/index/record-list.vue)|/components/index/record-list.vue|
 |最新成交价|[news-deal.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/index/news-deal.vue)|/components/index/news-deal.vue|
 |合约计算器|[calculator-window.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/index/type-title-cp/calculator-window.vue)|/components/index/type-title-cp/calculator-window.vue)|
-
-## Deploy
-
-pm2
