@@ -1,59 +1,63 @@
 # swap-cloud-web
 
-> 老虎合约云前端demo
+> 老虎合约云前端demo。  
+> 该项目使用了 [Nuxt.js](https://zh.nuxtjs.org/) 框架。有关工作原理的详细说明请查看[Nuxt.js docs](https://github.com/nuxt/nuxt.js)  
+> 项目方需自己实现登录注册功能，本demo只提供合约交易功能。
 
-##
+## Usage
+
+#### 1.安装依赖环境
+
+- [Install Node.js 8.x/10.x](http://nodejs.org)
+
+#### 2. git clone 项目或 download zip 项目包
+
+#### 3. 安装项目依赖包
 
 ``` bash
 # install dependencies
-$ npm install # Or yarn install*[see note below]
+$ npm install
 
-# serve with hot reload at localhost:3008
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm start
+# install global webpack
+$ npm install webpack -g
 ```
 
->Note: Due to a bug in yarn's engine version detection code if you are
-using a prerelease version of Node (i.e. v7.6.0-rc.1) you will need to either:
-  1. Use `npm install`
-  2. Run `yarn` with a standard release of Node and then switch back
+#### 4. 配置
 
-该项目使用了 [Nuxt.js](https://zh.nuxtjs.org/) 框架。有关工作原理的详细说明请查看[Nuxt.js docs](https://github.com/nuxt/nuxt.js).
-
-## Usage  
-
-### 基本配置
-1. 服务器应提供一个获取`api_key` 和 `api_secret`的接口,前端拿到`api_key` 和 `api_secret`后即可调用合约交易.  
+1. 服务器应提供一个获取 `api_key` 和 `api_secret` 的接口，前端拿到 `api_key` 和 `api_secret` 后即可调用合约交易。
+    - 代码说明
     ```javascript
     cookie.getCookie('token');     // 加密后的api_secret
     cookie.getCookie('expired_ts'); // 超时时间
     cookie.getCookie('access_key'); // api_key
     ```
-    >注意: 站点重度依赖token字段为用户登录态判断依据，所以项目方在登录后，要把`token`、`expired_ts`,`access_key`储存到cookie中。eg:    
-
+    > 注意: 站点重度依赖token字段为用户登录态判断依据，所以项目方在登录后，要把 `token`、`expired_ts`、`access_key` 储存到cookie中。  
+    - 访问项目中的 `./assets/js/axiosClassYun.js` 文件，把第 **37~39** 行的如下代码，其中 value、domain 修改为项目方自己的值。
     ```javascript
     cookie.setCookie('token', '461581496df9211abeaddf3cb108129a', '', '/', 'test.com')
     cookie.setCookie('expired_ts', '1542971159000000', '', '/', 'test.com')
     cookie.setCookie('access_key', 'ebb1b16a-3556-45b3-ad00-13d3120ba834', '', '/', 'test.com')
-    ```  
-2. 上线需把**api.config.master.js** 的内容覆盖**api.config.js**  
+    ```
 
-3. `isYun` 字段设为`true`  
+2. 只有在 `./config/` 内对应的模式 `.js` 文件中，`isYun` 字段设为 `true`，才会调用上面的配置。  
+目前本地开发模式配置中 `isYun: false`。
 
-  <img src="https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/usage-2.png?raw=true" width="800" hegiht="auto" />  
-4. 需要接入当前平台的用户资产和用户信息，为转账到期货和头部显示做准备  
+    <img src="https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/usage-2.png?raw=true" width="800" hegiht="auto"/>
 
-  <img src="https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/usage-3.png?raw=true" width="800" hegiht="auto" align="center" />    
-5. 项目方需自己实现登录注册功能,demo 本身只提供合约交易功能  
+3. 需要接入当前平台的用户资产和用户信息，为转账到期货和头部显示做准备。
+
+    <img src="https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/usage-3.png?raw=true" width="800" hegiht="auto" align="center" />
+
+#### 5. 运行模式
+
+项目共三种运行模式，具体请参考 **Mode** 中所提供的步骤进行操作。
 
 ## Mode
 
 ### 本地开发模式
 
-对应默认的`./config/api.config.js`配置项，`./config/api.config.local.bk.js`为其备份。
+对应默认的`./config/api.config.js`配置项，`./config/api.config.local.bk.js`为其备份。  
+*注意：本模式默认 `isYun` 为 `false`*
 
 #### 步骤
 
@@ -68,7 +72,7 @@ npm run dev
 5. 使用`swapsDomain`的域名+端口进行访问
 > http://swap.test.com:3008
 
-### 测试模式
+### 测试模式（测试服模式）
 
 对应`./config/api.config.dev.js`配置项。
 
@@ -96,7 +100,7 @@ pm2 startOrRestart pm2.json
 6. 使用`swapsDomain`的域名进行访问（如配置反向代理等可不加端口）
 > https://devswap.bbx.com:3008
 
-### 生产模式
+### 生产模式（线上模式）
 
 对应`./config/api.config.master.js`配置项。
 
