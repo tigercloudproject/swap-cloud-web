@@ -2,7 +2,7 @@
   <div class="swap-title">
    <div class="swap-title-web">
       <div class="swap-title-top">
-      <st-row class="swap-title-top-contract">
+      <st-row class="swap-title-top-contract" v-show="hasUSDT">
           <st-row class="title" align="center">
             <h4>USDT</h4>
           </st-row>
@@ -17,12 +17,11 @@
          </st-row>
       </st-row>
       <!-- <st-row> -->
-      <st-row class="swap-title-top-contract">
+      <st-row class="swap-title-top-contract" v-show="hasUnUSDT">
           <st-row class="title" align="center">
             <h4>{{ $t('typeTitle.main') }}</h4>
           </st-row>
           <div class="info" v-if="!isMian(item.contract.contract_id) && MarginCoin(item.contract.base_coin, item.contract.quote_coin, item.contract.price_coin) !== 'USDT'" :key="item.contract.contract_id"  v-for="item in productTicker" :class="item.contract.contract_id === productInfo.contract.contract_id ? 'active' : '' " @click="changeContract(item.contract.contract_id)">
-           
             <st-row class="price" justify="between">
                <h6>{{item.contract.name}}</h6>
               <p :class="item.ticker.rise_fall_rate < 0 ? 'red' : 'green'">{{ item.ticker.last_price | splitFormat(item.priceUnit - 1)  }}<span></span></p>
@@ -30,12 +29,12 @@
             </st-row>
           </div>
       </st-row>
-        <st-row class="swap-title-top-contract">
+        <st-row class="swap-title-top-contract" v-show="hasMian">
           <st-row class="title" align="center">
             <h4>{{ $t('typeTitle.news') }}</h4>
           </st-row>
           <div class="info" v-if="isMian(item.contract.contract_id)" :key="item.contract.contract_id"  v-for="item in productTicker" :class="item.contract.contract_id === productInfo.contract.contract_id ? 'active' : '' " @click="changeContract(item.contract.contract_id)">
-            
+
             <st-row class="price" justify="between">
               <h6>{{item.contract.name}}</h6>
               <p :class="item.ticker.rise_fall_rate < 0 ? 'red' : 'green'">{{ item.ticker.last_price | splitFormat(item.priceUnit - 1)  }}<span></span></p>
@@ -119,14 +118,14 @@
                       <div class='swap-title-dw' >
                         <a @click="calculatorShow = true"><span></span>{{ $t('typeTitle.calculator') }}</a>
                         <a @click="setUpShow = true"><span></span>{{ $t('typeTitle.contractSet') }}</a>
-                            
+
                 <!-- @click="changCoinUnit"
                 {{ $t('typeTitle.unit') }}<span>{{ coinUnit ? $t('common.pieces') : productInfo.contract.base_coin }}</span> <i></i> -->
                       </div>
-                     
+
                      </div>
              </st-row>
-             
+
          </st-row>
         <popup :title="$t('typeTitle.contractSet')"  width="440" :callback="closeSetUp" v-if="setUpShow">
            <set-up-window :close="closeSetUp"></set-up-window>
@@ -189,6 +188,7 @@ import Formula from '../../assets/js/formula/index.js'
 import Util from '../../assets/js/util.js'
 import CalculatorWindow from './type-title-cp/calculator-window'
 import SetUpWindow from './type-title-cp/set-up-window'
+import CFG from '../../config/api.config'
 export default {
   components: {
     CalculatorWindow,
@@ -205,7 +205,10 @@ export default {
       calculatorShow: false,
       int16: Math.pow(2, 15),
       isMianOrNews: true,
-      MarginCoin: Formula.MarginCoin
+      MarginCoin: Formula.MarginCoin,
+      hasUSDT: false,
+      hasUnUSDT: false,
+      hasMian: false
     }
   },
   computed: {
@@ -244,9 +247,19 @@ export default {
       this.getTime(time)
     },
     tickerList() {
-      let len, info
+      let len
+      let info
+      let isMian = this.isMian
+      let MarginCoin = this.MarginCoin
       this.productTicker = []
       this.productList.forEach(item => {
+        // 显示规则
+        if (CFG.productTicker) {
+          let exclude = CFG.productTicker.exclude
+          if ((exclude || CFG.productTicker.contain || []).some(v => exclude ? v === item.contract.name : v !== item.contract.name
+          )) return false
+        }
+
         len = this.tickerList.length
         info = {}
         for (; len--;) {
@@ -257,7 +270,21 @@ export default {
           }
         }
         info.contract = item.contract
+
         this.productTicker.push(info)
+
+        // 归类开关
+        this.productTicker.forEach(item => {
+          if (!isMian(item.contract.contract_id) && MarginCoin(item.contract.base_coin, item.contract.quote_coin, item.contract.price_coin) === 'USDT') {
+            this.hasUSDT = true
+          }
+          if (!isMian(item.contract.contract_id) && MarginCoin(item.contract.base_coin, item.contract.quote_coin, item.contract.price_coin) !== 'USDT') {
+            this.hasUnUSDT = true
+          }
+          if (isMian(item.contract.contract_id)) {
+            this.hasMian = true
+          }
+        })
       })
     }
   },
@@ -462,7 +489,7 @@ export default {
         flex: 1;
         .swap-title-dw {
             // margin-right: 30px;
-            font-size: 14px;  
+            font-size: 14px;
              span {
                  display: inline-block;
                  margin-left: 4px;
@@ -518,7 +545,7 @@ export default {
               .applies {
                 color: @bbxGreen;
                 &.red {
-                  color: @bbxRed; 
+                  color: @bbxRed;
                 }
               }
             }
@@ -544,7 +571,7 @@ export default {
                 // background-image: url('../../assets/img/icon-Q_nor.png');
                 // &:hover {
                 //     background-image: url('../../assets/img/icon-Q_sel.png');
-                   
+
                 // }
              }
         }
@@ -647,7 +674,7 @@ export default {
                  color: @bbxGreen;
               }
               td.red {
-                color: @bbxRed; 
+                color: @bbxRed;
               }
             }
           }

@@ -8,6 +8,18 @@ export default {
   swapsUrl: 'https://devapi.bbx.com/v1/',
   testUrl: '',
   webSocketUrl: 'wss://devapi.bbx.com/v1/ifcontract/realTime',  // 如果是云合约值为true
-  // 如果是云合约值为true
-  isYun: false
+  // 如果是合约云则为true
+  isYun: false,
+  // 交易对
+  productTicker: {
+    /*
+      交易对显示过滤
+        - exclude比contain权重高；
+        - USDT、主区、创新区内无数据时，则自动隐藏
+        - exclude：排除指定的交易对（空数组则都显示）
+        - contain：显示指定的交易对（空数组则都不显示）
+     */
+    // exclude: [ 'HTUSDT' ]
+    // contain: [ 'HTUSDT' ]
+  }
 }

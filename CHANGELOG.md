@@ -1,25 +1,25 @@
 # CHANGELOG
 
-## 1.1.0.1003
-
+## 1.1.0.1008
 ### a
+-   C 优化`README.md`格式
+-   F 纠正`README.md`内的调用说明
+-   R 移除`合约修改基本说明.docx`，并把内容融合进`README.md`
+-   A config内可过滤交易对的显示
+-   R 删除无用文件
 
-- C 优化README.md中的说明
-
+## 1.1.0.1003
+### a
+-   C 优化README.md中的说明
 ### b
-
-- C 优化README.md中的缩进格式
+-   C 优化README.md中的缩进格式
 
 ## 1.1.0.0930
-
 ### a
-
-- C 优化README.md中针对部署、模式的说明
-- C 优化`config`中本地开发模式的配置
+-   C 优化README.md中针对部署、模式的说明
+-   C 优化`config`中本地开发模式的配置
 
 ## 1.1.0.0909
-
 ### a
-
-- F 修复`config`文件夹内的各配置项
-- A 新增`CHANGELOG.md`
+-   F 修复`config`文件夹内的各配置项
+-   A 新增`CHANGELOG.md`

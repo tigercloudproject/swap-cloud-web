@@ -3,7 +3,9 @@ import VueI18n from 'vue-i18n'
 
 import CN from '~/locales/cn.json'
 import EN from '~/locales/en.json'
-import ko from '~/locales/ko.json'
+import KO from '~/locales/ko.json'
+// import VI from '~/locales/vi.json'
+
 Vue.use(VueI18n)
 export default ({ app, store, req }) => {
   // Set i18n instance on app
@@ -18,7 +20,8 @@ export default ({ app, store, req }) => {
     'zh-cn': {...CN},
     'en-us': {...EN},
     'zh-tw': {...EN},
-    'ko-kr': {...ko}
+    'ko-kr': {...KO}
+    // 'vi-vn': {...VI}
   }
   if (!locale || !messages[locale]) {
     locale = 'zh-cn'
