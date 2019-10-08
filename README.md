@@ -132,9 +132,14 @@ $ npm install webpack -g
 |---|---|---|
 |用户转账|[transfer-window.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/index/submit-entrust-cp/transfer-window.vue)|/components/index/submit-entrust-cp/transfer-window.vue|
 |用户信息|[user-info.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/template/user-info.vue)|/components/template/user-info.vue|
-|头部合约列表|[main-nav-new.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/index/main-nav-new.vue)|components/index/main-nav-new.vue|
+|头部合约列表|[main-nav.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/index/main-nav.vue)|components/index/main-nav.vue|
 |委托表单|[submit-entrust.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/index/submit-entrust.vue)|/components/index/submit-entrust.vue|
 |委托列表|[entrust-list.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/index/entrust-list.vue)|/components/index/entrust-list.vue|
 |操作记录|[record-list.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/index/record-list.vue)|/components/index/record-list.vue|
 |最新成交价|[news-deal.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/index/news-deal.vue)|/components/index/news-deal.vue|
 |合约计算器|[calculator-window.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/index/type-title-cp/calculator-window.vue)|/components/index/type-title-cp/calculator-window.vue)|
+
+## FAQ
+
+1.  需要对头部合约列表内的交易对，进行可选择的显示或隐藏
+    > 查看`./config`内对应模式的js文件，其中通过`productTicker`的`exclude`或`contain`进行过滤

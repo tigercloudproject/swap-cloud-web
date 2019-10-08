@@ -7,6 +7,9 @@
 -   R 移除`合约修改基本说明.docx`，并把内容融合进`README.md`
 -   A config内可过滤交易对的显示
 -   R 删除无用文件
+### b
+-   F 过滤交易对将针对every
+-   C `README.md`内新增FAQ
 
 ## 1.1.0.1003
 ### a

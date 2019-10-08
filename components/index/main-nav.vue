@@ -256,7 +256,7 @@ export default {
         // 显示规则
         if (CFG.productTicker) {
           let exclude = CFG.productTicker.exclude
-          if ((exclude || CFG.productTicker.contain || []).some(v => exclude ? v === item.contract.name : v !== item.contract.name
+          if ((exclude || CFG.productTicker.contain || []).every(v => exclude ? v === item.contract.name : v !== item.contract.name
           )) return false
         }
 
