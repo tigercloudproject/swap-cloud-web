@@ -255,9 +255,8 @@ export default {
       this.productList.forEach(item => {
         // 显示规则
         if (CFG.productTicker) {
-          let exclude = CFG.productTicker.exclude
-          if ((exclude || CFG.productTicker.contain || []).every(v => exclude ? v === item.contract.name : v !== item.contract.name
-          )) return false
+          if ((CFG.productTicker.exclude || []).some(v => v === item.contract.name)) return false
+          if (!(CFG.productTicker.contain || []).every(v => v === item.contract.name)) return false
         }
 
         len = this.tickerList.length

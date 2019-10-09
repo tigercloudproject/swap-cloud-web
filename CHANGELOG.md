@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.1.0.1009
+### a
+-   F 修复`config`下当CFG.productTicker为空对象时，造成交易对不显示的问题；exclude的逻辑显示问题
+
 ## 1.1.0.1008
 ### a
 -   C 优化`README.md`格式

@@ -7,7 +7,7 @@ export default {
   baseUrl: '',
   swapsUrl: 'https://devapi.bbx.com/v1/',
   testUrl: '',
-  webSocketUrl: 'wss://devapi.bbx.com/v1/ifcontract/realTime',  // 如果是云合约值为true
+  webSocketUrl: 'wss://devapi.bbx.com/v1/ifcontract/realTime',
   // 如果是合约云则为true
   isYun: false,
   // 交易对
@@ -19,7 +19,7 @@ export default {
         - exclude：排除指定的交易对（空数组则都显示）
         - contain：显示指定的交易对（空数组则都不显示）
      */
-    // exclude: [ 'HTUSDT' ]
-    // contain: [ 'HTUSDT' ]
+     // exclude: [ 'HTUSDT', 'XDAG/ETH 二号' ]
+     // contain: [ 'HTUSDT', 'XDAG/ETH 二号' ]
   }
 }

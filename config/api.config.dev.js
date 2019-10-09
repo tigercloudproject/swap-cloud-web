@@ -18,7 +18,7 @@ export default {
         - exclude：排除指定的交易对（空数组则都显示）
         - contain：显示指定的交易对（空数组则都不显示）
      */
-    // exclude: [ 'HTUSDT' ]
-    // contain: [ 'HTUSDT' ]
+     // exclude: [ 'HTUSDT', 'XDAG/ETH 二号' ]
+     // contain: [ 'HTUSDT', 'XDAG/ETH 二号' ]
   }
 }
