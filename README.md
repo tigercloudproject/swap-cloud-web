@@ -62,7 +62,9 @@ $ npm install webpack -g
 
 1.  配置`api.config.js`内的`domain`、`swapsDomain`为自己所需的域名（修改后需修改后续步骤中的domain）
 2.  本地host配置相关domain
-    > 0.0.0.0 swap.test.com
+    ```
+    0.0.0.0 swap.test.com
+    ```
 
 3.  运行`nuxt`
     ```bash
@@ -78,7 +80,9 @@ $ npm install webpack -g
 
 1.  配置`api.config.dev.js`内的`domain`、`swapsDomain`为自己所需的域名（修改后需修改后续步骤中的domain）
 2.  本地host配置相关domain
-    > 0.0.0.0 devswap.bbx.com
+    ```
+    0.0.0.0 devswap.bbx.com
+    ```
 
 3.  把`api.config.dev.js`的内容复制替换到`api.config.js`内
     ```bash
@@ -107,7 +111,9 @@ $ npm install webpack -g
 
 1.  配置`api.config.master.js`内的`domain`、`swapsDomain`为自己所需的域名
 2.  本地host配置相关domain
-    > 0.0.0.0 swap.bbx.com
+    ```
+    0.0.0.0 swap.bbx.com
+    ```
 
 3.  把`api.config.master.js`的内容复制替换到`api.config.js`内
     ```bash
@@ -141,5 +147,5 @@ $ npm install webpack -g
 
 ## FAQ
 
-1.  需要对头部合约列表内的交易对，进行可选择的显示或隐藏
+1.  对头部合约列表内的交易对，进行可控的显示或隐藏
     > 查看`./config`内对应模式的js文件，其中通过`productTicker`的`exclude`或`contain`进行过滤
