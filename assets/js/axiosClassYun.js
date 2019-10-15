@@ -26,16 +26,16 @@ class AxiosClass {
       if (config.method === 'post') {
         body = config.data || ''
       }
-      let timestamp = new Date().valueOf()
-      let nonce = timestamp + '000'
-      // config.headers.common['Bbx-Ver'] = '1.0'
-      // config.headers.common['Bbx-Dev'] = 'web'
+      let timestamp = new Date().getTime()
+      let nonce = timestamp + '000' // 微秒单位
+      config.headers.common['Bbx-Ver'] = '1.0'
+      config.headers.common['Bbx-Dev'] = 'web'
       config.headers.common['Bbx-Ts'] = nonce
       config.headers.common['Content-Type'] = 'application/json'
       // config.headers.common['Access-Control-Max-Age'] = '60'
       try {
         cookie.setCookie('token', '461581496df9211abeaddf3cb108129a', '', '/', 'test.com')
-        cookie.setCookie('expired_ts', '1544165433', '', '/', 'test.com')
+        cookie.setCookie('expired_ts', '1571111360398000', '', '/', 'test.com')
         cookie.setCookie('access_key', 'ebb1b16a-3556-45b3-ad00-13d3120ba834', '', '/', 'test.com')
         // let ssid = cookie.getCookie('ssid')  cookie.getCookie('token') ||
         let token = cookie.getCookie('token') // secret

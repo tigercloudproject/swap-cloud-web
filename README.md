@@ -34,9 +34,10 @@ $ npm install webpack -g
     > 注意: 站点重度依赖token字段为用户登录态判断依据，所以项目方在登录后，要把 `token`、`expired_ts`、`access_key` 储存到cookie中。
 
     -   访问项目中的 `./assets/js/axiosClassYun.js` 文件，把第 **37~39** 行的如下代码，其中 value、domain 修改为项目方自己的值。
+    -   其中 `expired_ts` 有格式要求，具体参看下方的 **FAQ**
     ```javascript
     cookie.setCookie('token', '461581496df9211abeaddf3cb108129a', '', '/', 'test.com')
-    cookie.setCookie('expired_ts', '1542971159000000', '', '/', 'test.com')
+    cookie.setCookie('expired_ts', '1571111360398000', '', '/', 'test.com')
     cookie.setCookie('access_key', 'ebb1b16a-3556-45b3-ad00-13d3120ba834', '', '/', 'test.com')
     ```
 
@@ -147,5 +148,13 @@ $ npm install webpack -g
 
 ## FAQ
 
-1.  对头部合约列表内的交易对，进行可控的显示或隐藏
-    > 查看`./config`内对应模式的js文件，其中通过`productTicker`的`exclude`或`contain`进行过滤
+1. 对头部合约列表内的交易对，进行可控的显示或隐藏
+    查看`./config`内对应模式的js文件，其中通过`productTicker`的`exclude`或`contain`进行过滤
+2. Response 返回 `invalid system time`
+    `expired_ts` 是微秒单位
+3. Response 返回 `invalid expired ts`
+    服务器采用0时区的时间设定，而 `expired_ts` 的有效期为30分钟
+4. Response 返回 `invalid request`  
+    请检查Request Header中是否带有 `Bbx-Accesskey`、`Bbx-Sign`、`Bbx-Ver`、`Bbx-Dev`、`Bbx-Ts` 这些key，如果有缺少，则需要在 `./assets/js/axiosClassYun` 下进行配置
+5. Response 返回 `invalid signature`  
+    查看后端文档6.3 6.4小节

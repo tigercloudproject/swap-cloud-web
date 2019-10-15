@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.1.0.1015
+### a
+- U 补充 `README.md` 中的FAQ
+- C 取消 `axiosClassYun` 内 `Bbx-Ver`、`Bbx-Dev` 的注释状态
+
 ## 1.1.0.1009
 ### a
 -   F 修复`config`下当CFG.productTicker为空对象时，造成交易对不显示的问题；exclude的逻辑显示问题
