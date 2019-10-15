@@ -4,6 +4,9 @@
 > 该项目使用了 [Nuxt.js](https://zh.nuxtjs.org/) 框架。有关工作原理的详细说明请查看[Nuxt.js docs](https://github.com/nuxt/nuxt.js)  
 > 项目方需自己实现登录注册功能，本demo只提供合约交易功能。
 
+> **最快本地部署流程：**
+    > 修改 `/assets/js/axiosClassYun.js` 中的三处setCookie，本地host新增 `0.0.0.0 swap.test.com`，安装项目依赖包后 `npm run dev`，待 Web 启服后访问<http://swap.test.com:3008>
+
 ## Usage
 
 #### 1.安装依赖环境
@@ -16,10 +19,10 @@
 
 ``` bash
 # install dependencies
-$ npm install
+npm install
 
 # install global webpack
-$ npm install webpack -g
+npm install webpack -g
 ```
 
 #### 4. 配置
@@ -69,7 +72,7 @@ $ npm install webpack -g
 
 3.  运行`nuxt`
     ```bash
-    $ npm run dev
+    npm run dev
     ```
 4.  等待显示出`0.0.0.0:3008`
 5.  使用`swapsDomain`的域名+端口进行访问
@@ -87,21 +90,21 @@ $ npm install webpack -g
 
 3.  把`api.config.dev.js`的内容复制替换到`api.config.js`内
     ```bash
-    $ cp -f ./config/api.config.dev.js ./config/api.config.js
+    cp -f ./config/api.config.dev.js ./config/api.config.js
     ```
 4.  build
     ```bash
-    $ npm run build
+    npm run build
     ```
 5.  完毕后，直接开启nuxt或使用pm2
     ```bash
-    $ npm start
+    npm start
     ```
     等待显示出`0.0.0.0:3008`  
     or  
     ```bash
     # pm2
-    $ pm2 startOrRestart pm2.json
+    pm2 startOrRestart pm2.json
     ```
 6.  使用`swapsDomain`的域名进行访问（如配置反向代理等可不加端口）
     > <https://devswap.bbx.com:3008>
@@ -118,16 +121,16 @@ $ npm install webpack -g
 
 3.  把`api.config.master.js`的内容复制替换到`api.config.js`内
     ```bash
-    $ cp -f ./config/api.config.master.js ./config/api.config.js
+    cp -f ./config/api.config.master.js ./config/api.config.js
     ```
 4.  build
     ```bash
-    $ npm run build
+    npm run build
     ```
 5.  完毕后，pm2
     ```bash
     # pm2
-    $ pm2 startOrRestart pm2.json
+    pm2 startOrRestart pm2.json
     ```
 6.  将运行web服`0.0.0.0:3008`，需配置反向代理
 7.  使用`swapsDomain`的域名进行访问

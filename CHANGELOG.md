@@ -4,6 +4,8 @@
 ### a
 - U 补充 `README.md` 中的FAQ
 - C 取消 `axiosClassYun` 内 `Bbx-Ver`、`Bbx-Dev` 的注释状态
+### b
+- U 补充 `README.md`
 
 ## 1.1.0.1009
 ### a
