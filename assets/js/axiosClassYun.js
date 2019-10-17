@@ -28,21 +28,29 @@ class AxiosClass {
         body = config.data || ''
       }
       let timestamp = new Date().valueOf()
-      let nonce = timestamp + '000' // 微秒单位
-      let expire_time = (timestamp + BASE.cloudEffectiveTime * 60 * 1000) + '000' // 时间戳超时时效
+
+      // =======================================================================
+      // 更新 token、expired_ts、timestamp_val、access_key
+      var token_val = '' || BASE.cloudToken
+      var expired_ts_val = '' || (timestamp + BASE.cloudEffectiveTime * 60 * 1000) + '000' // 时间戳超时时效
+      var timestamp_val = '' || timestamp + '000' // 微秒单位
+      var access_key_val = '' || BASE.cloudAccessKey
+      // =======================================================================
+
       config.headers.common['Bbx-Ver'] = '1.0'
       config.headers.common['Bbx-Dev'] = 'web'
-      config.headers.common['Bbx-Ts'] = nonce
+      config.headers.common['Bbx-Ts'] = timestamp_val
       config.headers.common['Content-Type'] = 'application/json'
       // config.headers.common['Access-Control-Max-Age'] = '60'
       try {
-        cookie.setCookie('token', BASE.cloudToken, '', '/', BASE.domain)
-        cookie.setCookie('expired_ts', expire_time, '', '/', BASE.domain)
-        cookie.setCookie('access_key', BASE.cloudAccessKey, '', '/', BASE.domain)
+        cookie.setCookie('token', token_val, '', '/', BASE.domain)
+        cookie.setCookie('expired_ts', expired_ts_val, '', '/', BASE.domain)
+        cookie.setCookie('access_key', access_key_val, '', '/', BASE.domain)
+
         let token = cookie.getCookie('token') // secret
         // let locale = cookie.getCookie('lang')
         let expired_ts = cookie.getCookie('expired_ts') // expired_ts 超时时间
-        let access_key = cookie.getCookie('access_key')// api_key
+        let access_key = cookie.getCookie('access_key') // api_key
         // let version = cookie.getCookie('version')
         // let options = cookie.getCookie('options')
         // if (version && options) {
@@ -56,9 +64,9 @@ class AxiosClass {
         // console.log(document.cookie, 33, token)
         // 需要第三方服务器生成 m = md5(sercet_key + 商家唯一标识 + 时间戳)
         if (token) {
-          // token = new Md5(token + 'bbx' + nonce)
+          // token = new Md5(token + 'bbx' + timestamp_val)
           let _body = body && JSON.stringify(body)
-          config.headers.common['Bbx-Sign'] = (new Md5(_body + token + nonce)).hash()
+          config.headers.common['Bbx-Sign'] = (new Md5(_body + token + timestamp_val)).hash()
         }
         if (expired_ts) {
           config.headers.common['Bbx-ExpiredTs'] = expired_ts

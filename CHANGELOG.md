@@ -9,6 +9,8 @@
 - U 补充 `README.md`
 ### b
 - C 调整本地开发模式 `./config/api.config.js` 内 `isYun` 缺省为 true
+### c
+- U 优化参数配置
 
 ## 1.1.0.1015
 ### a
