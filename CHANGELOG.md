@@ -7,6 +7,8 @@
 - A 新增 `./config/base`，使得可在此配置
 - U 优化 `expired_ts`
 - U 补充 `README.md`
+### b
+- C 调整本地开发模式 `./config/api.config.js` 内 `isYun` 缺省为 true
 
 ## 1.1.0.1015
 ### a

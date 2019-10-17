@@ -40,8 +40,7 @@ npm install webpack -g
         <img src="https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/img1.jpg?raw=true" width="800" hegiht="auto" align="center" />
 
 2.  只有在 `./config/` 内对应的模式 `.js` 文件中，`isYun` 字段设为 `true`，才会调用上面的配置。  
-目前本地开发模式配置中 `isYun: false`。
-    <img src="https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/img2.jpg?raw=true" width="800" hegiht="auto"/>
+目前所有模式配置中 `isYun: true`。
 
 3.  需要接入当前平台的用户资产和用户信息，为转账到期货和头部显示做准备。
     <img src="https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/usage-3.png?raw=true" width="800" hegiht="auto" align="center" />

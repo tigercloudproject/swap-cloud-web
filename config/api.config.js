@@ -8,5 +8,5 @@ export default {
   swapsUrl: 'https://devapi.bbx.com/v1/',
   webSocketUrl: 'wss://devapi.bbx.com/v1/ifcontract/realTime',
   // 如果是合约云则为true
-  isYun: false
+  isYun: true
 }
