@@ -104,7 +104,7 @@
                          </st-row>
                      </div>
                       <div>
-                         <h6>{{ $t('typeTitle.deal') }}: {{ ticker.total_volume|retainDecimals({decimal: 0}) }} {{ $t('common.pieces') }}</h6>
+                         <h6>{{ $t('typeTitle.deal') }}: {{ ticker.total_volume }} {{ $t('common.pieces') }}</h6>
                          <p>≈ {{ sumValue(ticker.total_volume)|retainDecimals({decimal: com.valueUnit}) }} {{com.marginUnit}}</p>
                      </div>
                        <div>
@@ -188,7 +188,7 @@ import Formula from '../../assets/js/formula/index.js'
 import Util from '../../assets/js/util.js'
 import CalculatorWindow from './type-title-cp/calculator-window'
 import SetUpWindow from './type-title-cp/set-up-window'
-import CFG from '../../config/api.config'
+import BASE from '../../config/base'
 export default {
   components: {
     CalculatorWindow,
@@ -254,9 +254,9 @@ export default {
       this.productTicker = []
       this.productList.forEach(item => {
         // 显示规则
-        if (CFG.productTicker) {
-          if ((CFG.productTicker.exclude || []).some(v => v === item.contract.name)) return false
-          if (!(CFG.productTicker.contain || []).every(v => v === item.contract.name)) return false
+        if (BASE.productTicker) {
+          if ((BASE.productTicker.exclude || []).some(v => v === item.contract.name)) return false
+          if (!(BASE.productTicker.contain || []).every(v => v === item.contract.name)) return false
         }
 
         len = this.tickerList.length

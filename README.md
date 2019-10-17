@@ -5,7 +5,7 @@
 > 项目方需自己实现登录注册功能，本demo只提供合约交易功能。
 
 > **最快本地部署流程：**
-    > 修改 `/assets/js/axiosClassYun.js` 中的三处setCookie，本地host新增 `0.0.0.0 swap.test.com`，安装项目依赖包后 `npm run dev`，待 Web 启服后访问<http://swap.test.com:3008>
+    > 修改 `/assets/js/axiosClassYun.js` 中的三处setCookie，本地host新增 `127.0.0.1 swap.test.com`，安装项目依赖包后 `npm run dev`，待 Web 启服后访问<http://swap.test.com:3008>
 
 ## Usage
 
@@ -29,24 +29,19 @@ npm install webpack -g
 
 1.  服务器应提供一个获取 `api_key` 和 `api_secret` 的接口，前端拿到 `api_key` 和 `api_secret` 后即可调用合约交易。
     -   代码说明
-    ```javascript
-    cookie.getCookie('token');     // 加密后的api_secret
-    cookie.getCookie('expired_ts'); // 超时时间
-    cookie.getCookie('access_key'); // api_key
-    ```
-    > 注意: 站点重度依赖token字段为用户登录态判断依据，所以项目方在登录后，要把 `token`、`expired_ts`、`access_key` 储存到cookie中。
+        ```javascript
+        cookie.getCookie('token');     // 加密后的api_secret
+        cookie.getCookie('expired_ts'); // 超时时间戳
+        cookie.getCookie('access_key'); // api_key
+        ```
+        > 注意: 站点重度依赖token字段为用户登录态判断依据，所以项目方在登录后，要把 `token`、`expired_ts`、`access_key` 储存到cookie中。
 
-    -   访问项目中的 `./assets/js/axiosClassYun.js` 文件，把第 **37~39** 行的如下代码，其中 value、domain 修改为项目方自己的值。
-    -   其中 `expired_ts` 有格式要求，具体参看下方的 **FAQ**
-    ```javascript
-    cookie.setCookie('token', '461581496df9211abeaddf3cb108129a', '', '/', 'test.com')
-    cookie.setCookie('expired_ts', '1571111360398000', '', '/', 'test.com')
-    cookie.setCookie('access_key', 'ebb1b16a-3556-45b3-ad00-13d3120ba834', '', '/', 'test.com')
-    ```
+    -   访问项目中的 `./config/base.js` 文件，修改 `cloudToken`、`cloudAccessKey` 为自己的值。
+        <img src="https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/img1.jpg?raw=true" width="800" hegiht="auto" align="center" />
 
 2.  只有在 `./config/` 内对应的模式 `.js` 文件中，`isYun` 字段设为 `true`，才会调用上面的配置。  
 目前本地开发模式配置中 `isYun: false`。
-    <img src="https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/usage-2.png?raw=true" width="800" hegiht="auto"/>
+    <img src="https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/img2.jpg?raw=true" width="800" hegiht="auto"/>
 
 3.  需要接入当前平台的用户资产和用户信息，为转账到期货和头部显示做准备。
     <img src="https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/usage-3.png?raw=true" width="800" hegiht="auto" align="center" />
@@ -67,14 +62,14 @@ npm install webpack -g
 1.  配置`api.config.js`内的`domain`、`swapsDomain`为自己所需的域名（修改后需修改后续步骤中的domain）
 2.  本地host配置相关domain
     ```
-    0.0.0.0 swap.test.com
+    127.0.0.1 swap.test.com
     ```
 
 3.  运行`nuxt`
     ```bash
     npm run dev
     ```
-4.  等待显示出`0.0.0.0:3008`
+4.  等待显示出`127.0.0.1:3008`
 5.  使用`swapsDomain`的域名+端口进行访问
     > <http://swap.test.com:3008>
 
@@ -85,7 +80,7 @@ npm install webpack -g
 1.  配置`api.config.dev.js`内的`domain`、`swapsDomain`为自己所需的域名（修改后需修改后续步骤中的domain）
 2.  本地host配置相关domain
     ```
-    0.0.0.0 devswap.bbx.com
+    127.0.0.1 devswap.bbx.com
     ```
 
 3.  把`api.config.dev.js`的内容复制替换到`api.config.js`内
@@ -100,7 +95,7 @@ npm install webpack -g
     ```bash
     npm start
     ```
-    等待显示出`0.0.0.0:3008`  
+    等待显示出`127.0.0.1:3008`  
     or  
     ```bash
     # pm2
@@ -116,7 +111,7 @@ npm install webpack -g
 1.  配置`api.config.master.js`内的`domain`、`swapsDomain`为自己所需的域名
 2.  本地host配置相关domain
     ```
-    0.0.0.0 swap.bbx.com
+    127.0.0.1 swap.bbx.com
     ```
 
 3.  把`api.config.master.js`的内容复制替换到`api.config.js`内
@@ -132,7 +127,7 @@ npm install webpack -g
     # pm2
     pm2 startOrRestart pm2.json
     ```
-6.  将运行web服`0.0.0.0:3008`，需配置反向代理
+6.  将运行web服`127.0.0.1:3008`，需配置反向代理
 7.  使用`swapsDomain`的域名进行访问
     > <https://swap.bbx.com>
 
@@ -151,13 +146,13 @@ npm install webpack -g
 
 ## FAQ
 
-1. 对头部合约列表内的交易对，进行可控的显示或隐藏
+1. 对头部合约列表内的交易对，进行可控的显示或隐藏  
     查看`./config`内对应模式的js文件，其中通过`productTicker`的`exclude`或`contain`进行过滤
-2. Response 返回 `invalid system time`
+2. Response 返回 `invalid system time`  
     `expired_ts` 是微秒单位
-3. Response 返回 `invalid expired ts`
-    服务器采用0时区的时间设定，而 `expired_ts` 的有效期为30分钟
+3. Response 返回 `invalid expired ts`  
+    服务器采用0时区的时间设定，而 `expired_ts` 的有效期为20分钟（前端）。可在 `./config/base` 内修改。
 4. Response 返回 `invalid request`  
-    请检查Request Header中是否带有 `Bbx-Accesskey`、`Bbx-Sign`、`Bbx-Ver`、`Bbx-Dev`、`Bbx-Ts` 这些key，如果有缺少，则需要在 `./assets/js/axiosClassYun` 下进行配置
+    请检查Request Header中是否带有 `Bbx-Accesskey`、`Bbx-Sign`、`Bbx-Ver`、`Bbx-Dev`、`Bbx-Ts` 这些key。如果有缺少，则需要在 `./assets/js/axiosClassYun` 下进行配置。一般不会出现这问题。
 5. Response 返回 `invalid signature`  
     查看后端文档6.3 6.4小节

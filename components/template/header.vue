@@ -20,7 +20,7 @@
              <div v-if="token" class="avatar-box"><UserInfo></UserInfo></div>
             <div v-else class="no-login">
               <a @click="getUrl('register')"  class="sign-in">{{$t('header.SIGNUP')}}</a>
-              <a @click="getUrl('login')"  class="log-in">{{$t('header.LOGIN')}}</a> 
+              <a @click="getUrl('login')"  class="log-in">{{$t('header.LOGIN')}}</a>
             </div>
               <div class="language">
                 <SwitchLanguage />
@@ -30,7 +30,7 @@
     <div class="pc-header-m">
              <div class="pc-header-h5">
                   <div class="menu">
-                    
+
                     <img class="icon-close" src="../../assets/img/m/header/H5-ICON-close.svg" v-if="h5MenuShow"  @click="h5MenuShow = !h5MenuShow">
                     <img class="icon-menu" src="../../assets/img/m/header/H5-ICON-Setting.svg" v-else  @click="h5MenuShow = !h5MenuShow">
                      <a :href="apiConfig.mainDomain + `?lang=${locale}`" class="logo"><img src="../../assets/img/m/header/BBX-logo.svg" /></a>
@@ -40,7 +40,7 @@
                       <a v-else @click="getUrl('login')">
                         <img  class="avatar" src="../../assets/img/m/header/H5-ICON-my1.svg" alt="avatar"/>
                       </a>
-                    
+
                   </div>
                   <ul v-if="h5MenuShow" class="nav-h5" @click="h5MenuShow = false">
                     <li><a  :href="apiConfig.mainDomain + `?lang=${locale}`">{{$t('header.first')}}</a></li>
@@ -69,7 +69,7 @@
                   </ul>
                 </div>
     </div>
-</header>     
+</header>
 </template>
 
 <script>
@@ -89,9 +89,9 @@
         show: false,
         h5MenuShow: false,
         list: [
-           {name: '简体中文', value: 'zh-cn'},
-           {name: '繁體中文', value: 'zh-tw'},
-            {name: 'English', value: 'en-us'}
+          {name: '简体中文', value: 'zh-cn'},
+          {name: '繁體中文', value: 'zh-tw'},
+          {name: 'English', value: 'en-us'}
         ]
       }
     },
@@ -214,7 +214,7 @@
         .no-login {
             display: inline-block;
         }
-        
+
         .sign-in ,.log-in{
             display:inline-block;
             border: 1px solid #214063;
@@ -244,12 +244,12 @@
             width: 40px;
             height: 40px;
         }
-         
+
         .language {
             display:inline-block;
             padding-left: 20px;
             //background: pink;
-            
+
         }
     }
 }
@@ -310,7 +310,7 @@
             top: 50px;
             li {
                 border-bottom: 1px solid @bbxNavBackground;
-                
+
                 height: 50px;
                 line-height: 50px;
                 a {

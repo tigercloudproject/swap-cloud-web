@@ -5,6 +5,7 @@ import cookie from './cookie'
 import Md5 from './md5'
 // import VueX from 'vuex'
 import Alert from '../../components/bx-ui/alert/index'
+import BASE from '../../config/base'
 // import Vue from 'vue'
 axios.defaults.headers['Content-Type'] = 'application/json;charset=UTF-8'
 class AxiosClass {
@@ -26,18 +27,18 @@ class AxiosClass {
       if (config.method === 'post') {
         body = config.data || ''
       }
-      let timestamp = new Date().getTime()
+      let timestamp = new Date().valueOf()
       let nonce = timestamp + '000' // 微秒单位
+      let expire_time = (timestamp + BASE.cloudEffectiveTime * 60 * 1000) + '000' // 时间戳超时时效
       config.headers.common['Bbx-Ver'] = '1.0'
       config.headers.common['Bbx-Dev'] = 'web'
       config.headers.common['Bbx-Ts'] = nonce
       config.headers.common['Content-Type'] = 'application/json'
       // config.headers.common['Access-Control-Max-Age'] = '60'
       try {
-        cookie.setCookie('token', '461581496df9211abeaddf3cb108129a', '', '/', 'test.com')
-        cookie.setCookie('expired_ts', '1571111360398000', '', '/', 'test.com')
-        cookie.setCookie('access_key', 'ebb1b16a-3556-45b3-ad00-13d3120ba834', '', '/', 'test.com')
-        // let ssid = cookie.getCookie('ssid')  cookie.getCookie('token') ||
+        cookie.setCookie('token', BASE.cloudToken, '', '/', BASE.domain)
+        cookie.setCookie('expired_ts', expire_time, '', '/', BASE.domain)
+        cookie.setCookie('access_key', BASE.cloudAccessKey, '', '/', BASE.domain)
         let token = cookie.getCookie('token') // secret
         // let locale = cookie.getCookie('lang')
         let expired_ts = cookie.getCookie('expired_ts') // expired_ts 超时时间

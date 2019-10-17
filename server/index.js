@@ -4,7 +4,7 @@ import VueX from 'vuex'
 import ApiConfig from '../config/api.config.js'
 async function start () {
   const app = new Koa()
-  const host = process.env.HOST || '0.0.0.0'
+  const host = process.env.HOST || '127.0.0.1'
   const port = process.env.PORT || 3008
 
   // Import and Set Nuxt.js options
