@@ -27,7 +27,7 @@ npm install webpack -g
 
 #### 4. 配置
 
-1.  服务器应提供一个获取 `api_key` 和 `api_secret` 的接口，前端拿到 `api_key` 和 `api_secret` 后即可调用合约交易。
+1.  服务器应提供一个可获取 `api_key`、`api_secret`、`expired_ts` 的接口，前端拿到后即可调用合约交易。
     -   代码说明
         ```javascript
         cookie.getCookie('token');     // 加密后的api_secret
@@ -36,9 +36,11 @@ npm install webpack -g
         ```
         > 注意: 站点重度依赖token字段为用户登录态判断依据，所以项目方在登录后，要把 `token`、`expired_ts`、`access_key` 储存到cookie中。
 
-    -   访问项目中的 `./config/base.js` 文件，修改 `cloudToken`、`cloudAccessKey` 为自己的值。
+    -   访问项目中的 `./config/base.js` 文件，修改 `cloudToken`、`cloudAccessKey` 为自己的缺省值。
         <img src="https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/img1.jpg?raw=true" width="800" hegiht="auto" align="center" />
-
+    -   访问项目中的 `./assets/js/axiosClassYun.js`，在 **32~38** 行内把从服务器获取的 `api_key`、`api_secret`、`expired_ts` 进行赋值。
+        <img src="https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/img3.jpg?raw=true" width="800" hegiht="auto" align="center" />
+    -   如果要提升安全性，可缩短 `expired_ts` 的有效期。
 2.  只有在 `./config/` 内对应的模式 `.js` 文件中，`isYun` 字段设为 `true`，才会调用上面的配置。  
 目前所有模式配置中 `isYun: true`。
 
@@ -54,7 +56,7 @@ npm install webpack -g
 ### 本地开发模式
 
 对应默认的`./config/api.config.js`配置项，`./config/api.config.local.bk.js`为其备份。  
-*注意：本模式默认 `isYun` 为 `false`*
+将访问测试接口。
 
 #### 步骤
 
@@ -74,7 +76,8 @@ npm install webpack -g
 
 ### 测试模式（测试服模式）
 
-对应`./config/api.config.dev.js`配置项。
+对应`./config/api.config.dev.js`配置项。  
+将访问测试接口。
 
 1.  配置`api.config.dev.js`内的`domain`、`swapsDomain`为自己所需的域名（修改后需修改后续步骤中的domain）
 2.  本地host配置相关domain
@@ -105,7 +108,8 @@ npm install webpack -g
 
 ### 生产模式（线上模式）
 
-对应`./config/api.config.master.js`配置项。
+对应`./config/api.config.master.js`配置项。  
+将访问线上正式接口。
 
 1.  配置`api.config.master.js`内的`domain`、`swapsDomain`为自己所需的域名
 2.  本地host配置相关domain
