@@ -45,38 +45,49 @@
       <!-- </st-row> -->
     </div>
     <st-row align="center" class='swap-title-bottom'>
-         <div class="swap-title-name">
-             <!-- {{ productInfo.contract.display_name }} -->
-             <!-- {{ $t('typeTitle.sustainableContract', {type: 'XBTUSD'}) }} -->
+          <div class="assert">
+               <st-row justify="between">
+                 <h4>{{ $t('typeTitle.totalAssert', {coin: com.marginUnit}) }}</h4>
+                 <p class="eye" :class="isAssertShow || 'no-see'" @click="assertShow"></p>
+               </st-row>
+               <div class="assert-detail">
+                 <span v-if="isAssertShow">{{ getUserSumAssert()|retainDecimals({decimal: com.valueUnit}) }} {{ com.marginUnit }}</span>
+                 <span v-else>---- {{ com.marginUnit }}</span>
+               </div>
+          </div>
+          <st-row align="center" class='swap-title-right' justify="between">
+              <div class="swap-title-name">
+                 <!-- {{ productInfo.contract.display_name }} -->
+                 <!-- {{ $t('typeTitle.sustainableContract', {type: 'XBTUSD'}) }} -->
                 <div class="Sel-mask" v-if="contractShow" @click="contractShow = false"></div>
-                 <!-- @click="contractShow = !contractShow" -->
-                 <span class="Sel-name" >
-                   <span>{{ productInfo.contract[locale === 'zh-cn' ? 'display_name' : 'display_name_en'] }}</span>
-                 </span>
-                 <!-- <div class="Sel-list" v-if="contractShow">
-                   <st-row class="contract-title">
-                     <a href="javascript:void(0)" class="active">{{ $t('typeTitle.main') }}</a>
-                     <a href="javascript:void(0)">{{ $t('typeTitle.news') }}</a>
-                   </st-row>
-                    <div class="contract-content">
-                      <div class="contract-content-over">
-                        <table>
-                        <tr>
-                          <th>{{ $t('typeTitle.tradeType') }}</th>
-                          <th>{{ $t('typeTitle.newsPrice') }}</th>
-                          <th>{{ $t('typeTitle.change') }}</th>
-                        </tr>
-                        <tr :key="item.contract.contract_id"  v-for="item in productTicker" :class="item.contract.contract_id === productInfo.contract.contract_id ? 'active' : '' " @click="changeContract(item.contract.contract_id)">
-                          <td>{{item.contract[locale === 'zh-cn' ? 'display_name' : 'display_name_en']}}</td>
-                          <td :class="item.ticker.rise_fall_rate < 0 ? 'red' : 'green'">{{ item.ticker.last_price | splitFormat(com.priceUnit - 1)  }} <span>{{ item.contract.quote_coin }}</span></td>
-                          <td :class="item.ticker.rise_fall_rate < 0 ? 'red' : 'green'">{{ item.ticker.rise_fall_rate * 100|retainDecimals({decimal: 2}) }}%</td>
-                        </tr>
-                      </table>
-                      </div>
-                    </div>
-                 </div> -->
-         </div>
-         <st-row align="end" class='swap-title-right' justify="between">
+                     <!-- @click="contractShow = !contractShow" -->
+                     <span class="Sel-name" >
+                       <span>{{ productInfo.contract[locale === 'zh-cn' ? 'display_name' : 'display_name_en'] }}</span>
+                     </span>
+                     <!-- <div class="Sel-list" v-if="contractShow">
+                       <st-row class="contract-title">
+                         <a href="javascript:void(0)" class="active">{{ $t('typeTitle.main') }}</a>
+                         <a href="javascript:void(0)">{{ $t('typeTitle.news') }}</a>
+                       </st-row>
+                        <div class="contract-content">
+                          <div class="contract-content-over">
+                            <table>
+                            <tr>
+                              <th>{{ $t('typeTitle.tradeType') }}</th>
+                              <th>{{ $t('typeTitle.newsPrice') }}</th>
+                              <th>{{ $t('typeTitle.change') }}</th>
+                            </tr>
+                            <tr :key="item.contract.contract_id"  v-for="item in productTicker" :class="item.contract.contract_id === productInfo.contract.contract_id ? 'active' : '' " @click="changeContract(item.contract.contract_id)">
+                              <td>{{item.contract[locale === 'zh-cn' ? 'display_name' : 'display_name_en']}}</td>
+                              <td :class="item.ticker.rise_fall_rate < 0 ? 'red' : 'green'">{{ item.ticker.last_price | splitFormat(com.priceUnit - 1)  }} <span>{{ item.contract.quote_coin }}</span></td>
+                              <td :class="item.ticker.rise_fall_rate < 0 ? 'red' : 'green'">{{ item.ticker.rise_fall_rate * 100|retainDecimals({decimal: 2}) }}%</td>
+                            </tr>
+                          </table>
+                          </div>
+                        </div>
+                     </div> -->
+                 </div>
+          <st-row align="end" class='swap-title-number' justify="between">
              <st-row align="center" justify="between" class='swap-title-number'>
                      <div>
                          <h6>{{ $t('typeTitle.newsPrice') }}: <span :class="'applies ' + (ticker.rise_fall_rate < 0 ? 'red' : '')">{{ ticker.last_price | splitFormat(com.priceUnit - 1) }}</span></h6>
@@ -124,15 +135,15 @@
                       </div>
 
                      </div>
-             </st-row>
-
-         </st-row>
-        <popup :title="$t('typeTitle.contractSet')"  width="440" :callback="closeSetUp" v-if="setUpShow">
-           <set-up-window :close="closeSetUp"></set-up-window>
-       </popup>
-        <popup :title="$t('typeTitle.contractCalculator')"   width="660" :callback="clsoeCalculator" v-if="calculatorShow">
+              </st-row>
+            </st-row>
+          </st-row>
+          <popup :title="$t('typeTitle.contractSet')"  width="440" :callback="closeSetUp" v-if="setUpShow">
+            <set-up-window :close="closeSetUp"></set-up-window>
+          </popup>
+          <popup :title="$t('typeTitle.contractCalculator')"   width="660" :callback="clsoeCalculator" v-if="calculatorShow">
             <calculator-window :close="clsoeCalculator"></calculator-window>
-       </popup>
+          </popup>
     </st-row>
    </div>
    <div class="swap-title-m">
@@ -208,7 +219,8 @@ export default {
       MarginCoin: Formula.MarginCoin,
       hasUSDT: false,
       hasUnUSDT: false,
-      hasMian: false
+      hasMian: false,
+      isAssertShow: true,
     }
   },
   computed: {
@@ -232,6 +244,9 @@ export default {
     },
     productList() {
       return this.$store.state.market.productList
+    },
+    accounts() {
+      return this.$store.state.auth.accounts || {}
     }
     // coinUnit() {
     //   return this.$store.state.market.coinUnit
@@ -288,6 +303,14 @@ export default {
     }
   },
   methods: {
+    assertShow() {
+      this.isAssertShow = !this.isAssertShow
+      window.localStorage.setItem('isAssertShow', this.isAssertShow)
+    },
+    // 获取账户权益
+    getUserSumAssert() {
+      return Number(this.accounts.available_vol) + Number(this.accounts.freeze_vol) + this.com.imTotal + this.com.PNL
+    },
     // 关闭设置弹窗
     closeSetUp() {
       this.setUpShow = false
@@ -471,13 +494,34 @@ export default {
  }
 .swap-title-bottom {
     // margin-top: 10px;
-    height: 70px;
+    // height: 70px;
     width: 100%;
-    background-color: @bbFooterBackground;
-    border-radius: 2px;
+    // background-color: @bbFooterBackground;
+    // border-radius: 2px;
+    .assert {
+      margin-left: 10px;
+      padding: 12px;
+      width: 280px;
+      height: 70px;
+      background-color: @bbFooterBackground;
+      border-radius: 2px;
+      color: @bbxGray;
+      .eye {
+        width: 20px;
+        height: 20px;
+        background-image: url('../../assets/img/eye-open.svg');
+        &.no-see {
+          background-image: url('../../assets/img/eye-close.svg');
+        }
+      }
+      .assert-detail {
+        margin-top: 4px;
+        font-size: 16px;
+      }
+    }
     .swap-title-name {
         margin-left: 33px;
-        width: 270px;
+        width: 220px;
         font-size: 20px;
         position: relative;
         // padding-right: 20px;
@@ -486,6 +530,9 @@ export default {
     }
     .swap-title-right {
         flex: 1;
+        margin: 0 10px;
+        height: 70px;
+        background-color: #1f2636;
         .swap-title-dw {
             // margin-right: 30px;
             font-size: 14px;
@@ -521,7 +568,7 @@ export default {
     }
     .swap-title-number {
       flex: 1;
-      padding-right: 20px;
+      // padding-right: 20px;
       .wen {
         a {
           border-bottom: 1px dotted @bbxBlue1;

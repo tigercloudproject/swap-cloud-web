@@ -7,7 +7,7 @@
 > **最快本地部署流程：**
     > 修改 `/assets/js/axiosClassYun.js` 中的三处setCookie，本地host新增 `127.0.0.1 swap.test.com`，安装项目依赖包后 `npm run dev`，待 Web 启服后访问<http://swap.test.com:3008>
 
-## Usage
+## 步骤
 
 #### 1.安装依赖环境
 
@@ -130,7 +130,7 @@ npm install webpack -g
 7.  使用`swapsDomain`的域名进行访问
     > <https://swap.bbx.com>
 
-## Components Intro
+## 组件
 
 |组件|文件名|路径|
 |---|---|---|
@@ -155,3 +155,5 @@ npm install webpack -g
     请检查Request Header中是否带有 `Bbx-Accesskey`、`Bbx-Sign`、`Bbx-Ver`、`Bbx-Dev`、`Bbx-Ts` 这些key。如果有缺少，则需要在 `./assets/js/axiosClassYun` 下进行配置。一般不会出现这问题。
 5. Response 返回 `invalid signature`  
     查看后端文档6.3 6.4小节
+6. API接口位置  
+    `./assets/js/api/swapsApi`
