@@ -4,9 +4,6 @@
 > 该项目使用了 [Nuxt.js](https://zh.nuxtjs.org/) 框架。有关工作原理的详细说明请查看[Nuxt.js docs](https://github.com/nuxt/nuxt.js)  
 > 项目方需自己实现登录注册功能，本demo只提供合约交易功能。
 
-> **最快本地部署流程：**
-    > 修改 `/assets/js/axiosClassYun.js` 中的三处setCookie，本地host新增 `127.0.0.1 swap.test.com`，安装项目依赖包后 `npm run dev`，待 Web 启服后访问<http://swap.test.com:3008>
-
 ## 步骤
 
 #### 1.安装依赖环境
