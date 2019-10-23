@@ -173,6 +173,8 @@
     "typeTitle": {
         "isSwap" : "Linear Contract ",
         "theSwap" : "Inverse Contract",
+        "USDTcontract": "USDT",
+        "currencyStandard": "Inverse",
         "coinDetail": "{coin} Guide",
         "totalAssert": "{coin} Asset",
         "lxcj": "Chainfor Chart",
@@ -190,6 +192,7 @@
         "nextExchange": "The next funds rate exchange time is：",
         "needValue": "Short needs to compensate long position holding {value}.",
         "needValueTwo": "long needs to compensate Short position holding {value}.",
+        "minAndMaxRate": "The maximum funding rate is {max} and the minimum is {min}",
         "fairPrice": "Fair Price",
         "main": "Main",
         "news": "New",

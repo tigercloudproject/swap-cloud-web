@@ -321,9 +321,11 @@
     margin-bottom: 0px;
     li {
       width: 160px;
-      height: 46px;
-      padding-left: 20px;
-      line-height: 46px;
+      // height: 46px;
+      // padding-left: 20px;
+      padding: 13px 10px 13px 20px;
+      // line-height: 46px;
+      line-height: 20px;
       cursor: pointer;
       color: #5f6d98;
       font-size: 16px;
@@ -337,33 +339,43 @@
   }
   .calculator-window-centent {
     margin-top: 26px;
+    display: flex;
     .calculator-window-centent-left {
       position: relative;
       height: 362px;
-      width: 314px;
+      // width: 314px;
+      flex: auto;
       .item {
         height: 34px;
         margin-bottom: 20px;
+        display: flex;
+        align-items: center;
         &>p {
-          width: 96px;
-          padding-right: 14px; 
-          line-height: 34px;
+          // width: 96px;
+          width: 113px;
+          padding-right: 14px;
+          // line-height: 34px;
+          line-height: 18px;
           text-align: right;
           color: #5f6d98;
-          font-weight: 400;                       
+          font-weight: 400;
         }
         .item-tab {
+            display: flex;
+            width:240px;
           a {
-            display: inline-block;
-            height: 34px;
-            width: 100px;
+            flex: auto;
+            // height: 34px;
+            // width: 100px;
             border: 1px solid @windowButton;
             text-align: center;
-            line-height: 34px;
+            // line-height: 34px;
+            line-height: 18px;
+            padding: 8px 0;
             font-weight: 400;
             &.active{
-              background-color:  @windowButton;
-              color: @bbxWhite;
+                background-color:  @windowButton;
+                color: @bbxWhite;
             }
             &:first-child {
               border-radius: 2px 0 0 2px;
@@ -375,10 +387,12 @@
         }
         .item-input {
           position: relative;
+          width:240px;
           input {
             padding-left: 10px;
             border: 1px solid #b6c8e2;
-            width: 200px;
+            // width: 200px;
+            width: 240px;
             height: 34px;
             color: #3e4450;
             background-color: #E5ECF2;
@@ -396,7 +410,8 @@
           .Sel-name {
             position: relative;
             display: block;
-            width: 200px;
+            // width: 200px;
+            width: 240px;
             height: 34px;
             padding-left: 10px;
             border: 1px solid #b6c8e2;
@@ -416,6 +431,7 @@
           }
           .leverage-sel {
             position: relative;
+            width:240px;
             .Sel-mask {
               position: fixed;
               left: 0px;
@@ -444,7 +460,8 @@
       .btn {
         position: absolute;
         bottom: 0px;
-        margin-left: 32px;
+        // margin-left: 32px;
+        margin-left: 64px;
         display: block;
         width: 264px;
         height: 38px;
@@ -477,7 +494,9 @@
           font-weight: 400;
           // text-align: left;
           color: #5f6d98;
-          line-height: 26px;
+          // line-height: 26px;
+          line-height: 16px;
+          padding-top: 8px;
         }
       }
     }

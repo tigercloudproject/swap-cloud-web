@@ -3,9 +3,9 @@
       <h3>{{ $t('newsDeal.entrustList') }}</h3>
        <div class="entrust-list-centent">
         <st-row class="entrust-list-title">
-         <h6>{{ $t('newsDeal.price') }} ({{ productInfo.contract.quote_coin }})</h6>
-         <h6>{{ $t('newsDeal.number') }} ({{ coinUnit ? $t('common.pieces') : productInfo.contract.base_coin }})</h6>
-         <h6>{{ $t('newsDeal.sumNumber') }} ({{ coinUnit ? $t('common.pieces') : productInfo.contract.base_coin }})</h6>
+         <h6>{{ $t('newsDeal.price') }}({{ productInfo.contract.quote_coin }})</h6>
+         <h6 style="padding-right:6px;">{{ $t('newsDeal.number') }}({{ coinUnit ? $t('common.pieces') : productInfo.contract.base_coin }})</h6>
+         <h6>{{ $t('newsDeal.sumNumber') }}({{ coinUnit ? $t('common.pieces') : productInfo.contract.base_coin }})</h6>
        </st-row>
        <ul class="red">
          <li :key="index" v-for="(item, index) in sellOrder" :class="item.color">
@@ -14,7 +14,7 @@
              <div class="item_bg" :style="{width: item.vol / sellMax * 100 + '%'}"></div>
               <st-row class="price-vol">
                 <p @click="setPrice(item.price)">{{ item.price | splitFormat(com.priceUnit - 1) }}</p>
-                <p @click="setVol(item.vol)">{{ item.vol|addCommom(coinUnit ? com.volUnit : com.valueUnit) }}</p>
+                <p style="padding-right:6px;" @click="setVol(item.vol)">{{ item.vol|addCommom(coinUnit ? com.volUnit : com.valueUnit) }}</p>
                 <p @click="setVol(item.sumVol)">{{ item.sumVol|addCommom(coinUnit ? com.volUnit : com.valueUnit) }}</p>
                 <div class="hint"><p>{{ $t('newsDeal.ordereSellHover', {price: item.price, vol: item.orderVol, unit: coinUnit ? $t('common.pieces') : productInfo.contract.base_coin}) }}</p></div>
               </st-row>
@@ -76,7 +76,7 @@
              <div class="item_bg" :style="{width:  item.vol / buyMax * 100 + '%'}"></div>
              <st-row class="price-vol">
                 <p @click="setPrice(item.price)">{{ item.price|splitFormat(com.priceUnit - 1) }}</p>
-                <p @click="setVol(item.vol)">{{ item.vol|addCommom(coinUnit ? com.volUnit : com.valueUnit) }}</p>
+                <p style="padding-right:6px;" @click="setVol(item.vol)">{{ item.vol|addCommom(coinUnit ? com.volUnit : com.valueUnit) }}</p>
                 <p @click="setVol(item.sumVol)">{{ item.sumVol|addCommom(coinUnit ? com.volUnit : com.valueUnit) }}</p>
                 <div class="hint"><p> {{ $t('newsDeal.orderBuyHover', {price: item.price, vol: item.orderVol, unit: coinUnit ? $t('common.pieces') : productInfo.contract.base_coin}) }}</p></div>
              </st-row>
@@ -443,10 +443,10 @@
       .price-vol {
         &>p:first-child {
           margin-left: 8px;
-          color: @bbxRed; 
+          color: @bbxRed;
         }
       }
-    } 
+    }
     li {
       padding: 2px 0;
       border-right: 4px solid rgba(49, 158, 92, .1);

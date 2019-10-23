@@ -771,12 +771,12 @@
               width: 22px;
               height: 22px;
               vertical-align: middle;
-              background-image: url("../../assets/img/icon-Setup_nor.png");
+              background-image: url("../../assets/img/icon-Setup_nor.svg");
           }
             &:hover {
                 color: #1890ff;
                 span {
-                  background-image: url("../../assets/img/icon-Setup_sel.png");
+                  background-image: url("../../assets/img/icon-Setup_sel.svg");
                 }
               }
       }

@@ -4,7 +4,8 @@
 }
 .header-chart-panel .header-chart-panel-content {
   height: 40px;
-  padding: 0 10px 0 16px;
+  /* padding: 0 10px 0 16px; */
+  padding: 0 10px 0 0;
 }
 .chart-container {
   border-color: #212340 !important;

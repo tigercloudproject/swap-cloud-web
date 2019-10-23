@@ -115,10 +115,14 @@ export default {
   h5 {
       margin-top: 5px;
       a {
-          display: block;
+          // display: block;
+          display: flex;
+          align-items: center;
           padding: 0 10px;
-          height: 32px;
-          line-height: 30px;
+          // height: 32px;
+          height: 36px;
+          // line-height: 30px;
+          line-height: 16px;
           font-size: 14px;
           color: @bbxGray;
           &.active {

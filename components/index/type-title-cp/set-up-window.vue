@@ -75,7 +75,9 @@
       font-size: 14px;
       font-weight: 400;
       }
-    
+    div {
+        align-items: center;
+    }
   }
     a {
         margin-top: 30px;

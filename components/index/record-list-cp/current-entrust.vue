@@ -178,6 +178,8 @@ export default {
    tr {
        height: 50px;
        th {
+           line-height: 18px;
+           padding: 0 0 0 12px;
          .time {
            width: 60px;
          }
@@ -191,13 +193,13 @@ export default {
            }
        }
         .options {
-            width: 70px;
+            // width: 70px;
           a {
             display: block;
             margin: 0 auto;
             text-align: center;
-            width: 60px;
-            height: 20px;
+            // width: 60px;
+            // height: 20px;
             line-height: 18px;
             border: 1px solid #2B93F6;
             color: #2B93F6;

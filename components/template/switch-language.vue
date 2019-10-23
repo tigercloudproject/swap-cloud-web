@@ -26,7 +26,8 @@
            {name: '简体中文', value: 'zh-cn'},
            {name: '繁體中文', value: 'zh-tw'},
             {name: 'English', value: 'en-us'},
-            {name: '한국어', value: 'ko-kr'}
+            {name: '한국어', value: 'ko-kr'},
+            {name: 'Tiếng việt', value: 'vi-vn'}
         ]
       }
     },
@@ -76,7 +77,7 @@
  @import "../../assets/css/base";
 .lang-box {
     position: relative;
-    
+
     .lang-name{
         display: inline-block;
         padding-right: 4px;

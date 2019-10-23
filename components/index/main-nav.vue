@@ -1,93 +1,93 @@
+<!--按照USDT合约，币本位分类-->
 <template>
   <div class="swap-title">
    <div class="swap-title-web">
-      <div class="swap-title-top">
-      <st-row class="swap-title-top-contract" v-show="hasUSDT">
-          <st-row class="title" align="center">
-            <h4>USDT</h4>
-          </st-row>
-         <st-row class="swap-title-top-contract-info">
-             <div class="info" v-if="!isMian(item.contract.contract_id) && MarginCoin(item.contract.base_coin, item.contract.quote_coin, item.contract.price_coin) === 'USDT'" :key="item.contract.contract_id"  v-for="item in productTicker" :class="item.contract.contract_id === productInfo.contract.contract_id ? 'active' : '' " @click="changeContract(item.contract.contract_id)">
-            <st-row class="price" justify="between">
-               <h6>{{item.contract.name}}</h6>
-              <p :class="item.ticker.rise_fall_rate < 0 ? 'red' : 'green'">{{ item.ticker.last_price | splitFormat(item.priceUnit - 1)  }}<span></span></p>
-              <!-- <p :class="item.ticker.rise_fall_rate < 0 ? 'red' : 'green'">{{ item.ticker.rise_fall_rate * 100|retainDecimals({decimal: 2}) }}%<span></span></p> -->
-            </st-row>
+    <div class="swap-title-top">
+        <st-row class="swap-title-top-contract">
+          <div class="title" align="center">
+            <h4 @click="changeArea(true)" :class="isMianOrNews && 'curry'">{{$t('typeTitle.USDTcontract')}}</h4>
+            <!-- <h4 @click="changeArea(false)" :class="isMianOrNews || 'curry'">{{ $t('typeTitle.currencyStandard') }}</h4> -->
           </div>
-         </st-row>
-      </st-row>
-      <!-- <st-row> -->
-      <st-row class="swap-title-top-contract" v-show="hasUnUSDT">
-          <st-row class="title" align="center">
-            <h4>{{ $t('typeTitle.main') }}</h4>
+          <st-row class="list">
+            <div class="info" :key="index" v-for="(item, index) in reduceList" :class="curry(item) ? 'active' : '' " @click="changeContract(item.product[0].contract_id)">
+                <st-row class="price" justify="between">
+                    <h6>{{item.base_coin}}</h6>
+                    <p :class="item.product[0].ticker.rise_fall_rate < 0 ? 'red' : 'green'">{{ item.product[0].ticker.rise_fall_rate * 100|retainDecimalsWithSymbol({decimal: 2}) }}%<span></span></p>
+                </st-row>
+                <!-- <p :class="item.product[0].ticker.rise_fall_rate < 0 ? 'red' : 'green'">{{ item.product[0].ticker.last_price | splitFormat(item.priceUnit - 1)  }}<span></span></p> -->
+                <!-- <st-row justify="center"><p class="coin-name-width">{{item.name}}</p> &nbsp;&nbsp;<p :class="item.product[0].ticker.rise_fall_rate < 0 ? 'red' : 'green'">{{ item.product[0].ticker.rise_fall_rate * 100|retainDecimals({decimal: 2}) }}%<span></span></p></st-row> -->
+            </div>
           </st-row>
-          <div class="info" v-if="!isMian(item.contract.contract_id) && MarginCoin(item.contract.base_coin, item.contract.quote_coin, item.contract.price_coin) !== 'USDT'" :key="item.contract.contract_id"  v-for="item in productTicker" :class="item.contract.contract_id === productInfo.contract.contract_id ? 'active' : '' " @click="changeContract(item.contract.contract_id)">
-            <st-row class="price" justify="between">
-               <h6>{{item.contract.name}}</h6>
-              <p :class="item.ticker.rise_fall_rate < 0 ? 'red' : 'green'">{{ item.ticker.last_price | splitFormat(item.priceUnit - 1)  }}<span></span></p>
-              <!-- <p :class="item.ticker.rise_fall_rate < 0 ? 'red' : 'green'">{{ item.ticker.rise_fall_rate * 100|retainDecimals({decimal: 2}) }}%<span></span></p> -->
-            </st-row>
-          </div>
       </st-row>
-        <st-row class="swap-title-top-contract" v-show="hasMian">
-          <st-row class="title" align="center">
-            <h4>{{ $t('typeTitle.news') }}</h4>
+      <st-row class="swap-title-top-contract">
+          <div class="title" align="center">
+            <!-- <h4 @click="changeArea(true)" :class="isMianOrNews && 'curry'">{{$t('typeTitle.USDTcontract')}}</h4> -->
+            <h4 @click="changeArea(false)" :class="isMianOrNews || 'curry'">{{ $t('typeTitle.currencyStandard') }}</h4>
+          </div>
+          <st-row class="list">
+            <div class="info" :key="index" v-for="(item, index) in reduceList2" :class="curry(item) ? 'active' : '' "  @click="changeContract(item.product[0].contract_id)">
+                <st-row class="price" justify="between">
+                    <h6>{{item.base_coin}}</h6>
+                    <p :class="item.product[0].ticker.rise_fall_rate < 0 ? 'red' : 'green'">{{ item.product[0].ticker.rise_fall_rate * 100|retainDecimalsWithSymbol({decimal: 2}) }}%<span></span></p>
+                </st-row>
+                <!-- <h6>{{item[locale === 'zh-cn' ? 'base_coin_zh' : 'base_coin_en']}}</h6> -->
+                <!-- <p :class="item.product[0].ticker.rise_fall_rate < 0 ? 'red' : 'green'">{{ item.product[0].ticker.last_price | splitFormat(item.priceUnit - 1)  }}<span></span></p> -->
+                <!-- <st-row justify="center"><p class="coin-name-width">{{item.name}}</p> &nbsp;&nbsp;<p :class="item.product[0].ticker.rise_fall_rate < 0 ? 'red' : 'green'">{{ item.product[0].ticker.rise_fall_rate * 100|retainDecimals({decimal: 2}) }}%<span></span></p></st-row> -->
+            </div>
           </st-row>
-          <div class="info" v-if="isMian(item.contract.contract_id)" :key="item.contract.contract_id"  v-for="item in productTicker" :class="item.contract.contract_id === productInfo.contract.contract_id ? 'active' : '' " @click="changeContract(item.contract.contract_id)">
-
-            <st-row class="price" justify="between">
-              <h6>{{item.contract.name}}</h6>
-              <p :class="item.ticker.rise_fall_rate < 0 ? 'red' : 'green'">{{ item.ticker.last_price | splitFormat(item.priceUnit - 1)  }}<span></span></p>
-              <!-- <p :class="item.ticker.rise_fall_rate < 0 ? 'red' : 'green'">{{ item.ticker.rise_fall_rate * 100|retainDecimals({decimal: 2}) }}%<span></span></p> -->
-            </st-row>
-          </div>
       </st-row>
-      <!-- </st-row> -->
     </div>
+    <transition name="warning">
+      <div class="warning" v-if="isWarningShow">
+        <img src="../../assets/img/icon-Caution.svg" />
+        <span v-if="id !== 23">{{this.productInfo && this.productInfo.contract && $t('typeTitle.warning', {name: this.productInfo.contract.name})}}</span>
+        <span v-else>{{this.productInfo && this.productInfo.contract && $t('typeTitle.warning2', {name: this.productInfo.contract.name})}}</span>
+        <a class="close" @click="closeWarning()"></a>
+      </div>
+    </transition>
     <st-row align="center" class='swap-title-bottom'>
-          <div class="assert">
+         <div class="assert">
                <st-row justify="between">
                  <h4>{{ $t('typeTitle.totalAssert', {coin: com.marginUnit}) }}</h4>
-                 <p class="eye" :class="isAssertShow || 'no-see'" @click="assertShow"></p>
+                 <p class="eye icomoon" :class="isAssertShow ? 'icon-13' : 'icon-1' " @click="assertShow"></p>
                </st-row>
                <div class="assert-detail">
                  <span v-if="isAssertShow">{{ getUserSumAssert()|retainDecimals({decimal: com.valueUnit}) }} {{ com.marginUnit }}</span>
                  <span v-else>---- {{ com.marginUnit }}</span>
                </div>
           </div>
-          <st-row align="center" class='swap-title-right' justify="between">
-              <div class="swap-title-name">
-                 <!-- {{ productInfo.contract.display_name }} -->
-                 <!-- {{ $t('typeTitle.sustainableContract', {type: 'XBTUSD'}) }} -->
+         <st-row align="center" class='swap-title-right' justify="between">
+            <div class="swap-title-name">
+             <!-- {{ productInfo.contract.display_name }} -->
+             <!-- {{ $t('typeTitle.sustainableContract', {type: 'XBTUSD'}) }} -->
                 <div class="Sel-mask" v-if="contractShow" @click="contractShow = false"></div>
-                     <!-- @click="contractShow = !contractShow" -->
-                     <span class="Sel-name" >
-                       <span>{{ productInfo.contract[locale === 'zh-cn' ? 'display_name' : 'display_name_en'] }}</span>
-                     </span>
-                     <!-- <div class="Sel-list" v-if="contractShow">
-                       <st-row class="contract-title">
-                         <a href="javascript:void(0)" class="active">{{ $t('typeTitle.main') }}</a>
-                         <a href="javascript:void(0)">{{ $t('typeTitle.news') }}</a>
-                       </st-row>
-                        <div class="contract-content">
-                          <div class="contract-content-over">
-                            <table>
-                            <tr>
-                              <th>{{ $t('typeTitle.tradeType') }}</th>
-                              <th>{{ $t('typeTitle.newsPrice') }}</th>
-                              <th>{{ $t('typeTitle.change') }}</th>
-                            </tr>
-                            <tr :key="item.contract.contract_id"  v-for="item in productTicker" :class="item.contract.contract_id === productInfo.contract.contract_id ? 'active' : '' " @click="changeContract(item.contract.contract_id)">
-                              <td>{{item.contract[locale === 'zh-cn' ? 'display_name' : 'display_name_en']}}</td>
-                              <td :class="item.ticker.rise_fall_rate < 0 ? 'red' : 'green'">{{ item.ticker.last_price | splitFormat(com.priceUnit - 1)  }} <span>{{ item.contract.quote_coin }}</span></td>
-                              <td :class="item.ticker.rise_fall_rate < 0 ? 'red' : 'green'">{{ item.ticker.rise_fall_rate * 100|retainDecimals({decimal: 2}) }}%</td>
-                            </tr>
-                          </table>
-                          </div>
-                        </div>
-                     </div> -->
-                 </div>
-          <st-row align="end" class='swap-title-number' justify="between">
+                 <!-- @click="contractShow = !contractShow" -->
+                 <span class="Sel-name" >
+                   <span>{{ productInfo.contract[locale === 'zh-cn' ? 'display_name' : 'display_name_en'] }}</span>
+                 </span>
+                 <!-- <div class="Sel-list" v-if="contractShow">
+                   <st-row class="contract-title">
+                     <a href="javascript:void(0)" class="active">{{ $t('typeTitle.main') }}</a>
+                     <a href="javascript:void(0)">{{ $t('typeTitle.news') }}</a>
+                   </st-row>
+                    <div class="contract-content">
+                      <div class="contract-content-over">
+                        <table>
+                        <tr>
+                          <th>{{ $t('typeTitle.tradeType') }}</th>
+                          <th>{{ $t('typeTitle.newsPrice') }}</th>
+                          <th>{{ $t('typeTitle.change') }}</th>
+                        </tr>
+                        <tr :key="item.contract.contract_id"  v-for="item in productTicker" :class="item.contract.contract_id === productInfo.contract.contract_id ? 'active' : '' " @click="changeContract(item.contract.contract_id)">
+                          <td>{{item.contract[locale === 'zh-cn' ? 'display_name' : 'display_name_en']}}</td>
+                          <td :class="item.ticker.rise_fall_rate < 0 ? 'red' : 'green'">{{ item.ticker.last_price | splitFormat(com.priceUnit - 1)  }} <span>{{ item.contract.quote_coin }}</span></td>
+                          <td :class="item.ticker.rise_fall_rate < 0 ? 'red' : 'green'">{{ item.ticker.rise_fall_rate * 100|retainDecimals({decimal: 2}) }}%</td>
+                        </tr>
+                      </table>
+                      </div>
+                    </div>
+                 </div> -->
+         </div>
              <st-row align="center" justify="between" class='swap-title-number'>
                      <div>
                          <h6>{{ $t('typeTitle.newsPrice') }}: <span :class="'applies ' + (ticker.rise_fall_rate < 0 ? 'red' : '')">{{ ticker.last_price | splitFormat(com.priceUnit - 1) }}</span></h6>
@@ -95,22 +95,25 @@
                      </div>
                       <div>
                          <h6>{{ $t('typeTitle.applies') }}: <span :class="'applies ' + (ticker.rise_fall_rate < 0 ? 'red' : '')">{{ ticker.rise_fall_rate * 100|retainDecimals({decimal: 2}) }}%</span></h6>
-                         <h6>{{ $t('typeTitle.appliesE') }}: <span :class="'applies ' + (ticker.rise_fall_rate < 0 ? 'red' : '')">{{ ticker.rise_fall_value}}</span></h6>
+                         <h6>{{ $t('typeTitle.appliesE') }}: <span :class="'applies ' + (ticker.rise_fall_rate < 0 ? 'red' : '')">{{ ticker.rise_fall_value | splitFormat(com.priceUnit) }}</span></h6>
                      </div>
                       <div>
                          <h6>{{ ticker.funding_rate * 100 | retainDecimals({decimal: 4}) }}%</h6>
                          <st-row align="center" class="wen">
                              <nuxt-link target="_blank" :to="'/information/funding?id=' + productInfo.contract.contract_id">
-                             <p>{{ timeOne }} </p>
-                             <st-row justify="center" >
-                                 <div class="hint">
-                                     <div class="triangle"></div>
-                                     <p>{{ $t('typeTitle.nextExchange') }}</p>
-                                     <P>{{ timeTwo }}</P>
-                                         <p>{{ ticker.funding_rate < 0 ? $t('typeTitle.needValue', {value: Util.retainDecimals(-ticker.funding_rate * 100, {decimal: 4}) + '%'}) : $t('typeTitle.needValueTwo', {value: Util.retainDecimals(ticker.funding_rate * 100, {decimal: 4}) + '%'}) }}</p>
-                                     <p>{{ $t('common.seeMore') }}</p>
-                                 </div>
-                            </st-row>
+                              <p>{{ timeOne }} </p>
+                              <st-row justify="center" >
+                                  <div class="hint">
+                                      <div class="triangle"></div>
+                                      <div class="opcity-rect"></div>
+                                      <p>{{ $t('typeTitle.nextExchange') }}</p>
+                                      <p>{{ timeTwo }}</p>
+                                      <!-- <p>{{ nextTime }}</p> -->
+                                      <p>{{ ticker.funding_rate < 0 ? $t('typeTitle.needValue', {value: Util.retainDecimals(-ticker.funding_rate * 100, {decimal: 4}) + '%'}) : $t('typeTitle.needValueTwo', {value: Util.retainDecimals(ticker.funding_rate * 100, {decimal: 4}) + '%'}) }}</p>
+                                      <p>{{ $t('typeTitle.minAndMaxRate', {max: Util.retainDecimals(Number(productInfo.contract.max_rate) * 100, {decimal: 4}) + '%', min: Util.retainDecimals(Number(productInfo.contract.min_rate) * 100, {decimal: 4}) + '%'})}}</p>
+                                      <span class="the-more">{{ $t('common.seeMore') }}</span>
+                                  </div>
+                              </st-row>
                             </nuxt-link>
                          </st-row>
                      </div>
@@ -118,37 +121,43 @@
                          <h6>{{ $t('typeTitle.deal') }}: {{ ticker.total_volume }} {{ $t('common.pieces') }}</h6>
                          <p>≈ {{ sumValue(ticker.total_volume)|retainDecimals({decimal: com.valueUnit}) }} {{com.marginUnit}}</p>
                      </div>
-                       <div>
-                         <h6>{{ $t('typeTitle.contractValue') }}: {{ticker.position_size}} {{ $t('common.pieces') }}</h6>
-                         <p>≈ {{ sumValue(ticker.position_size)|retainDecimals({decimal: com.valueUnit}) }} {{com.marginUnit}}</p>
+                     <div>
+                        <h6>{{ $t('typeTitle.contractValue') }}: {{ticker.position_size}} {{ $t('common.pieces') }}</h6>
+                        <p>≈ {{ sumValue(ticker.position_size)|retainDecimals({decimal: com.valueUnit}) }} {{com.marginUnit}}</p>
                      </div>
-                     <div style="margin-right: 30px">
-                        <!-- <p class="swap-title-lx">
-                          <a target="_blank" :href="`https://k.chainfor.com/?k=249-${productInfo.contract.name}`">{{ $t('typeTitle.lxcj') }}</a>
-                          </p> -->
-                      <div class='swap-title-dw' >
-                        <a @click="calculatorShow = true"><span></span>{{ $t('typeTitle.calculator') }}</a>
-                        <a @click="setUpShow = true"><span></span>{{ $t('typeTitle.contractSet') }}</a>
+                     <div>
+                         <h6 class='counter-box'>
+                             <a @click="calculatorShow = true" class="counter icomoon icon-4">
+                                 <!-- <span></span> -->
+                             </a>
+                        </h6>
 
-                <!-- @click="changCoinUnit"
-                {{ $t('typeTitle.unit') }}<span>{{ coinUnit ? $t('common.pieces') : productInfo.contract.base_coin }}</span> <i></i> -->
-                      </div>
-
+                         <h6 class='setup-box'>
+                             <a @click="setUpShow = true" class="setup icomonne icon-7">
+                                 <!-- <span></span> -->
+                             </a>
+                        </h6>
+                        <!-- <div class='swap-title-dw' >
+                            <a @click="calculatorShow = true"><span></span></a>
+                            <a @click="setUpShow = true"><span></span></a>
+                        </div> -->
                      </div>
-              </st-row>
-            </st-row>
-          </st-row>
-          <popup :title="$t('typeTitle.contractSet')"  width="440" :callback="closeSetUp" v-if="setUpShow">
-            <set-up-window :close="closeSetUp"></set-up-window>
-          </popup>
-          <popup :title="$t('typeTitle.contractCalculator')"   width="660" :callback="clsoeCalculator" v-if="calculatorShow">
+             </st-row>
+
+         </st-row>
+        <popup :title="$t('typeTitle.contractSet')"  width="440" :callback="closeSetUp" v-if="setUpShow">
+           <set-up-window :close="closeSetUp"></set-up-window>
+       </popup>
+        <popup :title="$t('typeTitle.contractCalculator')"   width="720" :callback="clsoeCalculator" v-if="calculatorShow">
             <calculator-window :close="clsoeCalculator"></calculator-window>
-          </popup>
+       </popup>
     </st-row>
    </div>
    <div class="swap-title-m">
     <st-row align="center" class='swap-title-bottom'>
-         <div class="swap-title-name">
+
+         <st-row align="center" class='swap-title-right' justify="between">
+            <div class="swap-title-name">
              <!-- {{ productInfo.contract.display_name }} -->
              <!-- {{ $t('typeTitle.sustainableContract', {type: 'XBTUSD'}) }} -->
                 <div class="Sel-mask" v-if="contractShow" @click="contractShow = false"></div>
@@ -178,7 +187,6 @@
                     </div>
                  </div>
          </div>
-         <st-row align="end" class='swap-title-right' justify="between">
              <st-row align="center" justify="between" class='swap-title-number'>
                        <div>
                          <h6>{{ sumValue(ticker.position_size)|retainDecimals({decimal: com.valueUnit}) }} {{com.marginUnit}}</h6>
@@ -199,7 +207,6 @@ import Formula from '../../assets/js/formula/index.js'
 import Util from '../../assets/js/util.js'
 import CalculatorWindow from './type-title-cp/calculator-window'
 import SetUpWindow from './type-title-cp/set-up-window'
-import BASE from '../../config/base'
 export default {
   components: {
     CalculatorWindow,
@@ -209,6 +216,7 @@ export default {
     return {
       timeOne: '',
       timeTwo: '',
+      nextTime: '',
       contractShow: false,
       Util: Util,
       productTicker: null,
@@ -217,10 +225,18 @@ export default {
       int16: Math.pow(2, 15),
       isMianOrNews: true,
       MarginCoin: Formula.MarginCoin,
-      hasUSDT: false,
-      hasUnUSDT: false,
-      hasMian: false,
+      reduceList: null,
+      reduceList2: null,
+      // 当前选中币种
+      coinName: '',
+      // 主区和创新区默认的币种
+      curryCoin: [],
+      // 币种前置
+      mainList: null,
+      newsList: null,
       isAssertShow: true,
+      coinBriefUrl: '',
+      isWarningShow: false
     }
   },
   computed: {
@@ -247,10 +263,39 @@ export default {
     },
     accounts() {
       return this.$store.state.auth.accounts || {}
+    },
+    id() {
+      return Number(this.$route.query.id)
     }
-    // coinUnit() {
-    //   return this.$store.state.market.coinUnit
-    // }
+  },
+  filters: {
+    // 获取小数位数
+    retainDecimalsWithSymbol(value, obj = {}) {
+      if (!value) return '+' + 0
+      value = value.toString()
+      if (~value.indexOf('e')) {
+        return '+' + 0
+      }
+      let decimals = ''
+      if (value.indexOf('.') > 0 && obj.decimal !== 0) {
+        let decimalsRe = new RegExp('[.]{1}[0-9]{0,' + (obj.decimal || 8) + '}')
+        let decimalsExec = decimalsRe.exec(value)
+        decimalsExec && (decimals = decimalsExec[0])
+      }
+      let v = 0
+      let re = new RegExp('^-?[0-9]{1}[0-9]{0,' + (obj.integer - 1 || 8) + '}')
+      v = re.exec(value)
+      let n = ''
+      if (v) {
+        n = v[0]
+      }
+      let result = n + decimals
+      if (Number(result) < 0) {
+        return n + decimals
+      } else {
+        return '+' + n + decimals
+      }
+    }
   },
   watch: {
     ticker() {
@@ -262,18 +307,72 @@ export default {
       this.getTime(time)
     },
     tickerList() {
-      let len
-      let info
-      let isMian = this.isMian
-      let MarginCoin = this.MarginCoin
+      window.requestAnimationFrame(() => {
+        // this.mainList = this.reduceProduct(true)
+        // this.newsList = this.reduceProduct(false)
+
+        this.mainList = this.reduceProduct(false) // 主区
+        this.newsList = this.reduceProduct(true) // 创新区
+
+        // 移动端归化
+        if (document.documentElement.clientWidth <= 750) {
+          this.moveReduceProduct()
+        } else {
+          // this.reduceList = this.newsTicker(this.isMianOrNews ? this.mainList : this.newsList)
+          this.reduceList = this.newsTicker(this.mainList)
+          this.reduceList2 = this.newsTicker(this.newsList)
+        }
+      })
+    }
+  },
+  methods: {
+    // 关闭提醒
+    closeWarning() {
+      let now = new Date()
+      let warningShowObj = JSON.parse(localStorage.getItem('warningShowObj'))
+      warningShowObj[String(this.id)] = now.valueOf()
+      warningShowObj = JSON.stringify(warningShowObj)
+      localStorage.setItem('warningShowObj', warningShowObj)
+      this.isWarningShow = false
+    },
+    // 获取币种介绍链接
+    coinBrief() {
+      this.swapsApi.coinBrief(this.productInfo.contract.base_coin).then(res => {
+        this.coinBriefUrl = res.data && res.data.link
+      })
+    },
+    assertShow() {
+      this.isAssertShow = !this.isAssertShow
+      window.localStorage.setItem('isAssertShow', this.isAssertShow)
+    },
+    // 获取账户权益
+    getUserSumAssert() {
+      return Number(this.accounts.available_vol) + Number(this.accounts.freeze_vol) + this.com.imTotal + this.com.PNL
+    },
+    // 切换主区与创新区
+    changeArea(isMianOrNews) {
+      this.isMianOrNews = isMianOrNews
+      this.coinName = this.curryCoin[+!this.isMianOrNews]
+    //   this.reduceList = this.newsTicker(this.isMianOrNews ? this.mainList : this.newsList)
+      this.reduceList = this.newsTicker(this.mainList)
+      this.reduceList2 = this.newsTicker(this.newsList)
+      this.changeContract(this.coinName)
+      // this.reduceList = this.newsTicker(this.isMianOrNews ? this.mainList : this.newsList)
+    },
+    // 判断当前选中
+    curry(info) {
+      // console.log('this.coinName####', this.coinName)
+      if (this.coinName) {
+        return this.coinName === info.base_coin
+      } else {
+        return ~info.contract_list.indexOf(this.productInfo.contract.contract_id)
+      }
+    },
+    // 移动端归化
+    moveReduceProduct() {
+      let len, info
       this.productTicker = []
       this.productList.forEach(item => {
-        // 显示规则
-        if (BASE.productTicker) {
-          if ((BASE.productTicker.exclude || []).some(v => v === item.contract.name)) return false
-          if (!(BASE.productTicker.contain || []).every(v => v === item.contract.name)) return false
-        }
-
         len = this.tickerList.length
         info = {}
         for (; len--;) {
@@ -284,32 +383,113 @@ export default {
           }
         }
         info.contract = item.contract
-
         this.productTicker.push(info)
+      })
+    },
+    // 归化字段
+    // reduceProduct(isMianOrNews) {
+    reduceProduct(isReverse) { // 是否是反向合约
+      // let info, list, info_one, len
+      let info, list, info_one
+      list = []
+      // console.log('this.productList####', this.productList)
+      this.productList.forEach(item => {
+        // // 过滤掉主区或者创新区
+        // if (isMianOrNews) {
+        //   if (this.isMian(item.contract.contract_id)) {
+        //     return
+        //   }
+        //   this.curryCoin[0] || (this.curryCoin[0] = item.contract.contract_id)
+        // } else {
+        //   if (!this.isMian(item.contract.contract_id)) {
+        //     return
+        //   }
+        //   this.curryCoin[1] || (this.curryCoin[1] = item.contract.contract_id)
+        // }
+        let test_reverse = this.testReverse(item.contract.quote_coin, item.contract.price_coin)
+        let isUSDT = Formula.MarginCoin(item.contract.base_coin, item.contract.quote_coin, item.contract.price_coin) === 'USDT'
+        if (isReverse) { // 币本位合约
+          if (!test_reverse) {
+            return
+          }
+          this.curryCoin[1] || (this.curryCoin[1] = item.contract.contract_id)
+        } else { // USDT合约
+          if (test_reverse || !isUSDT) {
+            return
+          }
+          this.curryCoin[0] || (this.curryCoin[0] = item.contract.contract_id)
+        }
 
-        // 归类开关
-        this.productTicker.forEach(item => {
-          if (!isMian(item.contract.contract_id) && MarginCoin(item.contract.base_coin, item.contract.quote_coin, item.contract.price_coin) === 'USDT') {
-            this.hasUSDT = true
-          }
-          if (!isMian(item.contract.contract_id) && MarginCoin(item.contract.base_coin, item.contract.quote_coin, item.contract.price_coin) !== 'USDT') {
-            this.hasUnUSDT = true
-          }
-          if (isMian(item.contract.contract_id)) {
-            this.hasMian = true
+        info = {
+          margin_coin: this.MarginCoin(item.contract.base_coin, item.contract.quote_coin, item.contract.price_coin),
+          IsReverse: Formula.IsReverse(item.contract.quote_coin, item.contract.price_coin),
+          contract_id: item.contract.contract_id,
+          priceUnit: item.contract.price_unit.length - item.contract.price_unit.indexOf('.') - 1
+        }
+
+        info_one = {
+          base_coin: item.contract.base_coin,
+          base_coin_en: item.contract.base_coin_en,
+          base_coin_zh: item.contract.base_coin_zh,
+          contract_list: [item.contract.contract_id],
+          product: [info],
+          name: item.contract.name
+        }
+
+        list.push(info_one)
+
+        // for (let i = list.length; i--;) {
+        //   if (list[i].base_coin === item.contract.base_coin) {
+        //     bl = true
+        //     list[i].product.push(info)
+        //     list[i].contract_list.push(item.contract.contract_id)
+        //     break
+        //   }
+        // }
+
+        // if (!bl && item.contract && item.contract.block !== 4) {
+        // if (item.contract && item.contract.block !== 4) {
+        //   info_one = {
+        //     base_coin: item.contract.base_coin,
+        //     base_coin_en: item.contract.base_coin_en,
+        //     base_coin_zh: item.contract.base_coin_zh,
+        //     contract_list: [item.contract.contract_id],
+        //     product: [info]
+        //   }
+        //   list.push(info_one)
+        // }
+        // len = this.tickerList.length
+        // for (; len--;) {
+        //   if (this.tickerList[len].contract_id === item.contract.contract_id) {
+        //     info.ticker = this.tickerList[len]
+        //     info.priceUnit = item.contract.price_unit.length - item.contract.price_unit.indexOf('.') - 1
+        //     break
+        //   }
+        // }
+      })
+
+      // console.log('list###', list)
+      return list
+    },
+
+    // 测试是否是反向合约（币本位）
+    testReverse(quote_coin, price_coin) {
+      return Formula.IsReverse(quote_coin, price_coin)
+    },
+    // 即使更新行情
+    newsTicker(list) {
+      let len = this.tickerList.length
+      list.forEach(item_one => {
+        item_one.product.forEach(info => {
+          for (let i = len; i--;) {
+            if (this.tickerList[i].contract_id === info.contract_id) {
+              info.ticker = this.tickerList[i]
+              break
+            }
           }
         })
       })
-    }
-  },
-  methods: {
-    assertShow() {
-      this.isAssertShow = !this.isAssertShow
-      window.localStorage.setItem('isAssertShow', this.isAssertShow)
-    },
-    // 获取账户权益
-    getUserSumAssert() {
-      return Number(this.accounts.available_vol) + Number(this.accounts.freeze_vol) + this.com.imTotal + this.com.PNL
+      return list
     },
     // 关闭设置弹窗
     closeSetUp() {
@@ -322,6 +502,7 @@ export default {
     // 改变合约
     changeContract(id) {
       this.contractShow = false
+      this.coinName = ''
       this.$emit('submitEntrustInit')
       for (let item in window.webSocket_base.successFn) {
         if (item !== 'CUD') {
@@ -329,6 +510,10 @@ export default {
         }
       }
       this.$store.commit('market/SET_TICKER', { data: [] })
+      this.$store.commit('market/SET_MARKET', {
+        key: 'trades',
+        data: []
+      })
       this.$store.dispatch('setProductInfo', id)
       this.$store.dispatch('getMarketDate')
       if (this.token) {
@@ -339,13 +524,51 @@ export default {
       this.$router.push({
         query: {id}
       })
+      this.coinBrief()
+
+      this.setWarningTime(id)
+    },
+    // 设置warning时间
+    setWarningTime(id) {
+      let warningShowObj = JSON.parse(localStorage.getItem('warningShowObj'))
+      if (!warningShowObj || !warningShowObj[String(id)]) {
+        this.isWarningShow = false
+        return false
+      }
+      let now = new Date().valueOf()
+
+      if (Number(now) - Number(warningShowObj[String(id)]) > 3600000) {
+        this.isWarningShow = true
+      } else {
+        this.isWarningShow = false
+      }
     },
     // 未平仓合约价值
     sumValue(vol) {
       return Formula.CalculateContractBasicValueTwo(vol, this.ticker.fair_price, Formula.contractObj.getContract(this.productInfo.contract))
     },
     isMian(id) {
-      return (this.int16 & id) === this.int16
+      let item, info
+      for (let i = 0; i < this.productList.length; i++) {
+        item = this.productList[i]
+        if (item.contract.contract_id === id) {
+          info = item
+          break
+        }
+      }
+
+      if (info && info.contract) {
+        let test_reverse = this.testReverse(info.contract.quote_coin, info.contract.price_coin)
+        let isUSDT = Formula.MarginCoin(info.contract.base_coin, info.contract.quote_coin, info.contract.price_coin) === 'USDT'
+        if (test_reverse) {
+          return false
+        } else {
+          if (isUSDT) {
+            return true
+          }
+        }
+      }
+      // return (this.int16 & id) === this.int16
     },
     getTimeZone(time) {
       let GTM_8 = 480  // -480
@@ -365,24 +588,35 @@ export default {
     // },
     getTime(time) {
       let once = this.getTimeZone(this.ticker.next_funding_at)
-      this.timeOne = once.getHours() - time.getHours()
+      let timeOne = once.getHours() - time.getHours()
       this.timeTwo = this.singleFormat(once.getHours()) + ':00:00'
-      if (this.timeOne < 0) {
-        this.timeOne += 24
+      if (timeOne < 0) {
+        timeOne += 24
       }
-      if (this.timeOne === 1) {
+      if (timeOne === 1) {
         let tm = parseInt((Date.parse(once) - Date.parse(time)) / 1000)
         this.timeOne = this.$t('typeTitle.fundsRateTwo', {
           time: this.singleFormat(parseInt(tm / 60)) + ':' + this.singleFormat(tm % 60)
         })
+        this.nextTime = this.$t('typeTitle.distanceNextFundsRate2', {
+          time: this.singleFormat(parseInt(tm / 60)) + ':' + this.singleFormat(tm % 60)
+        })
       } else {
-        this.timeOne = this.$t('typeTitle.fundsRate', { time: this.timeOne })
+        this.timeOne = this.$t('typeTitle.fundsRate', { time: timeOne })
+        this.nextTime = this.$t('typeTitle.distanceNextFundsRate1', {time: timeOne})
       }
       this.timeTwo = this.$t('typeTitle.moneyTimeTwo', {
         m: time.getMonth() + 1,
         d: once.getDate(),
         h: this.timeTwo
       })
+
+      // let distance = parseInt((Date.parse(once) - Date.parse(time)) / 1000)
+      // this.nextTime = this.$t('typeTitle.distanceNextFundsRate', {
+      //   h: this.singleFormat(parseInt(distance / 3600)),
+      //   m: this.singleFormat(parseInt((distance % (60 * 60)) / 60)),
+      //   s: this.singleFormat(parseInt(distance % 60))
+      // })
     },
     // 记录用户偏好
     setUserLike() {
@@ -391,6 +625,7 @@ export default {
       let pnlPriceUnit = window.localStorage['pnlPriceUnit']
       if (!this.$route.query.id && contractId) {
         this.changeContract(contractId)
+        this.isMianOrNews = this.isMian(contractId)
       }
       if (coinUnit !== undefined) {
         this.$store.commit('market/SET_COINUNIT', {
@@ -406,23 +641,76 @@ export default {
     }
   },
   mounted() {
+    let isAssertShow = window.localStorage.getItem('isAssertShow')
+    if (isAssertShow) {
+      this.isAssertShow = isAssertShow === 'true'
+    }
+    this.coinBrief()
+    this.isMianOrNews = this.isMian(this.productInfo.contract.contract_id)
+    // this.mainList = this.reduceProduct(true)
+    // this.newsList = this.reduceProduct(false)
+    this.mainList = this.reduceProduct(false)  // USDT合约
+    this.newsList = this.reduceProduct(true) // 币本位合约
+
+    // console.log('this.mainList###', this.mainList)
+
+    let contractId = Number(window.localStorage['contractId'])
+    if (!this.id && !contractId) {
+      this.$store.dispatch('setProductInfo', '')
+      this.changeArea(true)
+      // console.log('ffff')
+      // this.$store.dispatch('auth/SET_ACCOUNTS', {data: null})
+    }
+    this.$store.commit('auth/SET_ACCOUNTS', {data: null})
     this.setUserLike()
+    // 设置warning时间
+    let warningShowObj = JSON.parse(localStorage.getItem('warningShowObj'))
+    if (!warningShowObj || !warningShowObj['23'] || !warningShowObj['25']) {
+      let obj = {
+        '32775': '1',
+        '20': '1',
+        '32774': '1',
+        '22': '1',
+        '23': '1',
+        '25': '1'
+      }
+      localStorage.setItem('warningShowObj', JSON.stringify(obj))
+    }
+    this.setWarningTime(this.id)
   }
 }
 </script>
 
 <style lang="less" scoped>
  @import "../../assets/css/base";
+ @import "../../assets/icommon/style.css";
+ .icon-13 , .icon-1{
+    font-size:24px;
+ }
+ .icon-4 {
+    font-size: 20px;
+    color:rgba(151, 176, 214, .7);
+ }
+  .icon-7 {
+    font-size: 18px;
+    padding-left:2px;
+    color:rgba(151, 176, 214, .7);
+ }
+ .counter:hover , .setup:hover {
+    color: #2b93f6;
+ }
  .swap-title {
    min-width: 320px;
-  //  margin-top: 10px;
+//    margin-top: 10px;
    .swap-title-m {
      display: none;
    }
    .swap-title-top {
     //  height: 50px;
     //  overflow: auto;
+     // margin-bottom: 6px;
      margin-bottom: 10px;
+     margin-top: 4px;
       &>div:nth-child(n+2) {
         //  margin-top: 10px;
        }
@@ -433,72 +721,125 @@ export default {
        .title {
          height: 30px;
           h4 {
-            margin: 10px 10px 0 20px;
+            // margin: 6px 6px 0 20px;
+            margin: 6px 6px 0 12px;
+            // margin-left: 12px;
             // width: 14px;
             text-align: center;
-            width: 50px;
+            width: 72px;
             color: @bbxGray;
+            font-size: 12px;
+            padding-top: 5px;
           }
        }
-       .info {
-         padding: 0 6px;
-         margin-top: 10px;
-         margin-right: 10px;
-         height: 30px;
-        //  width: 162px;
-         min-width: 154px;
-         background-color: @bbFooterBackground;
-         border-radius: 2px;
-         cursor: pointer;
-         &:last-child {
-           margin-right: 0px;
-         }
-         h6 {
-          //  line-height: 24px;
-          margin-right: 6px;
-          line-height: 30px;
-           font-size: 12px;
-           color: @bbxBlue1;
-         }
-         &.active {
-           border: 1px solid rgba(95,142,212, .6);
-         }
-         .price {
-           p {
-             line-height: 30px;
-             font-size: 14px;
-            color: @bbxGray;
-            span {
-              width: 12px;
-              height: 16px;
-              display: inline-block;
-              vertical-align: text-top;
-              background: url("../../assets/img/up.png")
+       .list {
+         flex: 1;
+         flex-wrap: wrap;
+        .info {
+            padding: 0 6px;
+            margin-top: 6px;
+            margin-right: 6px;
+            height: 30px;
+            //  width: 162px;
+            min-width: 130px;
+            background-color: @bbFooterBackground;
+            border-radius: 2px;
+            cursor: pointer;
+            &:last-child {
+              margin-right: 0px;
             }
-            &.red {
-             span{
-               color: @bbxRed;
-                background: url("../../assets/img/down.png")
+            h6 {
+              //  line-height: 24px;
+              margin-right: 6px;
+              line-height: 30px;
+              font-size: 12px;
+            //    color: @bbxBlue1;
+                color: #fff;
+            }
+            &.active {
+              border: 1px solid rgba(95,142,212, .6);
+              background: #38455D;
+              color: #fff;
+            }
+            .price {
+              p {
+                line-height: 30px;
+                font-size: 14px;
+                color: @bbxGray;
+                span {
+                  width: 12px;
+                  height: 16px;
+                  display: inline-block;
+                  vertical-align: text-top;
+                  background: url("../../assets/img/up.png")
+                }
+                &.red {
+                  color: @bbxRed;
+                  span{
+                    color: @bbxRed;
+                        background: url("../../assets/img/down.png")
+                    }
+                }
+                &.green {
+                    color: @bbxGreen;
+                    span {
+                    color: @bbxGreen;
+                    }
+                }
               }
             }
-            &.green {
-             span {
-               color: @bbxGreen;
-             }
-            }
-           }
-         }
+          }
        }
+
      }
    }
  }
+ .warning-enter-active {
+    animation:warning 0.5s;
+ }
+ .warning-leave-active {
+    animation:warning 0.5s reverse;
+ }
+.warning {
+    height: 26px;
+    // line-height: 26px;
+    background: #313339;
+    border: 1px solid #413e3c;
+    color: #cb9f56;
+    padding: 0px 15px;
+    font-size: 12px;
+    margin: 6px;
+    text-align: center;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 16px;
+      margin-right: 4px;
+    }
+    .close {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background: url("../../assets/img/icon-close3.svg")left top no-repeat;
+      background-size: 100% 100%;
+      position: absolute;
+      right: 6px;
+      top: 6px;
+      cursor: pointer;
+    }
+}
+.warning-animate {
+  // display: block;
+  // animation:warning 0.5s;
+}
 .swap-title-bottom {
     // margin-top: 10px;
     // height: 70px;
     width: 100%;
-    // background-color: @bbFooterBackground;
-    // border-radius: 2px;
     .assert {
+      // margin-left: 6px;
       margin-left: 10px;
       padding: 12px;
       width: 280px;
@@ -509,9 +850,9 @@ export default {
       .eye {
         width: 20px;
         height: 20px;
-        background-image: url('../../assets/img/eye-open.svg');
+        // background-image: url('../../assets/img/eye-open.svg');
         &.no-see {
-          background-image: url('../../assets/img/eye-close.svg');
+          // background-image: url('../../assets/img/eye-close.svg');
         }
       }
       .assert-detail {
@@ -521,7 +862,8 @@ export default {
     }
     .swap-title-name {
         margin-left: 33px;
-        width: 220px;
+        // width: 230px;
+        width: 200px;
         font-size: 20px;
         position: relative;
         // padding-right: 20px;
@@ -529,56 +871,48 @@ export default {
         cursor: pointer;
     }
     .swap-title-right {
-        flex: 1;
+        // margin: 0 6px;
         margin: 0 10px;
+        flex: 1;
         height: 70px;
-        background-color: #1f2636;
-        .swap-title-dw {
-            // margin-right: 30px;
-            font-size: 14px;
-             span {
-                 display: inline-block;
-                 margin-left: 4px;
-                 width: 22px;
-                 height: 22px;
-                 vertical-align: middle;
-             }
-             a {
-                color: @bbxGray;
-                &:first-child span {
-                    background-image: url("../../assets/img/icon-Setup_nor.png");
-                 }
-                 &:last-child span{
-                     background-image: url("../../assets/img/icon-counter_nor.png");
-                 }
-                 &:hover {
-                   color: #1890ff;
-                   &:first-child span {
-                     background-image: url("../../assets/img/icon-Setup_sel.png");
-                   }
-                    &:last-child span {
-                      background-image: url("../../assets/img/icon-counter_sel.png");
-                    }
-                 }
-                 &:last-child {
-                   margin-left: 20px;
-                 }
-             }
-        }
+        background-color: @bbFooterBackground;
+        border-radius: 2px;
     }
     .swap-title-number {
       flex: 1;
       // padding-right: 20px;
+      padding-right: 6px;
       .wen {
         a {
           border-bottom: 1px dotted @bbxBlue1;
         }
         position: relative;
+        .hint {
+          top: 24px;
+          // display: block;
+          .the-more {
+            color: #46C665;
+            border-bottom: 1px dotted #46C665;
+            &:hover {
+              color: #64CF7E;
+              border-bottom: 1px dotted #64CF7E;
+            }
+          }
+          .opcity-rect {
+            width: 100%;
+            height: 8px;
+            background: none;
+            position: absolute;
+            left: 0px;
+            top: -8px;
+          }
+          // display: block;
+        }
           &:hover {
-                   .hint {
-                        display: block;
-                    }
-                }
+              .hint {
+                  display: block;
+              }
+          }
       }
         &>div {
             // &:nth-child(-n+4){
@@ -607,23 +941,122 @@ export default {
                    }
                }
             }
-             .wen {
-                //  position: relative;
-                // width: 16px;
-                // height: 16px;
-                // margin-left: 6px;
-                // //    display: inline-block;
-                // cursor: pointer;
-                // background-image: url('../../assets/img/icon-Q_nor.png');
-                // &:hover {
-                //     background-image: url('../../assets/img/icon-Q_sel.png');
-
-                // }
-             }
         }
+
+        .counter-box {
+            position: relative;
+            >p {
+                position: absolute;
+                display: none;
+                background: #3f5a85;
+                border: 1px solid #5f8ed4;
+                padding: 4px;
+                white-space:nowrap;
+                z-index: 1000;
+                width: 50px;
+                left: 50%;
+                margin-left: -22px;
+                top: -28px;
+                text-align: center;
+                color: #fff;
+            }
+            .counter {
+                span {
+                    display: inline-block;
+                    margin-left: 4px;
+                    width: 22px;
+                    height: 22px;
+                    vertical-align: middle;
+                    // background: url("../../assets/img/icon-counter_nor.svg") left top no-repeat;
+                    // background-size: 100% 100%;
+                    &:hover {
+                        // background: url("../../assets/img/icon-counter_sel.svg") left top no-repeat;
+                    }
+                }
+                &:hover {
+                    &+p {
+                        display: block;
+                    }
+                }
+            }
+        }
+        .setup-box {
+            position: relative;
+            >p {
+                position: absolute;
+                display: none;
+                background: #3f5a85;
+                border: 1px solid #5f8ed4;
+                padding: 4px;
+                white-space:nowrap;
+                z-index: 1000;
+                width: 50px;
+                left: 50%;
+                margin-left: -22px;
+                top: 25px;
+                text-align: center;
+                color: #fff;
+            }
+            .setup {
+                span {
+                    display: inline-block;
+                    margin-left: 4px;
+                    width: 22px;
+                    height: 22px;
+                    vertical-align: middle;
+                    font-size: 20px;
+                    // background: url("../../assets/img/icon-Setup_nor.svg") left top no-repeat;
+                    // background-size: 100% 100%;
+                    &:hover {
+                        // background: url("../../assets/img/icon-Setup_sel.svg") left top no-repeat;
+                    }
+                }
+
+                &:hover {
+                    &+p {
+                        display: block;
+                    }
+                }
+
+            }
+        }
+
+
+        // .swap-title-dw {
+        //         // margin-right: 30px;
+        //         font-size: 14px;
+        //         span {
+        //             display: inline-block;
+        //             margin-left: 4px;
+        //             width: 22px;
+        //             height: 22px;
+        //             vertical-align: middle;
+        //         }
+        //         a {
+        //             color: @bbxGray;
+        //             &:first-child span {
+        //                 background-image: url("../../assets/img/icon-counter_nor.svg");
+
+        //             }
+        //             &:last-child span{
+        //                 background-image: url("../../assets/img/icon-Setup_nor.svg");
+        //             }
+        //             &:hover {
+        //               color: #1890ff;
+        //               &:first-child span {
+        //                 background-image: url("../../assets/img/icon-counter_sel.svg");
+        //               }
+        //               &:last-child span {
+        //                 background-image: url("../../assets/img/icon-Setup_sel.svg");
+        //               }
+        //             }
+        //             &:last-child {
+        //               margin-left: 20px;
+        //             }
+        //         }
+        //     }
     }
 }
-
   .Sel-name{
         position: relative;
         display: inline-block;
@@ -736,12 +1169,14 @@ export default {
     }
     @media screen and (max-width:750px) {
       .swap-title {
-        margin-top: 10px;
         .swap-title-web {
           display: none;
         }
         .swap-title-m {
           display: block;
+             .assert {
+          display: none;
+        }
            .Sel-name {
             &::after{
               content: '';
@@ -765,9 +1200,39 @@ export default {
       }
       .Sel-list {
         width: 320px;
+        left: 0px;
+        margin-left: 0px;
       }
       .width-560 {
         display: none;
       }
     }
+
+    @media screen and (max-width:1400px) {
+      .swap-title-bottom {
+        .swap-title-name {
+          // width: 230px;
+          width: 200px;
+        }
+      }
+    }
+
+
+    @keyframes warning{
+      0% {
+        height:0px;
+        opacity: 0;
+        color: rgba(0,0,0,0);
+      }
+      70% {
+        height:26px;
+        opacity: 1;
+        color: rgba(0,0,0,0);
+      }
+      100% {
+        opacity: 1;
+        color: #cb9f56;
+      }
+    }
+
 </style>

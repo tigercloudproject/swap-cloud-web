@@ -139,7 +139,7 @@
           padding-left: 18px;
           padding-right: 10px;
           padding-top: 10px;
-          height: 30px;
+          // height: 30px;
           p {
             color: @bbxGray;
             overflow:hidden;
@@ -148,7 +148,7 @@
             max-width: 180px;
              &:first-child {
               color: @bbxBlue1;
-            }  
+            }
           }
           a {
             // padding-left: 10px;

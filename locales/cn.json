@@ -171,8 +171,10 @@
         "swapStudent": "合约教程"
     },
     "typeTitle": {
-        "isSwap" : "正向合约",
-        "theSwap" : "反向合约",
+        "isSwap" : "USDT合约",
+        "theSwap" : "币本位合约",
+        "USDTcontract": "USDT合约",
+        "currencyStandard": "币本位合约",
         "coinDetail": "{coin}币种介绍",
         "totalAssert": "{coin}合约资产",
         "lxcj": "链向K线",
@@ -190,6 +192,7 @@
         "nextExchange": "下次资金费率交换时间为：",
         "needValue": "空头需要向多头补偿持仓价值的{value}。",
         "needValueTwo": "多头需要向空头补偿持仓价值的{value}。",
+        "minAndMaxRate": "注: 该合约资金费率的最大值为{max}, 最小值为{min}",
         "fairPrice": "合理价",
         "main": "主区",
         "news": "创新区",

@@ -1,20 +1,26 @@
 <template>
 <header class="pc-header">
     <div class="pc-header-web">
-                  <a :href="apiConfig.mainDomain + `?lang=${locale}`" class="logo"><img src="../../assets/img/bbx_logo.svg" /></a>
-            <a class="exchange one"  :href="`${apiConfig.mainDomain}/exchange?coinPair=XDAG/USDT&lang=${locale}`">{{$t('header.EXCHANGE')}}</a>
-            <nuxt-link class="exchange" :style="$route.path === '/' && 'color: #5f8ed4'" to="/" >{{ $t('header.trade') }}<span class="huo"></span></nuxt-link>
-            <a class="exchange"  :href="`${apiConfig.mainDomain}/c2c_trade?lang=${locale}`">{{$t('header.c2c')}}</a>
+            <a :href="apiConfig.mainDomain + `?lang=${locale}`" class="logo"><img src="../../assets/img/bbx_logo.svg" /></a>
+            <!-- <a class="exchange one"  :href="`${apiConfig.mainDomain}/exchange?coinPair=XDAG/USDT&lang=${locale}`">{{$t('header.EXCHANGE')}}</a> -->
+            <nuxt-link class="exchange" :style="$route.path === '/' && 'color: #5f8ed4'" to="/" >{{ $t('header.trade') }}
+                <!-- <span class="huo"></span> -->
+            </nuxt-link>
+            <!-- <a class="exchange"  :href="`${apiConfig.mainDomain}/c2c_trade?lang=${locale}`">{{$t('header.c2c')}}</a> -->
             <!-- <nuxt-link class="exchange" :style="$route.path === '/bonus' && 'color: #5f8ed4'" to="/bonus" >{{ $t('bonus.bonus') }}<span class="huo"></span></nuxt-link> -->
-            <nuxt-link class="exchange" :style="$route.path === '/bonus' && 'color: #5f8ed4'" to="/game" >{{ $t('game.hyds') }}<span class="huo"></span></nuxt-link>
-            <a class="exchange" :href="token ? `${apiConfig.mainDomain}/assets/rebate?lang=${locale}` : 'https://support.bbx.com/hc/zh-cn/articles/360004879913'" target="_blank">{{ $t('header.invitation') }}</a>
+            <nuxt-link class="exchange" :style="$route.path === '/bonus' && 'color: #5f8ed4'" to="/game" >{{ $t('game.hyds') }}
+                <!-- <span class="huo"></span> -->
+            </nuxt-link>
+            <!-- <a class="exchange" :href="token ? `${apiConfig.mainDomain}/assets/rebate?lang=${locale}` : 'https://support.bbx.com/hc/zh-cn/articles/360004879913'" target="_blank">{{ $t('header.invitation') }}</a> -->
             <nav class="pc-nav clearfix">
               <div class="jump-list">
-                 <a class="exchange" :href="`https://support.bbx.com/hc/${locale}/sections/360001701593`" >{{$t('header.swapStudent')}}<span class="huo"></span></a>
-                <a :href="`${apiConfig.mainDomain}/download`" >{{$t('header.DOWNLOAD')}}</a>
-                <a target="_blank" :href="`https://support.bbx.com/hc/${locale}`">{{$t('header.HELP')}}</a>
-                <a target="_blank" :href="`https://support.bbx.com/hc/${locale}/categories/360000051514-%E5%85%AC%E5%91%8A%E4%B8%AD%E5%BF%83`">{{$t('header.ANNOUNCEMENT')}}</a>
-                <a v-if="token" :href="`${apiConfig.mainDomain}/contract_asset/balance/contract?lang=${locale}&coin=${com.marginUnit}`">{{$t('header.ASSETS')}}</a>
+                 <a class="exchange" :href="`https://support.bbx.com/hc/${locale}/sections/360001701593`" >{{$t('header.swapStudent')}}
+                     <!-- <span class="huo"></span> -->
+                 </a>
+                <!-- <a :href="`${apiConfig.mainDomain}/download`" >{{$t('header.DOWNLOAD')}}</a> -->
+                <!-- <a target="_blank" :href="`https://support.bbx.com/hc/${locale}`">{{$t('header.HELP')}}</a> -->
+                <!-- <a target="_blank" :href="`https://support.bbx.com/hc/${locale}/categories/360000051514-%E5%85%AC%E5%91%8A%E4%B8%AD%E5%BF%83`">{{$t('header.ANNOUNCEMENT')}}</a> -->
+                <!-- <a v-if="token" :href="`${apiConfig.mainDomain}/contract_asset/balance/contract?lang=${locale}&coin=${com.marginUnit}`">{{$t('header.ASSETS')}}</a> -->
                 <!-- /contract_asset/balance/contract -->
               </div>
              <div v-if="token" class="avatar-box"><UserInfo></UserInfo></div>
@@ -91,7 +97,8 @@
         list: [
           {name: '简体中文', value: 'zh-cn'},
           {name: '繁體中文', value: 'zh-tw'},
-          {name: 'English', value: 'en-us'}
+          {name: 'English', value: 'en-us'},
+          {name: 'Tiếng việt', value: 'vi-vn'}
         ]
       }
     },
