@@ -1,7 +1,7 @@
 <template>
 <div>
        <st-row justify="between" align="center" class='risk'>
-         <div class="hint-father">
+         <div class="hint-father" style="width:80px;">
            <h6>{{ $t('risk.risk') }}</h6>
             <div class="hint">
                 <p>{{ $t('risk.riskHoverOne', {im: util.precision.times(longInfo.maintenance, 100)}) }}</p>
@@ -9,7 +9,7 @@
             </div>
          </div>
          <!--@click="showAdjust = true" <i></i> -->
-          <div >
+          <div style="flex:1;padding:0 0 0 6px;">
             <div class="hint-father">
               <p class="right">{{longInfo.totalValue|addCommom(0)}}/{{longInfo.sum}} {{com.marginUnit}} ({{ $t('common.position_type_1') }})</p>
                <div class="hint">
@@ -176,6 +176,7 @@
 <style lang="less" scoped>
  @import "../../assets/css/base";
 .risk {
+    display: flex;
     // margin: 0 10px;
     // width: 280px;
     padding: 0 16px;
@@ -195,7 +196,7 @@
       color: @bbxGray;
       cursor: pointer;
       text-align: right;
-      
+
       i {
         display: inline-block;
         cursor: pointer;

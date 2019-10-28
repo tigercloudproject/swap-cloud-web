@@ -2,7 +2,7 @@
     <div class='information'>
        <st-row class="information-market-title" justify="between" align="center">
           <h3 >{{ $t('information.information') }}</h3>
-       <a class="little" target="_blank" :href="`https://support.bbx.com/hc/${locale}/categories/360000757313-%E5%90%88%E7%BA%A6%E4%BA%A4%E6%98%93`">{{ $t('information.little') }}<i></i></a>
+       <a class="little" target="_blank" :href="`https://support.bbx.com/hc/${locale}/categories/360000757313-%E5%90%88%E7%BA%A6%E4%BA%A4%E6%98%93`">{{ $t('information.little') }}<i>》</i></a>
        </st-row>
        <ul>
          <li>
@@ -120,16 +120,19 @@
                font-size: 16px;
             }
             a {
-              color: @bbxGray;
+              // color: @bbxGray;
               &.little {
                i {
                 margin-left: 4px;
+                font-style: normal;
+                line-height: 12px;
+                overflow: hidden;
                 width: 10px;
                 height: 11px;
                 display: inline-block;
-                background-image: url("../../assets/img/icon-more_nor.png");
+                // background-image: url("../../assets/img/icon-more_nor.png");
                 &:hover {
-                  background-image: url("../../assets/img/icon-more_sel.png");
+                  // background-image: url("../../assets/img/icon-more_sel.png");
                 }
               }
             }
