@@ -1,18 +1,18 @@
 # swap-cloud-web
 
 > 老虎合约云前端demo。  
-> 该项目使用了 [Nuxt.js](https://zh.nuxtjs.org/) 框架。有关工作原理的详细说明请查看[Nuxt.js docs](https://github.com/nuxt/nuxt.js)  
-> 项目方需自己实现登录注册功能，本demo只提供合约交易功能。
+> 该项目使用了 [Nuxt.js](https://zh.nuxtjs.org/) 框架。有关工作原理的详细说明请查看[Nuxt.js docs](https://github.com/nuxt/nuxt.js)    
+> 项目方需自己实现登录注册功能，本demo只提供合约交易功能。  
 
 ## 步骤
 
-#### 1.安装依赖环境
+### 1.安装依赖环境
 
 -   [Install Node.js 8.x/10.x](http://nodejs.org)
 
-#### 2. git clone 项目或 download zip 项目包
+### 2. git clone 项目或 download zip 项目包
 
-#### 3. 安装项目依赖包
+### 3. 安装项目依赖包
 
 ``` bash
 # install dependencies
@@ -22,7 +22,7 @@ npm install
 npm install webpack -g
 ```
 
-#### 4. 配置
+### 4. 配置
 
 1.  服务器应提供一个可获取 `api_key`、`api_secret`、`expired_ts` 的接口，前端拿到后即可调用合约交易。
     -   代码说明
@@ -44,7 +44,7 @@ npm install webpack -g
 3.  需要接入当前平台的用户资产和用户信息，为转账到期货和头部显示做准备。
     <img src="https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/usage-3.png?raw=true" width="800" hegiht="auto" align="center" />
 
-#### 5. 运行模式
+### 5. 运行模式
 
 项目共三种运行模式，具体请参考 **Mode** 中所提供的步骤进行操作。
 
@@ -158,3 +158,5 @@ npm install webpack -g
     查看后端文档6.3 6.4小节
 6. API接口位置  
     `./assets/js/api/swapsApi`
+7. 合约教程、历史资料的相关页面在哪里？  
+    在 `./pages/information`、`./components/information`
