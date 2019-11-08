@@ -247,6 +247,11 @@
       showEditMargin(item) {
         this.marginInfo = item
         this.showEditMargn = true
+        // 追加、减少保证金   保证金不变问题
+        let value = this.CalculateContractValue(Number(item.hold_vol), Number(item.hold_avg_price))
+        let margin = this.marginRate(value)
+        this.marginInfo['inital'] = margin.initial
+
       },
       iptChange(e, isPrice) {
         e.target.value = Utils.retainDecimals(e.target.value, {integer: 8, decimal: isPrice ? (this.com.priceUnit - 1) : (this.coinUnit ? 0 : this.com.valueUnit)}) || ''
