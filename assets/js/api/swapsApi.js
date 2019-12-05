@@ -74,7 +74,7 @@ let swapsApi = {
   },
   // 获取用户资产
   accounts(coinCode) {
-    return swapsAxios.get(ifcontract + '/accounts', {params: {coinCode}})
+      return swapsAxios.get(ifcontract + '/accounts', { params: { coinCode, isServerCal: '1' } })
   },
   // 获取行情
   getTickers(contractID) {

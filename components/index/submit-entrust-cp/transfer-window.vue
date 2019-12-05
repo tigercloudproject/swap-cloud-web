@@ -48,7 +48,8 @@
       }
     },
     mounted() {
-      this.$store.dispatch('getUser')
+      this.$store.dispatch('getUser');
+      this.$store.dispatch('getUserDate');
     },
     computed: {
       accounts() {
@@ -76,8 +77,10 @@
       },
       // 获取可以转账余额
       getTransferBalance() {
-        let balance = Math.min(this.accounts.available_vol, (this.accounts.cash_vol - Math.max(0, this.accounts.freeze_vol - (this.accounts.realised_vol - this.accounts.earnings_vol)))) + this.com.positionLoss
-        return balance < 0 ? 0 : balance
+          let balance = Math.min( this.accounts.available_vol, ( this.accounts.cash_vol - Math.max(0, this.accounts.freeze_vol - (this.accounts.realised_vol - this.accounts.earnings_vol)))) + this.com.positionLoss
+          console.log( '获取可以转账余额', 'available_vol:', this.accounts.available_vol, 'old_balance:', balance );
+          // return balance < 0 ? 0 : balance
+          return Math.max( 0, Math.min( this.accounts.available_vol, this.accounts.cash_vol) );
       },
       // 转账数量改变事件
       valueChange() {
@@ -194,7 +197,7 @@
           }
         }
      // &>div {
-       
+
         // &::after{
         //     content: '';
         //     position: absolute;
