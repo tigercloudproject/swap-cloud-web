@@ -4,6 +4,7 @@ export const state = () => ({
   ssid: null,
   locale: 'zh-cn',
   userInfo: null,
+  after_accounts: null,
   accounts: null
 })
 
@@ -23,5 +24,8 @@ export const mutations = {
   },
   SET_ACCOUNTS(state, payload) {
     state.accounts = payload.data
+  },
+  SET_AFTER_ACCOUNTS(state, payload) {
+    state.after_accounts = payload.data
   }
 }

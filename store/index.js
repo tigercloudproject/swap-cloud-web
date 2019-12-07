@@ -229,6 +229,9 @@ export const actions = {
       commit('auth/SET_ACCOUNTS', {
         data: account
       })
+      commit('auth/SET_AFTER_ACCOUNTS', {
+        data: res[0].data.after_accounts[0]
+      })
       commit('com/SET_COMMON', {
         showOpenAccount: !account
       })
@@ -280,6 +283,7 @@ export const actions = {
     let imTotal = 0
     let fair_price, contract
     let haveAssert = state.auth.accounts ? Number(state.auth.accounts.available_vol) : 0
+    let haveAfterAssert = state.auth.accounts ? Number(state.auth.after_accounts.available_vol) : 0
     let liquidateAssertLong = haveAssert
     let liquidateAssertSort = haveAssert
     let list = [...state.market.cabinListOther, ...state.market.cabinList]
@@ -312,14 +316,14 @@ export const actions = {
     positionLoss = positionLoss > 0 ? 0 : positionLoss
     otherLossLong = otherLossLong > 0 ? 0 : otherLossLong
     // 计算开仓可用余额
-    haveAssert += Number(positionLoss)
-    haveAssert = haveAssert < 0 ? 0 : haveAssert
+    // haveAssert += Number(positionLoss)
+    haveAfterAssert = haveAfterAssert < 0 ? 0 : haveAfterAssert
     // 计算强平价格的可用余额
     liquidateAssertLong += Number(otherLossLong)
     liquidateAssertLong = liquidateAssertLong < 0 ? 0 : liquidateAssertLong
     liquidateAssertSort += Number(otherLossSort)
     liquidateAssertSort = liquidateAssertSort < 0 ? 0 : liquidateAssertSort
-    commit('com/SET_COMMON', { positionLoss, PNL, haveAssert, liquidateAssertLong, liquidateAssertSort, imTotal })
+    commit('com/SET_COMMON', { positionLoss, PNL, 'haveAssert': haveAfterAssert, liquidateAssertLong, liquidateAssertSort, imTotal })
   },
   userWebSocket({state, dispatch}) {
     if (!state.auth.token) {
