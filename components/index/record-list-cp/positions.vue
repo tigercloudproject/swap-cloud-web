@@ -199,8 +199,7 @@
         this.operationCabinList()
       },
       liquidateAssertLong() {
-          this.$store.dispatch('getUserDate')
-          this.operationCabinList()
+        this.operationCabinList()
       }
     },
     methods: {
