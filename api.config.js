@@ -6,5 +6,5 @@ export default {
   swapsDomain: 'http://swap.bbx.com/',
   // api URL,change this to get Data
   // swapsUrl: 'http://192.168.3.216:9095/'
-  swapsUrl: 'http://test-api.bbx.com/v1/ifcontract/'
+  swapsUrl: 'https://test-api.tiger.cloud/v1/ifcontract/'
 }
