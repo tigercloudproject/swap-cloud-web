@@ -20,7 +20,8 @@
             <tbody class="current-entrust">
                   <tr v-if="token">
                     <td>{{ getUserSumAssert()|retainDecimals({decimal: com.valueUnit}) }}</td>
-                    <td>{{ accounts.available_vol|retainDecimals({decimal: com.valueUnit}) }}</td>
+                    <!-- <td>{{ accounts.available_vol|retainDecimals({decimal: com.valueUnit}) }}</td> -->
+                    <td>{{ accounts.margin_balance|retainDecimals({decimal: com.valueUnit}) }}</td>
                     <td>{{ com.imTotal|retainDecimals({decimal: com.valueUnit}) }}</td>
                     <td>{{ com.PNL|retainDecimals({decimal: com.valueUnit}) }}</td>
                     <!-- <td>{{ accounts.realised_vol|retainDecimals({decimal: com.valueUnit}) }}</td> -->
@@ -89,7 +90,8 @@ export default {
     // },
     // 获取账户权益
     getUserSumAssert() {
-      return Number(this.accounts.available_vol) + Number(this.accounts.freeze_vol) + this.com.imTotal + this.com.PNL
+      // return Number(this.accounts.available_vol) + Number(this.accounts.freeze_vol) + this.com.imTotal + this.com.PNL
+      return Number(this.accounts.margin_balance) + Number(this.accounts.freeze_vol) + this.com.imTotal + this.com.PNL
     }
   }
 }

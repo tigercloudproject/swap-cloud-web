@@ -72,6 +72,7 @@
       console.log(this)
       // im:保证金   positionValue :仓位价值  
       this.maximum = Number(this.info.im) - Number(this.info.positionValue) * Number(this.info.inital)
+      this.maximum = this.maximum > 0 ? this.maximum : 0
     },
     computed: {
       com() {

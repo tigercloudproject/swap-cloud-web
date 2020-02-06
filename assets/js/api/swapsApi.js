@@ -96,6 +96,10 @@ let swapsApi = {
   transferFunds(coin_code, vol, type) {
     return swapsAxios.post(ifcontract + '/transferFunds', {coin_code, vol, type})
   },
+  // 获取可转金额
+  // transferFundsMoney(type) {
+  //   return swapsAxios.get(ifaccount + '/transferFunds', { params: { type: type } })
+  // },
   //  获取指数列表
   getIndexList() {
     return swapsAxios.get(ifcontract + '/indexes')

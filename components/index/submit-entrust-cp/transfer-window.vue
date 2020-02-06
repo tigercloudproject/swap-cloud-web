@@ -77,7 +77,9 @@
       // 获取可以转账余额
       getTransferBalance() {
         let balance = Math.min(this.accounts.available_vol, (this.accounts.cash_vol - Math.max(0, this.accounts.freeze_vol - (this.accounts.realised_vol - this.accounts.earnings_vol)))) + this.com.positionLoss
-        return balance < 0 ? 0 : balance
+        // return balance < 0 ? 0 : balance
+        // return Math.max( 0, Math.min( this.accounts.available_vol, this.accounts.cash_vol) );
+        return this.accounts.trans_out_balance < 0 ? 0 : this.accounts.trans_out_balance
       },
       // 转账数量改变事件
       valueChange() {

@@ -279,9 +279,13 @@ export const actions = {
     let PNL = 0
     let imTotal = 0
     let fair_price, contract
-    let haveAssert = state.auth.accounts ? Number(state.auth.accounts.available_vol) : 0
-    let liquidateAssertLong = haveAssert
-    let liquidateAssertSort = haveAssert
+    // let haveAssert = state.auth.accounts ? Number(state.auth.accounts.available_vol) : 0
+    // let liquidateAssertLong = haveAssert
+    // let liquidateAssertSort = haveAssert
+    // 接口新增字段: margin_balance 保证金余额，available_balance 可用余额，trans_out_balance 可划出余额，total_im 保证金总额
+    let haveAssert = state.auth.accounts ? Number(state.auth.accounts.available_balance) : 0
+    let liquidateAssertLong = Number(state.auth.accounts.margin_balance)
+    let liquidateAssertSort = Number(state.auth.accounts.margin_balance)
     let list = [...state.market.cabinListOther, ...state.market.cabinList]
     let len = list.length
     for (;len--;) {
@@ -293,7 +297,8 @@ export const actions = {
         // 计算所有的未实现盈亏和
         PNL += item.loss
         // 计算所有的开仓保证金和
-        imTotal += Number(item.im)
+        // imTotal += Number(item.im)
+        imTotal = Number(state.auth.accounts.total_im)
         // 处理全仓情况下仓位亏损
         if (item.open_type === 2) {
           positionLoss += item.loss
@@ -312,12 +317,13 @@ export const actions = {
     positionLoss = positionLoss > 0 ? 0 : positionLoss
     otherLossLong = otherLossLong > 0 ? 0 : otherLossLong
     // 计算开仓可用余额
-    haveAssert += Number(positionLoss)
-    haveAssert = haveAssert < 0 ? 0 : haveAssert
+    // haveAssert += Number(positionLoss)
+    // haveAssert = haveAssert < 0 ? 0 : haveAssert
     // 计算强平价格的可用余额
     liquidateAssertLong += Number(otherLossLong)
     liquidateAssertLong = liquidateAssertLong < 0 ? 0 : liquidateAssertLong
-    liquidateAssertSort += Number(otherLossSort)
+    // liquidateAssertSort += Number(otherLossSort)
+    liquidateAssertSort = Number(otherLossSort) > 0 ? liquidateAssertSort : liquidateAssertSort + Number(otherLossSort)
     liquidateAssertSort = liquidateAssertSort < 0 ? 0 : liquidateAssertSort
     commit('com/SET_COMMON', { positionLoss, PNL, haveAssert, liquidateAssertLong, liquidateAssertSort, imTotal })
   },
