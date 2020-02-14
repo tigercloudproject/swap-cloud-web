@@ -1,4 +1,6 @@
 import { swapsAxios } from '../axiosConfig'
+import BASE from '../../../config/base'
+
 let ifaccount = 'ifaccount'
 let ifcontract = 'ifcontract'
 let swapsApi = {
@@ -49,7 +51,8 @@ let swapsApi = {
       contractID,
       offset,
       size,
-      status
+      status,
+      exchange: BASE.exchangeName
     }})
   },
   // 提交订单

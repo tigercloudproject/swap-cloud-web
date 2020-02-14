@@ -44,6 +44,8 @@ npm install webpack -g
 3.  需要接入当前平台的用户资产和用户信息，为转账到期货和头部显示做准备。
     <img src="https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/usage-3.png?raw=true" width="800" hegiht="auto" align="center" />
 
+4.  如果需要让接口在获取数据前，优先进行数据过滤（如显示指定的合约交易对），则可在 `./config/base.js` 内修改 `exchangeName` 的值为交易所名称即可。
+
 ### 5. 运行模式
 
 项目共三种运行模式，具体请参考 **Mode** 中所提供的步骤进行操作。

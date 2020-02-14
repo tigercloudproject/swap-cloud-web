@@ -5,6 +5,8 @@ export default {
   cloudAccessKey: 'ebb1b16a-3556-45b3-ad00-13d3120ba834',
   // 单位分，expired_ts 有效时长
   cloudEffectiveTime: 20,
+  // 交易所名称，用语针对指定的交易所进行接口数据过滤
+  exchangeName: '',
   // 交易对
   productTicker: {
     /*
