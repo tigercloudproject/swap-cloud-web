@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.1.3.0217
+### a
+- C 调整 exchange 参数的接口支持
+
 ## 1.1.3.0214
 ### a
 - C 支持通过配置 exchangeName，使接口回传指定数据

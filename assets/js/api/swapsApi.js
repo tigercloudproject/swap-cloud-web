@@ -32,7 +32,10 @@ let swapsApi = {
   },
   // 获取合约集合
   getContracts(contractID) {
-    return swapsAxios.get(ifcontract + '/contracts', {params: {contractID}})
+    return swapsAxios.get(ifcontract + '/contracts', {params: {
+      contractID,
+      exchange: BASE.exchangeName
+    }})
   },
   // 获取当前委托和历史委托
   // 订单状态 1:申报中 2:委托中 4:完成 如果请求参数status=3,标识同时请求申报中和委托中的订单,如果请求参数status=0或者7,标识同时请求所有状态的订单
@@ -51,8 +54,7 @@ let swapsApi = {
       contractID,
       offset,
       size,
-      status,
-      exchange: BASE.exchangeName
+      status
     }})
   },
   // 提交订单
