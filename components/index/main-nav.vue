@@ -347,7 +347,6 @@ export default {
     },
     // 获取账户权益
     getUserSumAssert() {
-      // return Number(this.accounts.available_vol) + Number(this.accounts.freeze_vol) + this.com.imTotal + this.com.PNL
       return Number(this.accounts.margin_balance) + Number(this.accounts.freeze_vol) + this.com.imTotal + this.com.PNL
     },
     // 切换主区与创新区

@@ -630,12 +630,6 @@
           Price: this.getPrice()
         }
       },
-      // 获取用户可用余额
-      // getCanAssert() {
-      //   let assert = this.accounts.available_vol
-      //   let money = this.$store.state.market.longOptions + this.$store.state.market.sortOptions
-      //   return money < 0 ? (assert - money) : assert
-      // },
       // 获取精度
       gePrecision(value, unit, integer = 8) {
         let _unit = this.com[unit]
@@ -648,7 +642,7 @@
       // 获取可开张数 bl 为true时求价值
       CalculateVolume(longOrSort, bl) {
         let Price = this.price || this.ticker.fair_price
-        if (!this.accounts.available_vol || !Price) {
+        if (!Price) {
           return 0
         }
         let contractInfo = this.getContractInfo()

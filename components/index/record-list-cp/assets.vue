@@ -20,7 +20,6 @@
             <tbody class="current-entrust">
                   <tr v-if="token">
                     <td>{{ getUserSumAssert()|retainDecimals({decimal: com.valueUnit}) }}</td>
-                    <!-- <td>{{ accounts.available_vol|retainDecimals({decimal: com.valueUnit}) }}</td> -->
                     <td>{{ accounts.margin_balance|retainDecimals({decimal: com.valueUnit}) }}</td>
                     <td>{{ com.imTotal|retainDecimals({decimal: com.valueUnit}) }}</td>
                     <td>{{ com.PNL|retainDecimals({decimal: com.valueUnit}) }}</td>
@@ -62,12 +61,6 @@ export default {
     //   let _unit = this.productInfo.contract[unit].lastIndexOf('.') + 1
     //   return Utils.retainDecimals(value, {integer, decimal: _unit})
     // },
-    // 获取可用资产
-    // getCanAssert() {
-    //   let assert = this.accounts.available_vol
-    //   let money = this.$store.state.market.longOptions + this.$store.state.market.sortOptions
-    //   return money < 0 ? (assert - money) : assert
-    // },
     // 获取仓位保证金
     // getPositions() {
     //   let total = 0
@@ -90,7 +83,6 @@ export default {
     // },
     // 获取账户权益
     getUserSumAssert() {
-      // return Number(this.accounts.available_vol) + Number(this.accounts.freeze_vol) + this.com.imTotal + this.com.PNL
       return Number(this.accounts.margin_balance) + Number(this.accounts.freeze_vol) + this.com.imTotal + this.com.PNL
     }
   }

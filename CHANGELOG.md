@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.1.3.0219
+### a
+- R 移除 accounts.available_vol，该变量将逐渐作废
+
 ## 1.1.3.0217
 ### a
 - C 调整 exchange 参数的接口支持
