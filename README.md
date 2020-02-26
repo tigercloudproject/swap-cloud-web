@@ -146,6 +146,50 @@ npm install webpack -g
 |最新成交价|[news-deal.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/index/news-deal.vue)|/components/index/news-deal.vue|
 |合约计算器|[calculator-window.vue](https://github.com/tigercloudproject/swap-cloud-web/blob/master/components/index/type-title-cp/calculator-window.vue)|/components/index/type-title-cp/calculator-window.vue)|
 
+## 已使用接口一览
+
+**/ifcontract**
+
+- GET /quote
+- GET /contracts
+- GET /userOrders
+- GET /userPositions
+- GET /submitOrder
+- POST /cancelOrders
+- GET /depth
+- GET /trades
+- GET /userTrades
+- GET /accounts
+- GET /tickers
+- GET /userLiqRecords
+- GET /orderTrades
+- GET /pnls
+- POST /transferFunds
+- GET /indexes
+- GET /indexquote
+- GET /fpquote
+- POST /marginOper
+- GET /fundingrate
+- GET /createContractAccount
+- GET /riskReserves
+- GET /activity/openAccountReward
+- GET /activity/depositReward
+- GET /submitPlanOrder
+- POST /cancelPlanOrders
+- GET /userPlanOrders
+- GET /userOrderInfo
+- GET /positionFee
+
+**/ifaccount**
+
+- GET /logout
+- GET /users/me
+- GET /rebates
+
+**/ifglobal**
+
+- GET /coinBrief
+
 ## FAQ
 
 1. 对头部合约列表内的交易对，进行可控的显示或隐藏  
