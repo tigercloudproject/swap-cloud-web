@@ -199,7 +199,7 @@ npm install webpack -g
 3. Response 返回 `invalid expired ts`  
     服务器采用0时区的时间设定，而 `expired_ts` 的有效期为20分钟（前端）。可在 `./config/base` 内修改。
 4. Response 返回 `invalid request`  
-    请检查Request Header中是否带有 `Bbx-Accesskey`、`Bbx-Sign`、`Bbx-Ver`、`Bbx-Dev`、`Bbx-Ts` 这些key。如果有缺少，则需要在 `./assets/js/axiosClassYun` 下进行配置。一般不会出现这问题。
+    请检查Request Header中是否带有 `tc-Accesskey`、`tc-Sign`、`tc-Ver`、`tc-Dev`、`tc-Ts` 这些key。如果有缺少，则需要在 `./assets/js/axiosClassYun` 下进行配置。一般不会出现这问题。
 5. Response 返回 `invalid signature`  
     查看后端文档6.3 6.4小节
 6. API接口位置  

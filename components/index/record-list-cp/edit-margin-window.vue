@@ -69,9 +69,8 @@
       }
     },
     async mounted() {
-      console.log(this)
-      // im:保证金   positionValue :仓位价值  
-      this.maximum = Number(this.info.im) - Number(this.info.positionValue) * Number(this.info.inital)
+      this.info.money>=0 ? this.maximum = this.info.im-2*this.info.mm
+                         : this.maximum = this.info.im-2*this.info.mm+this.info.money
       this.maximum = this.maximum > 0 ? this.maximum : 0
     },
     computed: {

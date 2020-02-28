@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.1.3.0227
+### a
+- C 调整 最大减少保证金方案 `components/index/record-list-cp/edit-margin-window.vue` 文件下：
+- C 调整请求头内容前缀  
+
 ## 1.1.3.0226
 ### a
 - C 调整 README.md

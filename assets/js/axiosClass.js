@@ -24,9 +24,9 @@ class AxiosClass {
       // }
       let timestamp = new Date().valueOf()
       let nonce = timestamp + '000'
-      config.headers.common['Bbx-Ver'] = '1.0'
-      config.headers.common['Bbx-Dev'] = 'web'
-      config.headers.common['Bbx-Ts'] = nonce
+      config.headers.common['tc-Ver'] = '1.0'
+      config.headers.common['tc-Dev'] = 'web'
+      config.headers.common['tc-Ts'] = nonce
       config.headers.common['Content-Type'] = 'application/json'
       // config.headers.common['Access-Control-Max-Age'] = '60'
       try {
@@ -37,8 +37,8 @@ class AxiosClass {
         let version = cookie.getCookie('version')
         let options = cookie.getCookie('options')
         if (version && options) {
-          config.headers.common['Bbx-Ver'] = version
-          config.headers.common['Bbx-Dev'] = options
+          config.headers.common['tc-Ver'] = version
+          config.headers.common['tc-Dev'] = options
         }
         if (!locale || ~locale.indexOf('en')) {
           locale = 'en'
@@ -47,15 +47,15 @@ class AxiosClass {
         // console.log(document.cookie, 33, token)
         if (token) {
           token = aesEncrypy(token, nonce)
-          config.headers.common['Bbx-Sign'] = token
+          config.headers.common['tc-Sign'] = token
         }
         if (ssid) {
-          config.headers.common['Bbx-Ssid'] = ssid
+          config.headers.common['tc-Ssid'] = ssid
         }
         if (uid) {
-          config.headers.common['Bbx-Uid'] = uid
+          config.headers.common['tc-Uid'] = uid
         }
-        config.headers.common['Bbx-Language'] = locale
+        config.headers.common['tc-Language'] = locale
       } catch (err) {}
       // if (~config.url.indexOf('?')) {
       //   config.url = config.url + '&t=' + Date.now()
@@ -69,9 +69,9 @@ class AxiosClass {
   }
   error() {
     this.service.interceptors.response.use(res => {
-      let token = res.headers['bbx-token']
-      let ssid = res.headers['bbx-ssid']
-      let uid = res.headers['bbx-uid']
+      let token = res.headers['tc-token']
+      let ssid = res.headers['tc-ssid']
+      let uid = res.headers['tc-uid']
       if (token) {
         cookie.setCookie('token', token, 1, '/', config.domain)
       }

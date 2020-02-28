@@ -15,11 +15,11 @@ export const actions = {
         token: req.token
       })
       // let nonce = new Date().valueOf() + '000'
-      // baseAxios.defaults.headers['Bbx-Ts'] = nonce
-      // req.ssid && (baseAxios.defaults.headers['Bbx-Ssid'] = req.ssid)
-      // req.uid && (baseAxios.defaults.headers['Bbx-Uid'] = req.uid)
-      // req.locale && (baseAxios.defaults.headers['Bbx-Language'] = req.locale)
-      // req.token && (baseAxios.defaults.headers['Bbx-Sign'] = aesEncrypy(req.token, nonce))
+      // baseAxios.defaults.headers['tc-Ts'] = nonce
+      // req.ssid && (baseAxios.defaults.headers['tc-Ssid'] = req.ssid)
+      // req.uid && (baseAxios.defaults.headers['tc-Uid'] = req.uid)
+      // req.locale && (baseAxios.defaults.headers['tc-Language'] = req.locale)
+      // req.token && (baseAxios.defaults.headers['tc-Sign'] = aesEncrypy(req.token, nonce))
     }
     // if (req.locale) {
     //   store.commit('auth/SET_LOCALE', {

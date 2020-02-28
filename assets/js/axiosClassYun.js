@@ -37,9 +37,9 @@ class AxiosClass {
       var access_key_val = '' || BASE.cloudAccessKey
       // =======================================================================
 
-      config.headers.common['Bbx-Ver'] = '1.0'
-      config.headers.common['Bbx-Dev'] = 'web'
-      config.headers.common['Bbx-Ts'] = timestamp_val
+      config.headers.common['tc-Ver'] = '1.0'
+      config.headers.common['tc-Dev'] = 'web'
+      config.headers.common['tc-Ts'] = timestamp_val
       config.headers.common['Content-Type'] = 'application/json'
       // config.headers.common['Access-Control-Max-Age'] = '60'
       try {
@@ -54,8 +54,8 @@ class AxiosClass {
         // let version = cookie.getCookie('version')
         // let options = cookie.getCookie('options')
         // if (version && options) {
-        //   config.headers.common['Bbx-Ver'] = version
-        //   config.headers.common['Bbx-Dev'] = options
+        //   config.headers.common['tc-Ver'] = version
+        //   config.headers.common['tc-Dev'] = options
         // }
         // if (!locale || ~locale.indexOf('en')) {
         //   locale = 'en'
@@ -66,15 +66,15 @@ class AxiosClass {
         if (token) {
           // token = new Md5(token + 'bbx' + timestamp_val)
           let _body = body && JSON.stringify(body)
-          config.headers.common['Bbx-Sign'] = (new Md5(_body + token + timestamp_val)).hash()
+          config.headers.common['tc-Sign'] = (new Md5(_body + token + timestamp_val)).hash()
         }
         if (expired_ts) {
-          config.headers.common['Bbx-ExpiredTs'] = expired_ts
+          config.headers.common['tc-ExpiredTs'] = expired_ts
         }
         if (access_key) {
-          config.headers.common['Bbx-Accesskey'] = access_key
+          config.headers.common['tc-Accesskey'] = access_key
         }
-        // config.headers.common['Bbx-Language'] = locale
+        // config.headers.common['tc-Language'] = locale
       } catch (err) {
       }
       // if (~config.url.indexOf('?')) {
@@ -89,8 +89,8 @@ class AxiosClass {
   }
   error() {
     this.service.interceptors.response.use(res => {
-      // let token = res.headers['bbx-token']
-      // let uid = res.headers['bbx-uid']
+      // let token = res.headers['tc-token']
+      // let uid = res.headers['tc-uid']
       // if (token) {
       //   cookie.setCookie('token', token, 1, '/', config.domain)
       // }
