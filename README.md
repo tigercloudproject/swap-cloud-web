@@ -1,8 +1,7 @@
-# swap-cloud-web
+# 老虎云合约前端 Demo
 
-> 老虎合约云前端demo。  
-> 该项目使用了 [Nuxt.js](https://zh.nuxtjs.org/) 框架。有关工作原理的详细说明请查看[Nuxt.js docs](https://github.com/nuxt/nuxt.js)    
-> 项目方需自己实现登录注册功能，本demo只提供合约交易功能。  
+> 该项目使用了 [Nuxt.js](https://zh.nuxtjs.org/) 框架。有关工作原理的详细说明请查看[Nuxt.js docs](https://github.com/nuxt/nuxt.js)
+> 项目方需自己实现登录注册功能，本demo只提供合约交易功能。
 
 ## 步骤
 
