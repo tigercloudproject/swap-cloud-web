@@ -32,10 +32,10 @@ npm install webpack -g
         ```
         > 注意: 站点重度依赖token字段为用户登录态判断依据，所以项目方在登录后，要把 `token`、`expired_ts`、`access_key` 储存到cookie中。
 
-    -   访问项目中的 `./config/base.js` 文件，修改 `cloudToken`、`cloudAccessKey` 为自己的缺省值。
-        <img src="https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/img1.jpg?raw=true" width="800" hegiht="auto" align="center" />
-    -   访问项目中的 `./assets/js/axiosClassYun.js`，在 **32~38** 行内把从服务器获取的 `api_key`、`api_secret`、`expired_ts` 进行赋值。
-        <img src="https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/img3.jpg?raw=true" width="800" hegiht="auto" align="center" />
+    -   访问项目中的 `./config/base.js` 文件，修改 `cloudToken`、`cloudAccessKey`、`cloudExpiredTs` 为来自后端的对应值
+        <img src="https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/img1.gif?raw=true" width="800" hegiht="auto" align="center" />
+    -   项目中的 `./assets/js/axiosClassYun.js`，在 **34~39** 行内把从服务器获取的（`config/base.js`） `api_key`、`api_secret`、`expired_ts` 进行赋值。
+        <img src="https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/img3.gif?raw=true" width="800" hegiht="auto" align="center" />
     -   如果要提升安全性，可缩短 `expired_ts` 的有效期。
 2.  只有在 `./config/` 内对应的模式 `.js` 文件中，`isYun` 字段设为 `true`，才会调用上面的配置。  
 目前所有模式配置中 `isYun: true`。

@@ -30,11 +30,11 @@ npm install webpack -g
         cookie.getCookie ('expired_ts'); // timeout timestamp
         cookie.getCookie ('access_key'); // api_key
         ```
-        > Note: The site relies heavily on the token field as the basis for determining the user's login status, so after the project is logged in, the project party must store `token`,` expired_ts`, and `access_key` in the cookie.
+        > Note: The site relies heavily on the token field as the basis for determining the user's login status, so after the project is logged in, the project party must store `token`,`expired_ts`, and `access_key` in the cookie.
 
-   - Access the `. / Config / base.js` file in the project and modify the` cloudToken` and `cloudAccessKey` to their default values.
+   - Access the ../config/base.js file in the project, modify the `cloudToken`,`cloudAccessKey`, and `cloudExpiredTs` from the corresponding values from
         <img src = "https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/img1.jpg?raw=true" width = "800" hegiht = "auto" align = " center "/>
-   - Visit `. / Assets / js / axiosClassYun.js` in the project, and assign the values ​​of` api_key`, `api_secret`, and` expired_ts` obtained from the server within the ** 32 ~ 38 ** lines.
+   - `. /Assets/js/axiosClassYun.js` in the project, in the line of ** 34 ~ 39 **, get the` api_key`, `api_secret`,` expired_ts` obtained from the server (`config / base.js`) Assignment.
         <img src = "https://github.com/tigercloudproject/swap-cloud-web/blob/master/static/readme/img3.jpg?raw=true" width = "800" hegiht = "auto" align = " center "/>
    - If you want to improve security, you can shorten the expiry_ts period.
 2. The above configuration will only be called if the `isYun` field is set to` true` in the corresponding `.js` file in`. / Config / `.  

@@ -1,10 +1,10 @@
 export default {
-  // 加密后的 api_secret
-  cloudToken: '461581496df9211abeaddf3cb108129a',
-  // api_key
-  cloudAccessKey: 'ebb1b16a-3556-45b3-ad00-13d3120ba834',
-  // 单位分，expired_ts 有效时长
-  cloudEffectiveTime: 20,
+  // 加密后的 api_secret，需从后端获取
+  cloudToken: '',
+  // api_key，需从后端获取
+  cloudAccessKey: '',
+  // expired_ts，需从后端获取
+  cloudExpiredTs: undefined,
   // 交易所名称，用语针对指定的交易所进行接口数据过滤
   exchangeName: '',
   // 交易对
