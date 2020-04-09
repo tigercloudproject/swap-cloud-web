@@ -205,3 +205,5 @@ npm install webpack -g
     `./assets/js/api/swapsApi`
 7. 合约教程、历史资料的相关页面在哪里？  
     在 `./pages/information`、`./components/information`
+8. 为何新上的交易对没有出现（交易对没有更新）
+    因 nuxt 启动时， `nuxtServerInit` 会把合约交易对先写入 `fetch`。所以如果要更新 `getContracts`，则可以在当前项目的 url param 加入 `news=1` 再访问即可触发 nuxt 这部分的更新机制，如 `http://swap.test.com/?id=1&news=1`。注意：这里 `news` 只要存在且有值即可触发，所以并不一定 value 固定为 1。

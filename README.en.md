@@ -205,3 +205,5 @@ Official online interface will be accessed.
     `. / assets / js / api / swapsApi`
 7. Where are the relevant pages of contract tutorials and historical materials?  
     In `. / Pages / information`,`. / Components / information`
+8. Why the new trading pair does not appear (the trading pair is not updated)
+    Because if you want to update `getContracts`, you can trigger the update mechanism of this part of nuxt at the current project url param join`news = 1` and then visit, such as` http://swap.test.com/? id = 1 & news = 1`. Note: The news here can be triggered as long as it exists and has a value, so the value is not necessarily fixed at 1.

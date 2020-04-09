@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.1.3.0409
+### a
+- C 调整 `README.md` FAQ 内容
+
 ## 1.1.3.0331
 ### a
 - C 调整 `README.md` 和 `config/base.js` ，避免针对 `expired_ts` 的误解
