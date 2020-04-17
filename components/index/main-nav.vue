@@ -235,7 +235,6 @@ export default {
       mainList: null,
       newsList: null,
       isAssertShow: true,
-      coinBriefUrl: '',
       isWarningShow: false
     }
   },
@@ -334,12 +333,6 @@ export default {
       warningShowObj = JSON.stringify(warningShowObj)
       localStorage.setItem('warningShowObj', warningShowObj)
       this.isWarningShow = false
-    },
-    // 获取币种介绍链接
-    coinBrief() {
-      this.swapsApi.coinBrief(this.productInfo.contract.base_coin).then(res => {
-        this.coinBriefUrl = res.data && res.data.link
-      })
     },
     assertShow() {
       this.isAssertShow = !this.isAssertShow
@@ -524,8 +517,6 @@ export default {
       this.$router.push({
         query: {id}
       })
-      this.coinBrief()
-
       this.setWarningTime(id)
     },
     // 设置warning时间
@@ -645,7 +636,6 @@ export default {
     if (isAssertShow) {
       this.isAssertShow = isAssertShow === 'true'
     }
-    this.coinBrief()
     this.isMianOrNews = this.isMian(this.productInfo.contract.contract_id)
     // this.mainList = this.reduceProduct(true)
     // this.newsList = this.reduceProduct(false)

@@ -185,10 +185,6 @@ Official online interface will be accessed.
 - GET /users/me
 - GET /rebates
 
-**/ifglobal**
-
-- GET /coinBrief
-
 ## FAQ
 
 1. Show or hide the trading pairs in the head contract list in a controlled manner.  

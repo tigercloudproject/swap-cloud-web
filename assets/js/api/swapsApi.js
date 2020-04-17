@@ -176,10 +176,6 @@ let swapsApi = {
   userOrderInfo(contractID, orderID) {
     return swapsAxios.get(ifcontract + '/userOrderInfo', {params: {contractID, orderID}})
   },
-  // 获取币种详情
-  coinBrief(coinCode) {
-    return swapsAxios.get('/ifglobal/coinBrief', {params: {coinCode}})
-  },
   // 获取仓位资金费用(1016加)
   positionFee(contract_id, position_id) {
     return swapsAxios.get(ifcontract + `/positionFee?contractID=${contract_id}&positionID=${position_id}`)

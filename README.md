@@ -185,10 +185,6 @@ npm install webpack -g
 - GET /users/me
 - GET /rebates
 
-**/ifglobal**
-
-- GET /coinBrief
-
 ## FAQ
 
 1. 对头部合约列表内的交易对，进行可控的显示或隐藏  
