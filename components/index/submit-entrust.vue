@@ -175,7 +175,8 @@
         {name: '100x', value: 100},
         {name: '50x', value: 50},
         {name: '20x', value: 20},
-        {name: '10x', value: 10}
+        {name: '10x', value: 10},
+        {name: '5x', value: 5}
       ]
       return {
         showConfirmEntrust: false, // 开仓弹窗
