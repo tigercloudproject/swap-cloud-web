@@ -19,7 +19,7 @@
     "css-loader": "^0.28.11",
     "koa": "^2.4.1",
     "less-loader": "^4.1.0",
-    "nuxt": "^1.4.2",
+    "nuxt": "^2.15.8",
     "source-map-support": "^0.4.15",
     "vue-i18n": "^7.4.0",
     "vue-style-loader": "^4.1.0"
@@ -28,7 +28,7 @@
     "@nuxtjs/axios": "^5.3.1",
     "@nuxtjs/proxy": "^1.2.4",
     "babel-eslint": "^7.1.1",
-    "backpack-core": "^0.3.0",
+    "backpack-core": "^0.8.4",
     "eslint": "^4.18.2",
     "eslint-config-standard": "^10.2.1",
     "eslint-loader": "^1.9.0",
